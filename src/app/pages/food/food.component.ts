@@ -105,6 +105,7 @@ export class FoodComponent implements OnInit {
           console.log(data);
         });
         this.addFoodformGroup.reset();
+        this.photoPath = "../../../assets/images/No_image_available.svg";
         this.getFoods();
 
       });
