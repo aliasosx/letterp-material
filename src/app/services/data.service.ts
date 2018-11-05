@@ -36,6 +36,9 @@ export class DataService {
   addFood(food) {
     return this.http.post(this.url + 'food/addFood', JSON.stringify(food), this.httpOptions);
   }
+  uploadFoodPhoto(file) {
+    return this.http.post(this.url + 'food/upload', file);
+  }
   removeFood(food) {
     return this.http.post(this.url + 'food/remove', JSON.stringify(food), this.httpOptions);
   }

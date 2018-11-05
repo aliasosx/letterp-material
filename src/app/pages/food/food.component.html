@@ -98,20 +98,21 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
-      <div class=" modal-body">
+      <div class="modal-body">
         <div class="row">
           <div class="col-sm-4">
             <mdc-image-list textProtection>
               <mdc-image-list-item>
                 <mdc-image-list-image-aspect>
-                  <img class="w-100" src="https://randomwire.com/wp-content/uploads/plastic-food.jpeg">
+                  <img class="w-100" [src]="photoPath" (click)="fileInput.click()">
+                  <div class="text-center">
+                    <button type="button" [disabled]="!file" [raised]="true" mdc-button (click)="onUpload()">Upload</button>
+                  </div>
                 </mdc-image-list-image-aspect>
-                <mdc-image-list-supporting>
-                  <span mdcImageListLabel>Photo</span>
-                </mdc-image-list-supporting>
               </mdc-image-list-item>
             </mdc-image-list>
+            <input style="display: none" type="file" (change)="onFileChange($event)" #fileInput>
+
           </div>
           <div class="col-sm-8">
             <form [formGroup]="addFoodformGroup">

@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  url: 'http://35.240.213.37:5000/api/v1/'
+  url: 'http://localhost:5000/api/v1/',
+  imageUrl: 'http://localhost:5000/images/uploads/foods/'
+
 };
 
 /*

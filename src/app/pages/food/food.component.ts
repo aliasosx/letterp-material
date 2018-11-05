@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DataService } from 'src/app/services/data.service';
 import { Food } from 'src/app/models/food';
-import { MdcDialog } from '@angular-mdc/web';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-food',
   templateUrl: './food.component.html',
@@ -27,6 +28,9 @@ export class FoodComponent implements OnInit {
   currcodes: any;
   food: Food = new Food();
   public addFoodformGroup: FormGroup;
+  file: File;
+  photoPath: any = "../../../assets/images/No_image_available.svg";
+  env = environment.imageUrl;
 
   ngOnInit() {
     this.title = 'Atlas';
@@ -90,10 +94,15 @@ export class FoodComponent implements OnInit {
           'price': this.addFoodformGroup.get('price').value,
           'currcode': this.addFoodformGroup.get('currcode').value,
           'created_by': 'ADMIN',
-          'photo': 'https://www.studio7thailand.com/wp-content/uploads/2017/11/iPhone-X-01.png'
+          'photo': this.env + this.file.name
         }
       };
       this.dataService.addFood(food).subscribe(data => {
+        const uploadData = new FormData();
+        uploadData.append('image', this.file, this.file.name);
+        this.dataService.uploadFoodPhoto(uploadData).subscribe(data => {
+          console.log(data);
+        });
         this.getFoods();
       });
     }
@@ -111,6 +120,16 @@ export class FoodComponent implements OnInit {
         this.getFoods();
       });
     }
+  }
+
+  onFileChange(event) {
+    this.file = event.target.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(this.file);
+    reader.onload = (event) => {
+      this.photoPath = (<FileReader>event.target).result;
+    }
+    console.log(this.file);
   }
 
 }
