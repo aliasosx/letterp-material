@@ -104,7 +104,9 @@ export class FoodComponent implements OnInit {
         this.dataService.uploadFoodPhoto(uploadData).subscribe(data => {
           console.log(data);
         });
+        this.addFoodformGroup.reset();
         this.getFoods();
+
       });
     }
   }
