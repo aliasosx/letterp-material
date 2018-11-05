@@ -3,6 +3,7 @@ import { MdcDrawer, MdcButton } from '@angular-mdc/web';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DataService } from 'src/app/services/data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-topbar',
@@ -25,9 +26,11 @@ export class TopbarComponent implements OnInit {
   ativeMenu: string;
   title: string;
   drawerDismissible: MdcDrawer;
+  env: string = environment.token;
+
   ngOnInit() {
     this.title = ''/*'Letterp Restaurant'*/;
-    this.token = localStorage.getItem("token");
+    this.token = this.env;//localStorage.getItem("token");
     if (!this.token) {
       this.router.navigateByUrl("login");
     }
