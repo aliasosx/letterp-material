@@ -26,11 +26,11 @@ export class TopbarComponent implements OnInit {
   ativeMenu: string;
   title: string;
   drawerDismissible: MdcDrawer;
-  env: string = environment.token;
+
 
   ngOnInit() {
     this.title = ''/*'Letterp Restaurant'*/;
-    this.token = this.env;//localStorage.getItem("token");
+    this.token = localStorage.getItem("token");
     if (!this.token) {
       this.router.navigateByUrl("login");
     }

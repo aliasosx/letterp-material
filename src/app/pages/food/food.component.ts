@@ -35,7 +35,7 @@ export class FoodComponent implements OnInit {
 
   ngOnInit() {
     this.title = 'Atlas';
-    this.token = this.envtoken;//localStorage.getItem('token');
+    this.token = localStorage.getItem('token');
     /*Form instance initial */
     this.addFoodformGroup = new FormGroup({
       food_name: new FormControl(),
