@@ -1,0 +1,144 @@
+<div class="container" #mainContent>
+  <div class="card-main">
+    <div class="card">
+      <div class="card-header">
+        <h4>ລາຍການອາຫານທັງໝົດ</h4>
+      </div>
+      <div class="card-body">
+        <table id="foodTable" class="table table-striped table-hover" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+          <thead>
+            <tr>
+              <th class="text-center ">
+                <mfDefaultSorter by="i">#</mfDefaultSorter>
+              </th>
+              <th class="text-center text-nowrap ">
+                <mfDefaultSorter by="food_name">
+                  ລາຍການອາຫານ
+                </mfDefaultSorter>
+              </th>
+              <th class="text-center">
+                <mfDefaultSorter by="photo">ຮູບພາບ</mfDefaultSorter>
+              </th>
+              <th class="text-center text-nowrap">
+                <mfDefaultSorter by="food_type_id">ປະເພດ</mfDefaultSorter>
+              </th>
+              <th class="text-center">
+                <mfDefaultSorter by="cost">ລາຄາຕົ້ນທຶນ</mfDefaultSorter>
+              </th>
+              <th class="text-center">
+                <mfDefaultSorter by="price">ລາຄາຂາຍ</mfDefaultSorter>
+              </th>
+              <th class="text-center text-nowrap">
+                <mfDefaultSorter by="currcode">ສະກຸນເງິນ</mfDefaultSorter>
+              </th>
+              <th class="text-center">
+                <mfDefaultSorter by="enabled">ນຳໃຊ້</mfDefaultSorter>
+              </th>
+              <th class="text-center">ຄຳສັ່ງ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let food of mf.data; let i = index" [attr.data-index]="i">
+              <td class="align-middle">{{ i + 1 }}</td>
+              <td class="align-middle text-nowrap">{{ food.food_name }}</td>
+              <td class="align-middle">
+                <div class="text-center">
+                  <img class="text-center align-middle w-25" src="{{ food.photo }}">
+                </div>
+              </td>
+              <td class="align-middle text-center">{{ food.food_type_desc_la }}</td>
+              <td class="align-middle text-right">{{ food.cost | number: '.2' }}</td>
+              <td class="align-middle text-right">{{ food.price | number: '.2' }}</td>
+              <td class="align-middle text-center">{{ food.curr_name_la }}</td>
+              <td class="align-middle text-center">
+                <div class="form-check checkbox-slider--c">
+                  <label>
+                    <mdc-switch class="demo-switch--custom " [checked]="food.enabled"></mdc-switch>
+                  </label>
+                </div>
+              </td>
+              <td class="align-middle text-center text-nowrap">
+
+                <button mdc-fab [mini]="true" (click)="updateOnClick(food.id);">
+                  <mdc-icon>edit</mdc-icon>
+                </button>
+
+                <button mdc-fab [mini]="true" (click)="deleteFood(food.id)">
+                  <mdc-icon>remove</mdc-icon>
+                </button>
+
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="9" class="text-center">
+                <mfBootstrapPaginator></mfBootstrapPaginator>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<button mdc-fab extended position='bottomRight' data-toggle="modal" data-target="#addNewFoodModal">
+  <mdc-icon>add</mdc-icon>
+  <mdc-fab-label>Create</mdc-fab-label>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="addNewFoodModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ເພີມລາຍການອາຫານ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class=" modal-body">
+        <div class="row">
+          <div class="col-sm-4">
+            <mdc-image-list textProtection>
+              <mdc-image-list-item>
+                <mdc-image-list-image-aspect>
+                  <img class="w-100" src="https://randomwire.com/wp-content/uploads/plastic-food.jpeg">
+                </mdc-image-list-image-aspect>
+                <mdc-image-list-supporting>
+                  <span mdcImageListLabel>Photo</span>
+                </mdc-image-list-supporting>
+              </mdc-image-list-item>
+            </mdc-image-list>
+          </div>
+          <div class="col-sm-8">
+            <form [formGroup]="addFoodformGroup">
+              <mdc-text-field formControlName="food_name" id="food_name" class="control-space" name="food_name" label="ຊື່ອາຫານ"
+                fullwidth aria-placeholder="Food name" dense="true"></mdc-text-field>
+              <mdc-select formControlName="food_type_id" id="food_type_id" class="control-space" label="ປະເພດ" autosize>
+                <option value=""></option>
+                <option value="{{ f.id }}" *ngFor="let f of foot_type_list">{{ f.food_type_desc_la }}</option>
+              </mdc-select>
+              <mdc-text-field formControlName="cost" id="cost" type="number" class="control-space" aria-placeholder="ລາຄາຕົ້ນທຶນ"
+                fullwidth name="cost" label="ລາຄາຕົ້ນທຶນ">
+              </mdc-text-field>
+              <mdc-text-field formControlName="price" id="price" type="number" class="control-space" aria-placeholder="ລາຄາຕົ້ນຂາຍ"
+                fullwidth name="price" label="ລາຄາຕົ້ນຂາຍ">
+              </mdc-text-field>
+              <mdc-select id="currcode" formControlName="currcode" class="control-space" label="ສະກຸນເງິນ" autosize>
+                <option value=""></option>
+                <option value="{{ curr.curr_code }}" *ngFor="let curr of currcodes">{{ curr.curr_name_la }}</option>
+              </mdc-select>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdc-button primary data-dismiss="modal">ປິດ</button>
+        <button type="button" mdc-button secondary data-dismiss="modal" (click)="addFood()">ບັນທຶກ</button>
+      </div>
+    </div>
+  </div>
+</div>

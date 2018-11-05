@@ -1,0 +1,28 @@
+$mdc-theme-primary: #1565c0;
+$mdc-theme-secondary: #388e3c;
+$mdc-theme-background: #fff;
+@import "~@angular-mdc/theme/material";
+
+body {
+  display: flex;
+  height: 100vh;
+}
+
+.mdc-drawer-app-content {
+  flex: auto;
+  overflow: hidden;
+}
+
+.main-content {
+  overflow: hidden;
+  height: 100%;
+}
+
+.app-bar {
+  position: absolute;
+}
+
+.drawer {
+  position: absolute;
+  margin-top: 50px;
+}
