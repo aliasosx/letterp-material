@@ -8,7 +8,8 @@ import { TopbarComponent } from './layouts/topbar/topbar.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import {
   MdcDrawerModule, MdcButtonModule, MdcTopAppBarModule, MdcIconModule, MdcListModule, MdcFabModule,
-  MdcSwitchModule, MdcCardModule, MdcTextFieldModule, MdcImageListModule, MdcSelectModule, MdcLinearProgressModule,
+  MdcSwitchModule, MdcCardModule, MdcTextFieldModule, MdcImageListModule, MdcSelectModule, MdcLinearProgressModule, MdcTabModule,
+  MdcTabBarModule,
 } from '@angular-mdc/web';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -18,12 +19,14 @@ import { FoodComponent } from './pages/food/food.component';
 import { TerminalComponent } from './pages/terminal/terminal.component';
 import { DataTableModule } from 'angular-6-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdministratorComponent } from './pages/administrator/administrator.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'food', component: FoodComponent },
   { path: 'terminal', component: TerminalComponent },
+  { path: 'administrator', component: AdministratorComponent },
 ];
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ const routes: Routes = [
     LoginComponent,
     FoodComponent,
     TerminalComponent,
+    AdministratorComponent,
     
   ],
   imports: [
@@ -56,6 +60,9 @@ const routes: Routes = [
     MdcImageListModule,
     MdcSelectModule,
     MdcLinearProgressModule,
+    MdcTabModule,
+    MdcTabBarModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
