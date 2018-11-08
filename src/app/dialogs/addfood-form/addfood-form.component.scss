@@ -35,8 +35,13 @@ $mdc-theme-background: #fff;
 }
 .control-space {
     margin-top: 12px;
+    width: 100%;
 }
 .control-col {
     display: flex;
     flex-flow: row wrap;
+}
+.imgDiv {
+  margin-top: 10px;
+  left: 50%;
 }

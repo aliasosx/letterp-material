@@ -192,6 +192,9 @@ export class FoodComponent implements OnInit {
       clickOutsideToClose: true,
       scrollable: true
     });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
 }

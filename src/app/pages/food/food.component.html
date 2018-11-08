@@ -82,12 +82,11 @@
     </div>
   </div>
 </div>
-<button mdc-fab class="fab-add-new" extended position='bottomRight' data-toggle="modal" data-target="#addNewFoodModal">
+<button mdc-fab class="fab-add-new" extended position='bottomRight' (click)="addFoodDialog()">
   <mdc-icon>add</mdc-icon>
   <mdc-fab-label>Create</mdc-fab-label>
 </button>
 
-<button mdc-fab (click)="addFoodDialog()">Test</button>
 
 <!-- Modal -->
 <div class="modal fade" id="addNewFoodModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
