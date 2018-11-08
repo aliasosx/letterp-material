@@ -11,7 +11,7 @@ import { Food } from 'src/app/models/food';
   styleUrls: ['./addfood-form.component.scss']
 })
 export class AddfoodFormComponent implements OnInit{
-  photoPath: any = "../../../assets/images/No_image_available.svg";
+  photoPath: any = "../../../assets/images/No_Image_Available.gif";
   file: File;
   foot_type_list: any;
   currcodes: any;
@@ -19,7 +19,7 @@ export class AddfoodFormComponent implements OnInit{
   addFoodformGroup: FormGroup;
   food: any;
   constructor(public dialogRef: MdcDialogRef<AddfoodFormComponent>, private dataService: DataService , @Inject(MDC_DIALOG_DATA) public data: AddfoodFormComponent) { }
-
+  selectedFoodType = 'FOOD';
   ngOnInit(){
     this.addFoodformGroup = new FormGroup({
       food_name: new FormControl(),
@@ -48,7 +48,6 @@ export class AddfoodFormComponent implements OnInit{
   getCurrCode() {
     this.dataService.getCurrCodes().subscribe(currcodes => {
       this.currcodes = currcodes;
-      //console.log(currcodes);
     });
   }
 
@@ -65,8 +64,16 @@ export class AddfoodFormComponent implements OnInit{
         'photo': this.env + this.file.name
       }
     };
-    this.data.food = food;
-    this.dialogRef.close();
+    if (this.file) {
+      const uploadData = new FormData();
+      uploadData.append('image', this.file, this.file.name);
+      this.dataService.uploadFoodPhoto(uploadData).subscribe(data => {
+            console.log(data);
+      });
+      this.dialogRef.close(food);
+    } else {
+      alert('Please select file to upload ');
+    }
   }
 }
 }

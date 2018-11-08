@@ -1,7 +1,7 @@
 <mdc-dialog class="dialog-form">
 	<mdc-dialog-container>
 		<mdc-dialog-surface>
-      <mdc-dialog-title>ເພີມລາຍການອາຫານ</mdc-dialog-title>
+      <mdc-dialog-title class="titleDialog">ເພີມລາຍການອາຫານ</mdc-dialog-title>
 			<mdc-dialog-content>
           <form [formGroup]="addFoodformGroup">
           <div class="container">
@@ -12,8 +12,9 @@
                     <mdc-image-list-image-aspect>
                       
                       <div class="imgDiv" >
-                        <h4>ຮູບພາບອາຫານ</h4>
-                        <img class="w-100" [src]="photoPath" (click)="fileInput.click()">
+                        
+                        <img class="w-100" [mdcElevation]="5" [src]="photoPath" (click)="fileInput.click()">
+                        <h4 class="text-center" style="margin-top: 10px;">ຮູບພາບອາຫານ</h4>
                       </div>
                     </mdc-image-list-image-aspect>
                   </mdc-image-list-item>
@@ -24,9 +25,9 @@
                 <div class="row">
                    <mdc-text-field formControlName="food_name" id="food_name" class="control-space" name="food_name" label="ຊື່ອາຫານ"
                    outlined aria-placeholder="Food name" dense="true"></mdc-text-field>
-                  <mdc-select formControlName="food_type_id" id="food_type_id" class="control-space" label="ປະເພດ" outlined>
+                  <mdc-select formControlName="food_type_id" id="food_type_id" class="control-space" label="ປະເພດ"  outlined>
                       <option value=""></option>
-                      <option value="{{ f.id }}" *ngFor="let f of foot_type_list">{{ f.food_type_desc_la }}</option>
+                      <option value="{{ f.id }}" *ngFor="let f of foot_type_list" [selected]="f.food_type == selectedFoodType">{{ f.food_type_desc_la }}</option>
                     </mdc-select>
                     <mdc-text-field formControlName="cost" id="cost" type="number" class="control-space" aria-placeholder="ລາຄາຕົ້ນທຶນ"
                     outlined name="cost" label="ລາຄາຕົ້ນທຶນ">
@@ -36,19 +37,17 @@
               </mdc-text-field>
               <mdc-select id="currcode" formControlName="currcode" class="control-space" label="ສະກຸນເງິນ" outlined>
                 <option value=""></option>
-                <option value="{{ curr.curr_code }}" *ngFor="let curr of currcodes">{{ curr.curr_name_la }}</option>
+                <option value="{{ curr.curr_code }}" *ngFor="let curr of currcodes" [selected]="curr.curr_code == '418'">{{ curr.curr_name_la }}</option>
               </mdc-select>
                 </div>
-                 
               </div>
-              
             </div>
           </div>
         </form>
 			</mdc-dialog-content>
 			<mdc-dialog-actions>
-				<button mdcDialogButton mdcDialogAction="close">Cancel</button>
-        <button mdcDialogButton type="submit" form="addFoodformGroup" (click)="addFood()">Create</button>
+				<button mdcDialogButton mdcDialogAction="close">ຍົກເລີກ</button>
+        <button mdcDialogButton rised="true" type="submit" (click)="addFood()">ບັນທຶກ</button>
       </mdc-dialog-actions>
     </mdc-dialog-surface>
   </mdc-dialog-container>

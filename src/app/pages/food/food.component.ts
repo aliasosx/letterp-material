@@ -98,35 +98,21 @@ export class FoodComponent implements OnInit {
       //console.log(currcodes);
     });
   }
-  addFood() {
-    if (this.addFoodformGroup) {
-      let food = {
-        'food': {
-          'food_name': this.addFoodformGroup.get('food_name').value,
-          'food_type_id': this.addFoodformGroup.get('food_type_id').value,
-          'cost': this.addFoodformGroup.get('cost').value,
-          'price': this.addFoodformGroup.get('price').value,
-          'currcode': this.addFoodformGroup.get('currcode').value,
-          'created_by': 'ADMIN',
-          'photo': this.env + this.file.name
-        }
-      };
-      this.dataService.addFood(food).subscribe(data => {
-        const uploadData = new FormData();
-        uploadData.append('image', this.file, this.file.name);
-        this.dataService.uploadFoodPhoto(uploadData).subscribe(data => {
+  addFood(food) {
+    
+    if (food) {
+        this.file = food.file;
+        console.log(this.file);
+        this.dataService.addFood(food).subscribe(data => {
           console.log(data);
-        });
-        console.log(data);
-        this.addFoodformGroup.reset();
-        this.photoPath = "../../../assets/images/No_image_available.svg";
-        //this.getFoods();
-        
-        if(data["status"].toLowerCase() == 'operation success')  {
-          this.showSnackbar('ເພິ່ມລາຍການອາຫານສຳເລັດ');
-        }
-
-      });
+          this.addFoodformGroup.reset();
+          this.photoPath = "../../../assets/images/No_image_available.svg";
+          //this.getFoods();
+          
+          if(data["status"].toLowerCase() == 'operation success')  {
+            this.showSnackbar('ເພິ່ມລາຍການອາຫານສຳເລັດ');
+          }
+        }); 
     }
   }
   deleteFood(id) {
@@ -189,11 +175,12 @@ export class FoodComponent implements OnInit {
   addFoodDialog(){
     const dialogRef = this.dialog.open(AddfoodFormComponent, {
       escapeToClose: true,
-      clickOutsideToClose: true,
+      clickOutsideToClose: false,
       scrollable: true
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe(data => {
+      console.log(data);
+      this.addFood(data);
     });
   }
 

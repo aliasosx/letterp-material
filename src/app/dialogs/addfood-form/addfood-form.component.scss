@@ -21,8 +21,7 @@ $mdc-theme-background: #fff;
   
   .test-dialog--form {
     @include mdc-dialog-min-width(580px);
-  
-    @media (max-width: 1239px) {
+    @media (max-width: 1024px) {
       @include mdc-dialog-min-width(280px);
     }
   }
@@ -34,7 +33,7 @@ $mdc-theme-background: #fff;
     }
 }
 .control-space {
-    margin-top: 12px;
+    margin-top: 16px;
     width: 100%;
 }
 .control-col {
@@ -44,4 +43,7 @@ $mdc-theme-background: #fff;
 .imgDiv {
   margin-top: 10px;
   left: 50%;
+}
+.titleDialog {
+  @include mdc-dialog-container-fill-color($mdc-theme-primary);
 }
