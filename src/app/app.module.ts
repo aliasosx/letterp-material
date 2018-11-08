@@ -9,7 +9,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import {
   MdcDrawerModule, MdcButtonModule, MdcTopAppBarModule, MdcIconModule, MdcListModule, MdcFabModule,
   MdcSwitchModule, MdcCardModule, MdcTextFieldModule, MdcImageListModule, MdcSelectModule, MdcLinearProgressModule, MdcTabModule,
-  MdcTabBarModule,
+  MdcTabBarModule, MdcSnackbarModule, MdcRadioModule, MdcDialogModule, MdcDialogRef
 } from '@angular-mdc/web';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -20,6 +20,8 @@ import { TerminalComponent } from './pages/terminal/terminal.component';
 import { DataTableModule } from 'angular-6-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdministratorComponent } from './pages/administrator/administrator.component';
+import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
+import { AddfoodFormComponent } from './dialogs/addfood-form/addfood-form.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -39,8 +41,16 @@ const routes: Routes = [
     FoodComponent,
     TerminalComponent,
     AdministratorComponent,
+    ConfirmationComponent,
+    AddfoodFormComponent,
     
   ],
+
+  entryComponents: [
+    ConfirmationComponent,
+    AddfoodFormComponent,
+  ],
+  
   imports: [
     BrowserModule,
     MdcDrawerModule,
@@ -62,9 +72,15 @@ const routes: Routes = [
     MdcLinearProgressModule,
     MdcTabModule,
     MdcTabBarModule,
+    MdcSnackbarModule,
+    MdcRadioModule,
+    MdcDialogModule, 
     
   ],
-  providers: [],
+  providers: [
+    { provide: MdcDialogRef, useValue: {} },
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

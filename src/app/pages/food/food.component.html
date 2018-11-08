@@ -59,11 +59,11 @@
               </td>
               <td class="align-middle text-center text-nowrap">
 
-                <button mdc-fab [mini]="true" (click)="updateOnClick(food.id);">
+                <button mdc-fab [mini]="true" class="buttonEdit" (click)="updateOnClick(food.id);">
                   <mdc-icon>edit</mdc-icon>
                 </button>
 
-                <button mdc-fab [mini]="true" (click)="deleteFood(food.id)">
+                <button mdc-fab [mini]="true" class="buttonRemove" (click)="showDialog(food.id)">
                   <mdc-icon>remove</mdc-icon>
                 </button>
 
@@ -82,10 +82,12 @@
     </div>
   </div>
 </div>
-<button mdc-fab extended position='bottomRight' data-toggle="modal" data-target="#addNewFoodModal">
+<button mdc-fab class="fab-add-new" extended position='bottomRight' data-toggle="modal" data-target="#addNewFoodModal">
   <mdc-icon>add</mdc-icon>
   <mdc-fab-label>Create</mdc-fab-label>
 </button>
+
+<button mdc-fab (click)="addFoodDialog()">Test</button>
 
 <!-- Modal -->
 <div class="modal fade" id="addNewFoodModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

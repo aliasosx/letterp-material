@@ -1,0 +1,42 @@
+$mdc-theme-primary: #1565c0;
+$mdc-theme-secondary: #388e3c;
+$mdc-theme-background: #fff;
+
+@import "~@angular-mdc/theme/material";
+
+.demo-layout__column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .demo-layout__row {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  
+  .demo-layout__row > * {
+    margin-right: 24px;
+    margin-top: 12px;
+  }
+  
+  .test-dialog--form {
+    @include mdc-dialog-min-width(580px);
+  
+    @media (max-width: 1239px) {
+      @include mdc-dialog-min-width(280px);
+    }
+  }
+.dialog-form {
+    @include mdc-dialog-min-width(580px);
+
+    @media (max-width: 1239px) {
+    @include mdc-dialog-min-width(280px);
+    }
+}
+.control-space {
+    margin-top: 12px;
+}
+.control-col {
+    display: flex;
+    flex-flow: row wrap;
+}

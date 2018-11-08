@@ -1,0 +1,6 @@
+$mdc-theme-primary: #1565c0; // primary color
+$mdc-theme-secondary: #388e3c; // secondary color
+
+@import "~@angular-mdc/theme/material";
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";

@@ -1,5 +1,7 @@
-$mdc-theme-primary: #6200ee;
+$mdc-theme-primary: #1565c0;
 $mdc-theme-secondary: #faab1a;
+$mdc-theme-edit: #f18109;
+$mdc-theme-remove: #a90707;
 $rally-container: #363640;
 
 @import "~@angular-mdc/theme/material";
@@ -185,4 +187,13 @@ a#menu-share:hover>i {
 
 .control-space {
   margin-top: 10px;
+}
+.fab-add-new {
+  @include mdc-fab-accessible($mdc-theme-primary);
+}
+.buttonEdit {
+  @include mdc-button-container-fill-color($mdc-theme-edit);
+}
+.buttonRemove {
+  @include mdc-button-container-fill-color($mdc-theme-remove);
 }
