@@ -1,3 +1,12 @@
+$mdc-theme-primary: #1565c0;
+$mdc-theme-secondary: #faab1a;
+$mdc-theme-edit: #f18109;
+$mdc-theme-remove: #a90707;
+$rally-container: #363640;
+
+@import "~@angular-mdc/theme/material";
+
+
 .tabDiv {
   margin-top: 50px;
 }
@@ -8,4 +17,146 @@
 
 .hiddenElement {
   display: none;
+}
+
+.demo-content {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin: 15px;
+}
+
+.demo-content--column {
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-content--row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px 0 10px 0;
+}
+
+//
+// Card styles
+//
+
+.demo-card {
+  width: 350px;
+  margin: 28px;
+}
+
+.demo-card__primary {
+  padding: 1rem;
+}
+
+.demo-card__title {
+  margin: 0;
+}
+
+.demo-card__subtitle {
+  @include mdc-theme-prop(color, text-secondary-on-background);
+
+  margin: 0;
+}
+
+.demo-card__secondary {
+  @include mdc-theme-prop(color, text-secondary-on-background);
+
+  padding: 0 1rem 8px 1rem;
+}
+
+.demo-card-article {
+  padding: 16px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.demo-card-article-group-heading {
+  @include mdc-theme-prop(color, text-secondary-on-light);
+
+  padding: 8px 16px;
+}
+
+.demo-card-article__title {
+  margin: 0 0 4px 0;
+}
+
+.demo-card-article__snippet {
+  @include mdc-theme-prop(color, text-secondary-on-light);
+
+  margin: 0;
+}
+
+.demo-card--photo {
+  width: 200px;
+}
+
+.demo-card__media {
+  background-image: url(https://material-components-web.appspot.com/images/1-1.jpg);
+}
+
+.demo-card__media--16-9 {
+  background-image: url(https://material-components-web.appspot.com/images/16-9.jpg);
+}
+
+.demo-card__media-content--with-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.demo-card__media-title {
+  padding: 8px 16px;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%);
+  color: white;
+}
+
+.demo-card--music {
+  @include mdc-card-shape-radius(24px 4px);
+
+  @include mdc-rtl {
+    @include mdc-card-shape-radius(4px 24px);
+  }
+}
+
+.demo-card__music-row {
+  display: flex;
+  border-top-left-radius: inherit;
+
+  @include mdc-rtl {
+    border-top-left-radius: 0;
+    border-top-right-radius: inherit;
+  }
+}
+
+.demo-card__media--music {
+  width: 110px;
+  border-top-left-radius: inherit;
+
+  @include mdc-rtl {
+    border-top-left-radius: 0;
+    border-top-right-radius: inherit;
+  }
+}
+
+.demo-card__music-info {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+}
+
+.demo-card__action-buttons--text-only {
+  margin-left: 8px;
+}
+.main-card {
+  margin-top: 16px;
+}
+
+.buttonEdit {
+  @include mdc-button-container-fill-color($mdc-theme-edit);
+}
+
+.buttonRemove {
+  @include mdc-button-container-fill-color($mdc-theme-remove);
 }
