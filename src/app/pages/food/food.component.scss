@@ -13,7 +13,7 @@ $rally-container: #363640;
 }
 
 table {
-  max-width: 1024px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -188,12 +188,15 @@ a#menu-share:hover>i {
 .control-space {
   margin-top: 10px;
 }
+
 .fab-add-new {
   @include mdc-fab-accessible($mdc-theme-primary);
 }
+
 .buttonEdit {
   @include mdc-button-container-fill-color($mdc-theme-edit);
 }
+
 .buttonRemove {
   @include mdc-button-container-fill-color($mdc-theme-remove);
 }

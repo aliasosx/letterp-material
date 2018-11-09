@@ -8,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class AdministratorComponent implements OnInit {
 
   constructor() { }
-
+  classes: string;
   ngOnInit() {
+    this.classes = "display-4 text-center";
   }
-
+  toggle() {
+    if (this.classes == 'hiddenElement') {
+      this.classes = "display-4 text-center";
+    } else {
+      this.classes = 'hiddenElement';
+    }
+  }
 }

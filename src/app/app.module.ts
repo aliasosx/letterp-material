@@ -9,7 +9,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import {
   MdcDrawerModule, MdcButtonModule, MdcTopAppBarModule, MdcIconModule, MdcListModule, MdcFabModule,
   MdcSwitchModule, MdcCardModule, MdcTextFieldModule, MdcImageListModule, MdcSelectModule, MdcLinearProgressModule, MdcTabModule,
-  MdcTabBarModule, MdcSnackbarModule, MdcRadioModule, MdcDialogModule, MdcDialogRef, MdcElevationModule,
+  MdcTabBarModule, MdcSnackbarModule, MdcRadioModule, MdcDialogModule, MdcDialogRef, MdcElevationModule, MdcTypographyModule,
 } from '@angular-mdc/web';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdministratorComponent } from './pages/administrator/administrator.component';
 import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
 import { AddfoodFormComponent } from './dialogs/addfood-form/addfood-form.component';
+import { FoodinfoComponent } from './dialogs/foodinfo/foodinfo.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -43,14 +44,16 @@ const routes: Routes = [
     AdministratorComponent,
     ConfirmationComponent,
     AddfoodFormComponent,
-    
+    FoodinfoComponent,
+
   ],
 
   entryComponents: [
     ConfirmationComponent,
     AddfoodFormComponent,
+    FoodinfoComponent,
   ],
-  
+
   imports: [
     BrowserModule,
     MdcDrawerModule,
@@ -74,13 +77,14 @@ const routes: Routes = [
     MdcTabBarModule,
     MdcSnackbarModule,
     MdcRadioModule,
-    MdcDialogModule, 
+    MdcDialogModule,
     MdcElevationModule,
-    
+    MdcTypographyModule,
+
   ],
   providers: [
     { provide: MdcDialogRef, useValue: {} },
-  
+
   ],
   bootstrap: [AppComponent]
 })

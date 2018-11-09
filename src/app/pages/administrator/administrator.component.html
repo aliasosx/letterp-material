@@ -7,22 +7,18 @@
       <div class="card-content">
         <mdc-tab-bar #tabbarDefault stacked>
           <mdc-tab-scroller>
-            <mdc-tab label="Food Types" icon="fastfood">
-                <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                  </span>
-                  <span class="mdc-tab__ripple"></span>
+            <mdc-tab label="Food Types" href="#foodType" icon="fastfood">
             </mdc-tab>
-            <mdc-tab label="Discounts" icon="trending_down"></mdc-tab>
+            <mdc-tab label="Discounts" icon="trending_down">
+            </mdc-tab>
             <mdc-tab label="Currency" icon="attach_money"></mdc-tab>
             <mdc-tab label="Favorites" icon="favorite"></mdc-tab>
             <mdc-tab label="Navigate" icon="navigation"></mdc-tab>
           </mdc-tab-scroller>
-          
         </mdc-tab-bar>
-      
+        <div #foodType class="tabsContent">
+          <div [ngClass]="classes">Hello</div>
+        </div>
       </div>
     </div>
-      
   </div>
-</div>

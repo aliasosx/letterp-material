@@ -1,3 +1,11 @@
 .tabDiv {
-    margin-top: 50px;
+  margin-top: 50px;
+}
+
+.tabsContent {
+  margin-top: 100px;
+}
+
+.hiddenElement {
+  display: none;
 }

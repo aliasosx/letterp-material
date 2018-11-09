@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { MdcSnackbar, MdcDialog, MdcDialogRef, MDC_DIALOG_DATA } from '@angular-mdc/web';
 import { ConfirmationComponent } from 'src/app/dialogs/confirmation/confirmation.component';
 import { AddfoodFormComponent } from 'src/app/dialogs/addfood-form/addfood-form.component';
+import { FoodinfoComponent } from 'src/app/dialogs/foodinfo/foodinfo.component';
 
 @Component({
   selector: 'app-food',
@@ -17,7 +18,7 @@ import { AddfoodFormComponent } from 'src/app/dialogs/addfood-form/addfood-form.
 export class FoodComponent implements OnInit {
 
   constructor(private router: Router, private auth: AuthenticationService, private dataService: DataService,
-    private formBuilder: FormBuilder, private snackbar: MdcSnackbar , public dialog: MdcDialog) { }
+    private formBuilder: FormBuilder, private snackbar: MdcSnackbar, public dialog: MdcDialog) { }
   token: string;
   username: string;
   payload: string;
@@ -82,8 +83,17 @@ export class FoodComponent implements OnInit {
       //console.log(this.data);
     });
   }
-  updateOnClick(id) {
-    console.log(id);
+  updateOnClick(food) {
+    if (food) {
+      this.dataService.getFoodById(food.id).subscribe(food => {
+        const foodInfoDialogRef = this.dialog.open(FoodinfoComponent, {
+          escapeToClose: true,
+          clickOutsideToClose: true,
+          scrollable: true,
+          data: food
+        });
+      });
+    }
   }
   getFoodTypes() {
     this.dataService.getFoodTypes().subscribe(foodtypes => {
@@ -99,20 +109,20 @@ export class FoodComponent implements OnInit {
     });
   }
   addFood(food) {
-    
+
     if (food) {
-        this.file = food.file;
-        console.log(this.file);
-        this.dataService.addFood(food).subscribe(data => {
-          console.log(data);
-          this.addFoodformGroup.reset();
-          this.photoPath = "../../../assets/images/No_image_available.svg";
-          //this.getFoods();
-          
-          if(data["status"].toLowerCase() == 'operation success')  {
-            this.showSnackbar('ເພິ່ມລາຍການອາຫານສຳເລັດ');
-          }
-        }); 
+      this.file = food.file;
+      console.log(this.file);
+      this.dataService.addFood(food).subscribe(data => {
+        console.log(data);
+        this.addFoodformGroup.reset();
+        this.photoPath = "../../../assets/images/No_image_available.svg";
+        //this.getFoods();
+
+        if (data["status"].toLowerCase() == 'operation success') {
+          this.showSnackbar('ເພິ່ມລາຍການອາຫານສຳເລັດ');
+        }
+      });
     }
   }
   deleteFood(id) {
@@ -142,10 +152,10 @@ export class FoodComponent implements OnInit {
   }
 
   showSnackbar(msg) {
-    if(msg){
+    if (msg) {
       this.snackBarMsg = msg;
     }
-    
+
     const snackbarRef = this.snackbar.show(this.snackBarMsg, this.action, {
       align: this.align,
       multiline: this.multiline,
@@ -154,25 +164,25 @@ export class FoodComponent implements OnInit {
       actionOnBottom: this.actionOnBottom,
     });
     this.getFoods();
-    snackbarRef.afterDismiss().subscribe(()=>{
+    snackbarRef.afterDismiss().subscribe(() => {
       //console.log('The snack-bar was dismissed')
     });
   }
-  showDialog(id){
-    
+  showDialog(id) {
+
     const dialogRef = this.dialog.open(ConfirmationComponent, {
       escapeToClose: true,
       clickOutsideToClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result == 'accept') {
+      if (result == 'accept') {
         this.deleteFood(id);
       } else {
         this.showSnackbar('ລາຍການຖືກຍົກເລີກ');
       }
     });
   }
-  addFoodDialog(){
+  addFoodDialog() {
     const dialogRef = this.dialog.open(AddfoodFormComponent, {
       escapeToClose: true,
       clickOutsideToClose: false,
