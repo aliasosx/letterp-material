@@ -3,83 +3,122 @@
     <mdc-tab-scroller>
       <mdc-tab label="foods Type" icon="fastfood"></mdc-tab>
       <mdc-tab label="Discount" icon="attach_money"></mdc-tab>
-      <mdc-tab label="Currency" icon="equalizer"></mdc-tab>
+      <mdc-tab label="Currency" disabled="true" icon="equalizer"></mdc-tab>
     </mdc-tab-scroller>
   </mdc-tab-bar>
 
-  <mdc-card  [ngClass]="foodTypeClass">
+  <mdc-card [ngClass]="foodTypeClass">
     <mdc-card-primary-action>
       <div class="demo-card__primary">
-        <h2 class="demo-card__title" mdcHeadline6><mdc-icon>fastfood</mdc-icon> Food Type</h2>
+        <h2 class="demo-card__title" mdcHeadline6>
+          <mdc-icon>fastfood</mdc-icon> Food Type
+        </h2>
       </div>
     </mdc-card-primary-action>
     <mdc-ripple class="demo-card-article">
-        <table class="table table-striped table-hover">
-          <thead>
-            <th>#</th>
-            <th>Food Type</th>
-            <th>Food Type Description</th>
-            <th>Food Type Description lao</th>
-            <th>Commands</th>
-          </thead>
-          <tbody>
-            <tr *ngFor="let ft of foodtypes">
-              <td>{{ ft.id }}</td>
-              <td>{{ ft.food_type }}</td>
-              <td>{{ ft.food_type_desc }}</td>
-              <td>{{ ft.food_type_desc_la }}</td>
-              <td>
-                <button mdc-fab [mini]="true" class="buttonEdit" (click)="updateOnClick(food);">
-                  <mdc-icon>edit</mdc-icon>
-                </button>
-
-                <button mdc-fab [mini]="true" class="buttonRemove" (click)="showDialog(food.id)">
-                  <mdc-icon>remove</mdc-icon>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <th>#</th>
-            <th>Food Type</th>
-            <th>Food Type Description</th>
-            <th>Food Type Description lao</th>
-            <th>Commands</th>
-          </tfoot>
-        </table>
+      <table class="table table-striped table-hover">
+        <thead>
+          <th>#</th>
+          <th>Food Type</th>
+          <th>Food Type Description</th>
+          <th>Food Type Description lao</th>
+          <th class="text-center">Commands</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ft of foodtypes">
+            <td>{{ ft.id }}</td>
+            <td>{{ ft.food_type }}</td>
+            <td>{{ ft.food_type_desc }}</td>
+            <td>{{ ft.food_type_desc_la }}</td>
+            <td class="text-center">
+              <button mdc-fab [mini]="true" class="buttonAdd" (click)="addnewDialog(ft);">
+                <mdc-icon>add</mdc-icon>
+              </button>
+              <button mdc-fab [mini]="true" class="buttonEdit" (click)="updateOnClick(ft);">
+                <mdc-icon>edit</mdc-icon>
+              </button>
+              <button mdc-fab [mini]="true" class="buttonRemove" (click)="showConfirmationDelete(ft.id)">
+                <mdc-icon>remove</mdc-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <th>#</th>
+          <th>Food Type</th>
+          <th>Food Type Description</th>
+          <th>Food Type Description lao</th>
+          <th>Commands</th>
+        </tfoot>
+      </table>
     </mdc-ripple>
-    <mdc-card-actions>
-      <mdc-card-action-buttons>
-          <button mdc-fab  extended >
-              <mdc-icon>add</mdc-icon>
-              <mdc-fab-label>Create</mdc-fab-label>
-            </button>
-        </mdc-card-action-buttons>
-      </mdc-card-actions>
+
   </mdc-card>
 
   <mdc-card [ngClass]="DiscountClass">
     <mdc-card-primary-action>
       <div class="demo-card__primary">
-        <h2 class="demo-card__title" mdcHeadline6><mdc-icon>attach_money</mdc-icon> Discount</h2>
+        <h2 class="demo-card__title" mdcHeadline6>
+          <mdc-icon>attach_money</mdc-icon> Discount
+        </h2>
       </div>
     </mdc-card-primary-action>
     <mdc-ripple class="demo-card-article">
-      <p class="demo-card-article__snippet" mdcBody2>
-        Copper price soars amid global market optimism and increased demand.
-      </p>
+      <table class="table table-striped table-hover">
+        <thead>
+          <th>#</th>
+          <th>ລາຍການອາຫານ</th>
+          <th>ສ່ວນຫຼຸດ</th>
+          <th>ເລີ່ມຕົ້ນ</th>
+          <th>ສີ້ນສຸດ</th>
+          <th>ສະຖານະ</th>
+          <th class="text-center">ການຈັດການ</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dc of discounts">
+            <td>{{ dc.id }}</td>
+            <td>{{ dc.food_name }}</td>
+            <td class="text-center">{{ dc.discount_percentage }} %</td>
+            <td>{{ dc.created_at | date : 'dd-MMM-yyyy' }} </td>
+            <td>{{ dc.valid_until | date : 'dd-MMM-yyyy' }} </td>
+            <td>{{ dc.status | uppercase }} </td>
+            <td class="text-center">
+              <button mdc-fab [mini]="true" class="buttonAdd" (click)="addnewDiscount();">
+                <mdc-icon>add</mdc-icon>
+              </button>
+              <button mdc-fab [mini]="true" class="buttonEdit" (click)="updateOnClick(ft);">
+                <mdc-icon>edit</mdc-icon>
+              </button>
+              <button mdc-fab [mini]="true" class="buttonRemove" (click)="showConfirmationDeleteDiscount(dc.id)">
+                <mdc-icon>remove</mdc-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <th>#</th>
+          <th>ລາຍການອາຫານ</th>
+          <th>ສ່ວນຫຼຸດ</th>
+          <th>ເລີ່ມ</th>
+          <th>ສີ້ນສຸດ</th>
+          <th>ສະຖານະ</th>
+          <th class="text-center">ການຈັດການ</th>
+        </tfoot>
+      </table>
     </mdc-ripple>
     <mdc-card-actions>
       <mdc-card-action-buttons>
-        <button mdc-button mdcCardAction="button">Add new</button>
-        </mdc-card-action-buttons>
-      </mdc-card-actions>
+        <button mdc-button mdcCardAction="button" (click)="addnewDiscount()">Add new</button>
+      </mdc-card-action-buttons>
+    </mdc-card-actions>
   </mdc-card>
 
-  <mdc-card  [ngClass]="CurrencyClass">
+  <mdc-card [ngClass]="CurrencyClass">
     <mdc-card-primary-action>
       <div class="demo-card__primary">
-        <h2 class="demo-card__title" mdcHeadline6><mdc-icon>equalizer</mdc-icon> Currency</h2>
+        <h2 class="demo-card__title" mdcHeadline6>
+          <mdc-icon>equalizer</mdc-icon> Currency
+        </h2>
       </div>
     </mdc-card-primary-action>
     <mdc-ripple class="demo-card-article">
@@ -90,7 +129,7 @@
     <mdc-card-actions>
       <mdc-card-action-buttons>
         <button mdc-button mdcCardAction="button">Add new</button>
-        </mdc-card-action-buttons>
-      </mdc-card-actions>
+      </mdc-card-action-buttons>
+    </mdc-card-actions>
   </mdc-card>
 </div>

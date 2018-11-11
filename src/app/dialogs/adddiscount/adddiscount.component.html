@@ -1,0 +1,32 @@
+<mdc-dialog>
+  <mdc-dialog-container>
+    <mdc-dialog-surface class="surface">
+      <mdc-dialog-title class="titleDialog">ສ່ວນຫຼຸດລາຍການອາຫານ</mdc-dialog-title>
+      <mdc-dialog-content>
+        <form [formGroup]="addDiscountFormGroup">
+          <mdc-select formControlName="food_id" id="food_id" required class="control-space" label="ລາຍການອາຫານ"
+            outlined placeholder="ລາຍການອາຫານ" aria-placeholder="ລາຍການອາຫານ">
+            <mdc-icon mdcSelectIcon leading #leadingicon>event</mdc-icon>
+            <option value="{{ f.id }}" *ngFor="let f of foods">{{
+              f.food_name }}</option>
+          </mdc-select>
+
+
+          <mdc-text-field formControlName="discount_percentage" required id="discount_percentage" class="control-space"
+            name="discount_percentage" label="ສ່ວນຫຼຸດ" outlined aria-placeholder="Discount" dense="true">
+            <mdc-icon mdcTextFieldIcon leading #leadingicon>attach_money</mdc-icon>
+          </mdc-text-field>
+
+          <mdc-text-field formControlName="valid_until" type="date" required id="valid_until" class="control-space"
+            name="valid_until" label="ສາມາດນຳໃຊ້ໄດ້ຮອດ" outlined aria-placeholder="ສາມາດນຳໃຊ້ໄດ້ຮອດ" dense="true">
+            <mdc-icon mdcTextFieldIcon leading #leadingicon>event</mdc-icon>
+          </mdc-text-field>
+        </form>
+      </mdc-dialog-content>
+      <mdc-dialog-actions>
+        <button mdcDialogButton mdcDialogAction="close">ຍົກເລີກ</button>
+        <button mdcDialogButton rised="true" type="submit" (click)="addnewDiscount()">ບັນທຶກ</button>
+      </mdc-dialog-actions>
+    </mdc-dialog-surface>
+  </mdc-dialog-container>
+</mdc-dialog>

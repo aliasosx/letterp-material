@@ -23,6 +23,8 @@ import { AdministratorComponent } from './pages/administrator/administrator.comp
 import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
 import { AddfoodFormComponent } from './dialogs/addfood-form/addfood-form.component';
 import { FoodinfoComponent } from './dialogs/foodinfo/foodinfo.component';
+import { AddfoodtypeComponent } from './dialogs/addfoodtype/addfoodtype.component';
+import { AdddiscountComponent } from './dialogs/adddiscount/adddiscount.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -45,6 +47,8 @@ const routes: Routes = [
     ConfirmationComponent,
     AddfoodFormComponent,
     FoodinfoComponent,
+    AddfoodtypeComponent,
+    AdddiscountComponent,
 
   ],
 
@@ -52,6 +56,8 @@ const routes: Routes = [
     ConfirmationComponent,
     AddfoodFormComponent,
     FoodinfoComponent,
+    AddfoodtypeComponent,
+    AdddiscountComponent,
   ],
 
   imports: [

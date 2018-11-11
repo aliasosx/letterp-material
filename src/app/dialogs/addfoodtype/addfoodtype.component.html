@@ -1,0 +1,21 @@
+<mdc-dialog>
+  <mdc-dialog-container>
+    <mdc-dialog-surface class="surface">
+      <mdc-dialog-title class="titleDialog">ເພີມປະເພດລາຍການອາຫານ</mdc-dialog-title>
+      <mdc-dialog-content>
+        <form [formGroup]="addFoodTypeGroup">
+          <mdc-text-field formControlName="FoodType" required maxlength="4" minlength="4" id="FoodType" class="control-space"
+            name="FoodType" label="ປະເພດອາຫານ" outlined aria-placeholder="Food name" dense="true"></mdc-text-field>
+          <mdc-text-field formControlName="FoodTypeDescription" required id="FoodTypeDescription" class="control-space"
+            name="FoodTypeDescription" label="ຊື່ປະເພດອາຫານ ອັງກິດ" outlined aria-placeholder="Food name" dense="true"></mdc-text-field>
+          <mdc-text-field formControlName="FoodTypeDescription_la" required id="FoodTypeDescription_la" class="control-space"
+            name="FoodTypeDescription_la" label="ຊື່ປະເພດອາຫານ ພາສາລາວ" outlined aria-placeholder="Food name" dense="true"></mdc-text-field>
+        </form>
+      </mdc-dialog-content>
+      <mdc-dialog-actions>
+        <button mdcDialogButton mdcDialogAction="close">ຍົກເລີກ</button>
+        <button mdcDialogButton rised="true" type="submit" (click)="addFoodType()">ບັນທຶກ</button>
+      </mdc-dialog-actions>
+    </mdc-dialog-surface>
+  </mdc-dialog-container>
+</mdc-dialog>
