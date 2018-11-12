@@ -53,3 +53,7 @@ $mdc-theme-background: #fff;
 .titleDialog {
   @include mdc-dialog-container-fill-color($mdc-theme-primary);
 }
+
+.surface {
+  width: 100%;
+}

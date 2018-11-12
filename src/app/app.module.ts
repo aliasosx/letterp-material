@@ -32,6 +32,7 @@ const routes: Routes = [
   { path: 'food', component: FoodComponent },
   { path: 'terminal', component: TerminalComponent },
   { path: 'administrator', component: AdministratorComponent },
+  { path: 'pos', component: PosComponent },
 ];
 @NgModule({
   declarations: [

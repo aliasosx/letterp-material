@@ -1,0 +1,63 @@
+$mdc-theme-primary: #1565c0;
+$mdc-theme-secondary: #388e3c;
+$mdc-theme-background: #fff;
+
+@import "~@angular-mdc/theme/material";
+
+.container {
+  margin-top: 50px;
+  margin-left: 6px;
+  margin-right: 6px;
+  border-radius: 5px;
+}
+
+.col-main {
+  background-color: antiquewhite;
+}
+
+.col-order {
+  background-color: aquamarine;
+}
+
+.food-row {
+  margin: 10px;
+  background-color: royalblue;
+}
+
+.order-card {
+  width: 100%;
+  margin-left: 10px;
+
+}
+
+.item-card {
+  width: 100%;
+}
+
+.card-payment {
+  width: 100%;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.row-item {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  background-color: darkslateblue;
+  border: 5px;
+}
+
+.row-item-category {
+  margin: 5px;
+}
+
+.category-item {
+  background-color: #3498DB;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.category-item-text {}

@@ -1,6 +1,6 @@
 <mdc-dialog class="dialog-form">
   <mdc-dialog-container>
-    <mdc-dialog-surface>
+    <mdc-dialog-surface class="surface">
       <mdc-dialog-title class="titleDialog">ເພີມລາຍການອາຫານ</mdc-dialog-title>
       <mdc-dialog-content>
         <form [formGroup]="addFoodformGroup">
@@ -17,27 +17,28 @@
                     </mdc-image-list-image-aspect>
                   </mdc-image-list-item>
                 </mdc-image-list>
-                <input style="display: none" type="file" (change)="onFileChange($event)" #fileInput>
+                <input style="display: none" type="file" required (change)="onFileChange($event)" #fileInput>
               </div>
               <div class="col">
                 <div class="row">
-                  <mdc-text-field formControlName="food_name" id="food_name" class="control-space" name="food_name"
+                  <mdc-text-field formControlName="food_name" required id="food_name" class="control-space" name="food_name"
                     label="ຊື່ອາຫານ" outlined aria-placeholder="Food name" dense="true"></mdc-text-field>
-                  <mdc-select formControlName="food_type_id" id="food_type_id" class="control-space" label="ປະເພດ"
+                  <mdc-select formControlName="food_type_id" id="food_type_id" required class="control-space" label="ປະເພດ"
                     outlined>
-                    <option value=""></option>
-                    <option value="{{ f.id }}" *ngFor="let f of foot_type_list" [selected]="f.food_type == selectedFoodType">{{
+                    <option value="" disabled>---------- ເລືອກ ----------</option>
+                    <option value="{{ f.id }}" *ngFor="let f of foot_type_list">{{
                       f.food_type_desc_la }}</option>
                   </mdc-select>
-                  <mdc-text-field formControlName="cost" id="cost" type="number" class="control-space" aria-placeholder="ລາຄາຕົ້ນທຶນ"
-                    outlined name="cost" label="ລາຄາຕົ້ນທຶນ">
+                  <mdc-text-field formControlName="cost" id="cost" type="number" required class="control-space"
+                    aria-placeholder="ລາຄາຕົ້ນທຶນ" outlined name="cost" label="ລາຄາຕົ້ນທຶນ">
                   </mdc-text-field>
-                  <mdc-text-field formControlName="price" id="price" type="number" class="control-space"
+                  <mdc-text-field formControlName="price" id="price" required type="number" class="control-space"
                     aria-placeholder="ລາຄາຕົ້ນຂາຍ" outlined name="price" label="ລາຄາຕົ້ນຂາຍ">
                   </mdc-text-field>
-                  <mdc-select id="currcode" formControlName="currcode" class="control-space" label="ສະກຸນເງິນ" outlined>
-                    <option value=""></option>
-                    <option value="{{ curr.curr_code }}" *ngFor="let curr of currcodes" [selected]="curr.curr_code == '418'">{{
+                  <mdc-select id="currcode" formControlName="currcode" required class="control-space" label="ສະກຸນເງິນ"
+                    outlined>
+                    <option value="" disabled>---------- ເລືອກ ----------</option>
+                    <option value="{{ curr.curr_code }}" *ngFor="let curr of currcodes">{{
                       curr.curr_name_la }}</option>
                   </mdc-select>
                 </div>
