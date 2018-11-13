@@ -4,19 +4,20 @@ $mdc-theme-background: #fff;
 
 @import "~@angular-mdc/theme/material";
 
-.container {
+.container-flex {
+  display: flex;
   margin-top: 50px;
-  margin-left: 6px;
+
   margin-right: 6px;
   border-radius: 5px;
 }
 
 .col-main {
-  background-color: antiquewhite;
+  width: 900px;
 }
 
 .col-order {
-  background-color: aquamarine;
+  width: 600;
 }
 
 .food-row {
@@ -32,15 +33,26 @@ $mdc-theme-background: #fff;
 
 .item-card {
   width: 100%;
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 600px;
+  overflow: auto;
+}
+
+.item-card-category {
+  width: 100%;
+  margin-top: 5px;
+  margin-left: 20px;
 }
 
 .card-payment {
-  width: 100%;
+  width: 800px;
   margin-left: 10px;
   margin-top: 10px;
 }
 
 .row-item {
+  display: flex;
   width: 100px;
   height: 100px;
   margin: 5px;
@@ -54,10 +66,65 @@ $mdc-theme-background: #fff;
 
 .category-item {
   background-color: #3498DB;
-  width: 100px;
+  padding-top: 30px;
+  max-width: 200px;
+  width: 200px;
   height: 100px;
   border-radius: 5px;
-  text-align: center;
+  border: 1px solid slategrey;
+  margin: 10px;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
-.category-item-text {}
+
+
+.product-grid {
+  padding-bottom: 20px;
+  padding-top: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.category-item-text {
+  margin: auto;
+}
+
+.category-item:hover .overlay {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+.detail {
+  color: #fff;
+  align-self: center;
+  vertical-align: middle;
+}
+
+img {
+  display: block;
+  max-width: 197px;
+  max-height: 197px;
+  width: 197px;
+  height: 180px;
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px dashed #388e3c;
+}
+
+.image {
+  position: relative;
+  margin: 10px;
+
+}
+
+.price-text {
+  margin: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.hiddenDiv {
+  display: none;
+}

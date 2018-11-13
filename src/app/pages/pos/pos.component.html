@@ -1,16 +1,50 @@
-<div class="container">
+<div class="container-flex">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col col-main">
       <div class="row">
-        <div class="card item-card">
-          <div class="card-header">Items</div>
+        <div class="card item-card-category">
+          <div class="card-header">
+            <p class="h5">Items category</p>
+          </div>
           <div class="card-body">
+            <!-- Start Product category item -->
             <div class="row">
-              <div class="category-item shadow p-3">
-                <div class="text-center category-item-text">TEST</div>
+              <div class="category-item " mdcElevation="5" (click)="onClickCategory('all')">
+                <div class="text-center detail">
+                  <h4>ທັງໝົດ</h4>
+                </div>
+              </div>
+              <div class="category-item" mdcElevation="5" *ngFor="let ft of food_types" (click)="onClickCategory(ft.id)">
+                <div class="text-center detail">
+                  <h4>{{ ft.food_type_desc_la }}</h4>
+                </div>
               </div>
             </div>
+            <!-- End Product category item -->
           </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="card item-card">
+          <div class="card-header">
+            <p class="h5">Items</p>
+          </div>
+          <div class="card-body">
+            <!-- Start Food item -->
+            <div class="row">
+              <div class="product-grid" mdcElevation="8" *ngFor="let fd of foods" (click)="addItemToCard(fd)">
+                <div class="image">
+                  <a>
+                    <img src="{{ fd.photo }}">
+                  </a>
+                  <h5 class="text-center price-text">Price: {{ fd.price }}</h5>
+                </div>
+              </div>
+            </div>
+            <!-- End Food item -->
+          </div>
+          <div [ngClass]="displayElement">No Data</div>
         </div>
       </div>
     </div>

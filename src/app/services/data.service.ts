@@ -76,4 +76,7 @@ export class DataService {
   getFoodByNoDiscount() {
     return this.http.get(this.url + 'foodnodiscounts', this.httpOptions);
   }
+  getFoodByCategory(catid) {
+    return this.http.get(this.url + 'foodbycat/' + catid, this.httpOptions);
+  }
 }
