@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { Cart } from 'src/app/models/cart';
+import { Food } from '../../models/food';
+import { Item } from 'src/app/models/item';
 
 @Component({
   selector: 'app-pos',
@@ -13,12 +14,16 @@ export class PosComponent implements OnInit {
   food_types: any;
   foods: any;
   foodCateId: string;
-  card: Cart[];
+
+  total: number = 0;
+  items: Item[] = [];
   displayElement = "text-center display-4";
   ngOnInit() {
     this.foodCateId = "all";
     this.getFoodtype();
     this.getFoods();
+    
+    this.loadCart();
   }
   getFoodtype() {
     this.dataService.getFoodTypes().subscribe(food_type => {
@@ -29,7 +34,7 @@ export class PosComponent implements OnInit {
     if (this.foodCateId == "all") {
       this.dataService.getFoods().subscribe(foods => {
         if (foods) {
-          console.log(this.foods);
+          //console.log(foods);
           this.foods = foods;
           this.displayElement = "hiddenDiv";
         } else {
@@ -39,7 +44,7 @@ export class PosComponent implements OnInit {
     } else {
       this.dataService.getFoodByCategory(this.foodCateId).subscribe(foods => {
         if (foods) {
-          console.log(this.foods);
+          //console.log(this.foods);
           this.foods = foods;
           this.displayElement = "hiddenDiv";
         } else {
@@ -52,7 +57,64 @@ export class PosComponent implements OnInit {
     this.foodCateId = catid;
     this.getFoods();
   }
-  addItemToCard(food) {
+  addItemToCard(food:Food) {
+    //console.log(food);
     
+    if(food){
+      console.log(food);
+      let items : Item = {
+        food: food,
+        quantity : 1
+      };
+      console.log(items);
+
+      if(localStorage.getItem('cart') == null){
+        let cart : any = [];
+        cart.push(JSON.stringify(items));
+        localStorage.setItem('cart', JSON.stringify(cart));
+      } else {
+        let cart : any = JSON.parse(localStorage.getItem('cart'));
+        console.log(cart.length);
+        let index : number = -1;
+        for (var i = 0; i < cart.length ; i++){
+          let item: Item = JSON.parse(cart[i]);
+          if(item.food.id == food.id){
+            index = i;
+            break;
+          }
+        }
+        if (index == -1 ){
+          cart.push(JSON.stringify(items));
+          localStorage.setItem('cart', JSON.stringify(cart));
+        } else {
+          let item: Item = JSON.parse(cart[index]);
+          item.quantity += 1;
+          cart[index] = JSON.stringify(item);
+          localStorage.setItem('cart', JSON.stringify(cart));
+        }
+      }
+      this.loadCart();
+    } else {
+      this.loadCart();
+    }
+    
+  }
+
+  loadCart(){
+    this.total = 0;
+    this.items = [];
+    if (localStorage.getItem('cart') != null){
+      let cart = JSON.parse(localStorage.getItem('cart'));
+      for (var i = 0; i < cart.length; i++ ){
+        let item = JSON.parse(cart[i]);
+        this.items.push({
+          food: item.food,
+          quantity: item.quantity
+        });
+        this.total += item.food.price * item.quantity;
+        console.log(this.items);
+        console.log(this.total);
+      }
+    }
   }
 }

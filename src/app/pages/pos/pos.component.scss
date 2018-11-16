@@ -13,11 +13,15 @@ $mdc-theme-background: #fff;
 }
 
 .col-main {
-  width: 900px;
+  min-width: 1024px;
+  width: 1024px;
+}
+.col-payment {
+  width: 600px;
 }
 
 .col-order {
-  width: 600;
+  width: 800;
 }
 
 .food-row {
