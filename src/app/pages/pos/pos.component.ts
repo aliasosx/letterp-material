@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Food } from '../../models/food';
 import { Item } from 'src/app/models/item';
+import { MdcDialog } from '@angular-mdc/web';
+import { CustomersComponent } from 'src/app/dialogs/customers/customers.component';
+import { PaymentConfirmComponent } from 'src/app/dialogs/payment-confirm/payment-confirm.component';
 
 @Component({
   selector: 'app-pos',
@@ -10,13 +13,27 @@ import { Item } from 'src/app/models/item';
 })
 export class PosComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private dialog: MdcDialog) { }
   food_types: any;
   foods: any;
   foodCateId: string;
+  paymentReady: boolean ;
+  customer: any = {
+    'id': '-1',
+    'gender': 'M',
+    'fullname': 'ບໍ່ມີຂໍ້ມູນ',
+    'mobile': 'ບໍ່ມີຂໍ້ມູນ'
+  };
+  
 
   total: number = 0;
   items: Item[] = [];
+  tax: number = 0;
+  tax_rate: number = 7;
+  discount: number = 0;
+  discount_rate: number = 10;
+  grandTotal: number = 0;
+
   displayElement = "text-center display-4";
   ngOnInit() {
     this.foodCateId = "all";
@@ -24,6 +41,7 @@ export class PosComponent implements OnInit {
     this.getFoods();
     
     this.loadCart();
+    this.checkPayment();
   }
   getFoodtype() {
     this.dataService.getFoodTypes().subscribe(food_type => {
@@ -103,6 +121,7 @@ export class PosComponent implements OnInit {
   loadCart(){
     this.total = 0;
     this.items = [];
+    
     if (localStorage.getItem('cart') != null){
       let cart = JSON.parse(localStorage.getItem('cart'));
       for (var i = 0; i < cart.length; i++ ){
@@ -112,9 +131,57 @@ export class PosComponent implements OnInit {
           quantity: item.quantity
         });
         this.total += item.food.price * item.quantity;
-        console.log(this.items);
-        console.log(this.total);
+        this.discount = (this.total * this.discount_rate)/100;
+        this.tax = (this.total * this.tax_rate)/100;
+        this.grandTotal = this.total - this.discount + this.tax ;
+      }
+    } 
+    this.checkPayment();
+  }
+
+  checkPayment(){
+    let items = JSON.parse(localStorage.getItem('cart'));
+    
+    if(items.length > 0 && this.customer['id'] != -1 ){
+      this.paymentReady = false;
+    } else {
+      this.paymentReady = true;
+    }
+    console.log(this.paymentReady);
+  }
+
+  removeCardItem(id: number){
+    let cart: any = JSON.parse(localStorage.getItem('cart'));
+    let index = -1;
+
+    for (var i = 0; i < cart.length; i++ ) {
+      let item: Item = JSON.parse(cart[i]);
+      if(item.food.id == id) {
+        cart.splice(i , 1 );
+        break;
       }
     }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.loadCart();
+  }
+
+  callCustomerDialog(){
+    const customerDialogRef = this.dialog.open(CustomersComponent, {
+      escapeToClose: true,
+      clickOutsideToClose: true
+    });
+    customerDialogRef.afterClosed().subscribe(customer => {
+      console.log(customer);
+      if(customer != 'close'){
+        this.customer = customer
+        this.checkPayment();
+      }
+    });
+  }
+  callPaymentdialog(){
+    const paymentDialogRef = this.dialog.open(PaymentConfirmComponent, {
+      escapeToClose: true,
+      clickOutsideToClose: false
+    });
   }
 }

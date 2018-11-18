@@ -10,6 +10,8 @@ $mdc-theme-background: #fff;
 
   margin-right: 6px;
   border-radius: 5px;
+  background-color: #F8F9F9;
+
 }
 
 .col-main {
@@ -21,7 +23,7 @@ $mdc-theme-background: #fff;
 }
 
 .col-order {
-  width: 800;
+  width: 800px;
 }
 
 .food-row {
@@ -32,7 +34,8 @@ $mdc-theme-background: #fff;
 .order-card {
   width: 100%;
   margin-left: 10px;
-
+  margin-top: 5px;
+  
 }
 
 .item-card {
@@ -50,9 +53,11 @@ $mdc-theme-background: #fff;
 }
 
 .card-payment {
+  
   width: 800px;
   margin-left: 10px;
   margin-top: 10px;
+  
 }
 
 .row-item {
@@ -76,7 +81,9 @@ $mdc-theme-background: #fff;
   height: 100px;
   border-radius: 5px;
   border: 1px solid slategrey;
-  margin: 10px;
+  margin-left: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
   vertical-align: middle;
   cursor: pointer;
 }
@@ -84,7 +91,7 @@ $mdc-theme-background: #fff;
 
 
 .product-grid {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   padding-top: 3px;
   padding-left: 3px;
   padding-right: 3px;
@@ -109,10 +116,10 @@ $mdc-theme-background: #fff;
 
 img {
   display: block;
-  max-width: 197px;
-  max-height: 197px;
-  width: 197px;
-  height: 180px;
+  max-width: 100px;
+  max-height: 100px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
   border-radius: 5px;
   border: 1px dashed #388e3c;
@@ -131,4 +138,39 @@ img {
 
 .hiddenDiv {
   display: none;
+}
+.buttonAdd {
+  position: absolute;
+  right: 10px;
+}
+.customerInfo {
+  position: relative;
+  vertical-align: middle;
+}
+.customerText {
+  white-space: nowrap; 
+  vertical-align: middle;
+  margin-top: 1px;
+}
+.payment-box {
+  position: fix;
+  bottom: 0;
+  min-height: 50px;
+  
+}
+.payment-button {
+  margin-top: 10px;
+  margin-left: 10px;
+  min-width: 100%;
+}
+.tableFixHeaderFooter {
+  overflow: auto; height: 50px;
+}
+.tableFixHeaderFooter thead {
+  position:sticky;
+  top: 0;
+}
+.tableFixHeaderFooter tfoot {
+  position:sticky;
+  bottom: 0;
 }

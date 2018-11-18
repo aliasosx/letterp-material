@@ -79,4 +79,7 @@ export class DataService {
   getFoodByCategory(catid) {
     return this.http.get(this.url + 'foodbycat/' + catid, this.httpOptions);
   }
+  getCustomers(){
+    return this.http.get(this.url + 'customers', this.httpOptions);
+  }
 }

@@ -4,7 +4,7 @@
       <div class="row">
         <div class="card item-card-category">
           <div class="card-header">
-            <p class="h5">Items category</p>
+            <p class="h5">ປະເພດອາຫານ</p>
           </div>
           <div class="card-body">
             <!-- Start Product category item -->
@@ -28,7 +28,7 @@
       <div class="row">
         <div class="card item-card">
           <div class="card-header">
-            <p class="h5">Items</p>
+            <p class="h5">ລາຍການອາຫານ</p>
           </div>
           <div class="card-body">
             <!-- Start Food item -->
@@ -38,7 +38,7 @@
                   <a>
                     <img src="{{ fd.photo }}">
                   </a>
-                  <h5 class="text-center price-text">Price: {{ fd.price | currency:'LAK':'symbol'}} </h5>
+                  <h5 class="text-center price-text">ລາຄາ: {{ fd.price | number }} ກິບ</h5>
                 </div>
               </div>
             </div>
@@ -49,44 +49,99 @@
       </div>
     </div>
     <div class="col col-payment">
+      <div class="payment-panel">
       <div class="row">
         <div class="card order-card">
           <div class="card-header">
-            <h3>Cart Info</h3>
+            <p class="h5">ລາຍການອາຫານທີ່ເລືອກໄວ້</p>
           </div>
           <div class="card-body">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover tableFixHeaderFooter" style="margin:0;">
               <tr>
-                  <th>Option</th>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Sub Total</th>
+                  <th class="text-center">ລຶບ</th>
+                  <th class="text-center">ເມນູ</th>
+                  <th class="text-center">ລາຄາຕໍ່ຫນ່ວຍ</th>
+                  <th class="text-center" >ຈຳນວນ</th>
+                  <th class="text-center">ລວມ</th>
               </tr>
               <tr *ngFor="let item of items">
-                  <td align="center">
-                      <a (click)="remove(item.food.id)">X</a>
+                  <td class="text-center">
+                    <button mdc-fab [mini]="true" class="buttonRemove" (click)="removeCardItem(item.food.id)">
+                      <mdc-icon>remove</mdc-icon>
+                    </button>
                   </td>
-                  <td>{{item.food.id}}</td>
-                  <td>{{item.food.food_name}}</td>
-                  <td>{{item.food.price}}</td>
-                  <td>{{item.quantity}}</td>
-                  <td>{{item.food.price * item.quantity |  currency:'LAK':'symbol' }}</td>
+                  <td class="text-left">{{item.food.food_name}}</td>
+                  <td class="text-right">{{item.food.price |  number}}</td>
+                  <td class="text-right">{{item.quantity}}</td>
+                  <td class="text-right">{{item.food.price * item.quantity |  number }}</td>
               </tr>
-              <tr>
-                  <td colspan="5" align="right">Total </td>
-                  <td>{{total |  currency:'LAK':'symbol' }}</td>
-              </tr>
+              
+              <tfoot>
+                  <tr>
+                      <td colspan="4" class="text-right">ລວມທັງໝົດ </td>
+                      <td class="text-right"> {{total |  number }}</td>
+                  </tr>
+                  <tr>
+                      <td colspan="4" class="text-right">ສ່ວນຫຼຸດ {{ discount_rate }} %</td>
+                      <td class="text-right"> {{ discount | number }}</td>
+                  </tr>
+                  <tr>
+                      <td colspan="4" class="text-right">ອາກອນມູນຄ່າເພີ່ມ {{ tax_rate }} %</td>
+                      <td class="text-right"> {{ tax | number }}</td>
+                  </tr>
+                  <tr>
+                      <td colspan="4" class="text-right">ລວມທັງໝົດທີ່ຕ້ອງຈ່າຍ</td>
+                      <td class="text-right"> {{ grandTotal | number }}</td>
+                  </tr>
+              </tfoot>
           </table>
           </div>
         </div>
       </div>
+     
       <div class="row">
         <div class="card card-payment">
           <div class="card-header">Payment</div>
+          <div class="card-body">
+            <div class="row customerInfo">
+                <div class="col text-left customerText">
+                    <p mdcSubtitle1>ລູກຄ້າ :</p>
+                </div>
+                <div class="col text-left customerText" >
+                  <p mdcSubtitle1>
+                    <ng-template [ngIf]="customer.gender == 'M'">Mr. {{ customer.fullname }}</ng-template>
+                    <ng-template [ngIf]="customer.gender == 'F'">Ms. {{ customer.fullname }}</ng-template>
+                </p>
+                </div>
+                <div class="col customerText">
+                    <p mdcSubtitle1>ເບີໂທ :</p>
+                </div>
+                <div class="col text-center customerText" >
+                    <p mdcSubtitle1>
+                      {{ customer.mobile }}  
+                    </p>
+                </div>
+                <div class="col customerText" style="margin-top:0;">
+                  <button mdc-fab [mini]="true" class="buttonAdd" (click)="callCustomerDialog()" >
+                  <mdc-icon>add</mdc-icon>
+                </button>
+                </div>
+            </div>
+
+            <div class="row payment-box">
+              <div class="row text-center">
+                <div class="col" style="min-width:300px">
+                  <button mdc-button class="payment-button" [disabled]="paymentReady" (click)="callPaymentdialog()" outlined="true">Cash</button>
+                </div>
+                <div class="col" style="min-width:300px">
+                    <button mdc-button disabled="true" class="payment-button" outlined="true">Credit</button>
+                  </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </div>

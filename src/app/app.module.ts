@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadingStrategy, PreloadAllModules } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { TopbarComponent } from './layouts/topbar/topbar.component';
@@ -25,6 +25,11 @@ import { AddfoodFormComponent } from './dialogs/addfood-form/addfood-form.compon
 import { FoodinfoComponent } from './dialogs/foodinfo/foodinfo.component';
 import { AddfoodtypeComponent } from './dialogs/addfoodtype/addfoodtype.component';
 import { AdddiscountComponent } from './dialogs/adddiscount/adddiscount.component';
+import { CustomersComponent } from './dialogs/customers/customers.component';
+import { CustomerFilter } from './pipes/customersFilter';
+import { CustomerTelePhoneFilterPipe } from './pipes/customer-tele-phone-filter.pipe';
+import { PaymentConfirmComponent } from './dialogs/payment-confirm/payment-confirm.component';
+
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -50,6 +55,10 @@ const routes: Routes = [
     FoodinfoComponent,
     AddfoodtypeComponent,
     AdddiscountComponent,
+    CustomersComponent,
+    CustomerFilter,
+    CustomerTelePhoneFilterPipe,
+    PaymentConfirmComponent,
 
   ],
 
@@ -59,6 +68,8 @@ const routes: Routes = [
     FoodinfoComponent,
     AddfoodtypeComponent,
     AdddiscountComponent,
+    CustomersComponent,
+    PaymentConfirmComponent,
   ],
 
   imports: [
@@ -69,7 +80,10 @@ const routes: Routes = [
     MdcIconModule,
     MdcListModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, 
+      { 
+        preloadingStrategy: PreloadAllModules 
+      }),
     DataTableModule,
     FormsModule,
     ReactiveFormsModule,
