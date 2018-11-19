@@ -12,7 +12,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of items">
                           {{ item.food.food_name }} <br/>
                           ຈຳນວນ {{ item.quantity | number }} @ {{ item.food.price | number }} 
-                          <span>{{ item.food.price * item.quantity  | number }} ກິີບ</span>
+                          <span>{{ item.food.price * item.quantity  | number }} ກິບ</span>
                         </li>               
                       </ul>
                     </div>
@@ -21,16 +21,16 @@
                       <div class="card-body">
                         <ul class="list-group">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                              ລວມ : <span> {{ data.total  | number }} </span>
+                              ລວມ : <span> {{ data.total  | number }} ກິບ</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                              ສ່ວນຫຼຸູດ : <span> {{ data.discount  | number }} </span>
+                              ສ່ວນຫຼຸູດ : <span> {{ data.discount  | number }} ກິບ</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                              ອາກອນ : <span> {{ data.tax  | number }} </span>
+                              ອາກອນ : <span> {{ data.tax  | number }} ກິບ</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                              ລວມຍອດທັງໝົດ : <span> {{ data.grandtotal  | number }} </span>
+                              ລວມຍອດທັງໝົດ : <span> {{ data.grandtotal  | number }} ກິບ</span>
                             </li>
                         </ul>
                       </div>
@@ -41,25 +41,64 @@
                 <div class="card col-payment-box">
                   <div class="card-header">Payment</div>
                   <div class="card-body">
-                    <div class="customer-info">
-                      <span>ລູກຄ້າ : </span><span>{{ customer.fullname }}</span>
-                      <span> ໂທ : </span><span>{{ customer.mobile }}</span><br/>
+                    <div class="form-group row">
+                      <label for="qNumber" class="col-sm-4 col-form-label"> ເລກບັດຄິວ :</label>
+                      <div class="col-sm-4">
+                        <select class="form-control" id="qNumber">
+                          <option *ngFor="let q of qTag">{{ q.tag }}</option>
+                        </select>
+                      </div>
+                      
+                    </div>
+                    <div class="form-group row">
+                      <label for="customercode" class="col-sm-4 col-form-label">ລະຫັດລູກຄ້າ :</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="customercode" value="{{ customer.customer_code }}">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="grandtotalamt" class="col-sm-4 col-form-label">ລູກຄ້າ :</label>
+                      <div class="col-sm-4">
+                        <input type="text" readonly class="form-control-plaintext" id="grandtotalamt" value="{{ customer.fullname }}">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="grandtotalamt" class="col-sm-4 col-form-label">ເບີໂທ :</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="grandtotalamt" value="{{ customer.mobile }}">
+                      </div>
                     </div>
 
-                    <div class="row">
-                      <div class="col label-col">
-                        <p mdcHeadline6>ລວມຍອດທັງໝົດ : </p>
-                      </div>
-                      <div class="col"><h4 mdcHeadline6>{{ data.grandtotal  | number }}</h4></div>
-                    </div>
-                    <div class="row">
-                      <div class="col">
-                        <p mdcHeadline6> ຮັບຈາກລູກຄ້າ : </p>
-                      </div>
-                      <div class="col">
-                      <mdc-text-field  type="number" formControlName="food_name" id="food_name" class="control-space" name="food_name" outlined aria-placeholder="Food name" dense="true"></mdc-text-field>
+
+                    <div class="form-group row">
+                      <label for="grandtotalamt" class="col-sm-4 col-form-label">ລວມຍອດທັງໝົດ :</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="grandtotalamt" value="{{ data.grandtotal  | number }}">
                       </div>
                     </div>
+                    <div class="form-group row">
+                      <label for="recieveAmt" class="col-sm-4 col-form-label">ຮັບຈາກລູກຄ້າ :</label>
+                      <div class="col-sm-8">
+                        <input type="number" class="form-control" id="recieveAmt" step="1000" value="{{ data.grandtotal  }}" [(ngModel)]="recvAmt">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="recieveAmt" class="col-sm-4 col-form-label"> ຖອນ :</label>
+                      <div class="col-sm-8">
+                        <input type="text"  readonly class="form-control" id="changeAmtTxt" [(ngModel)]="changeAmt" value="{{ recvAmt - data.grandtotal | number}}" >
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-sm-12">
+                        <button type="submit" color="primary" class="form-control" (click)="paymentExecute()">Pay</button>
+                      </div>
+                    </div>
+
+
+
+
+
                   </div>
                 </div>          
               </div>

@@ -82,4 +82,7 @@ export class DataService {
   getCustomers(){
     return this.http.get(this.url + 'customers', this.httpOptions);
   }
+  getQTags(){
+    return this.http.get(this.url + 'q', this.httpOptions);
+  }
 }
