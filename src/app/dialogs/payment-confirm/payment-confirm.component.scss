@@ -37,8 +37,8 @@
 
 .label-col {
   position: relative;
-  min-width: 200px;
-  max-width: 200px;
+  min-width: 180px;
+  max-width: 180px;
   vertical-align: middle;
 }
 
@@ -47,4 +47,14 @@
   min-width: 300px;
   max-width: 300px;
   margin-top: 5px;
+}
+
+.control {
+  padding: 0;
+  min-width: 290px;
+
+}
+
+.label-control {
+  padding-top: 35px;
 }
