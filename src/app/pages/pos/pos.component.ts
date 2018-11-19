@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Food } from '../../models/food';
 import { Item } from 'src/app/models/item';
-import { MdcDialog } from '@angular-mdc/web';
+import { MdcDialog, MDC_DIALOG_DATA } from '@angular-mdc/web';
 import { CustomersComponent } from 'src/app/dialogs/customers/customers.component';
 import { PaymentConfirmComponent } from 'src/app/dialogs/payment-confirm/payment-confirm.component';
 
@@ -13,18 +13,18 @@ import { PaymentConfirmComponent } from 'src/app/dialogs/payment-confirm/payment
 })
 export class PosComponent implements OnInit {
 
-  constructor(private dataService: DataService, private dialog: MdcDialog) { }
+  constructor(private dataService: DataService, private dialog: MdcDialog, ) { }
   food_types: any;
   foods: any;
   foodCateId: string;
-  paymentReady: boolean ;
+  paymentReady: boolean;
   customer: any = {
     'id': '-1',
     'gender': 'M',
     'fullname': 'ບໍ່ມີຂໍ້ມູນ',
     'mobile': 'ບໍ່ມີຂໍ້ມູນ'
   };
-  
+
 
   total: number = 0;
   items: Item[] = [];
@@ -39,7 +39,7 @@ export class PosComponent implements OnInit {
     this.foodCateId = "all";
     this.getFoodtype();
     this.getFoods();
-    
+
     this.loadCart();
     this.checkPayment();
   }
@@ -75,33 +75,33 @@ export class PosComponent implements OnInit {
     this.foodCateId = catid;
     this.getFoods();
   }
-  addItemToCard(food:Food) {
+  addItemToCard(food: Food) {
     //console.log(food);
-    
-    if(food){
+
+    if (food) {
       console.log(food);
-      let items : Item = {
+      let items: Item = {
         food: food,
-        quantity : 1
+        quantity: 1
       };
       console.log(items);
 
-      if(localStorage.getItem('cart') == null){
-        let cart : any = [];
+      if (localStorage.getItem('cart') == null) {
+        let cart: any = [];
         cart.push(JSON.stringify(items));
         localStorage.setItem('cart', JSON.stringify(cart));
       } else {
-        let cart : any = JSON.parse(localStorage.getItem('cart'));
+        let cart: any = JSON.parse(localStorage.getItem('cart'));
         console.log(cart.length);
-        let index : number = -1;
-        for (var i = 0; i < cart.length ; i++){
+        let index: number = -1;
+        for (var i = 0; i < cart.length; i++) {
           let item: Item = JSON.parse(cart[i]);
-          if(item.food.id == food.id){
+          if (item.food.id == food.id) {
             index = i;
             break;
           }
         }
-        if (index == -1 ){
+        if (index == -1) {
           cart.push(JSON.stringify(items));
           localStorage.setItem('cart', JSON.stringify(cart));
         } else {
@@ -115,34 +115,34 @@ export class PosComponent implements OnInit {
     } else {
       this.loadCart();
     }
-    
+
   }
 
-  loadCart(){
+  loadCart() {
     this.total = 0;
     this.items = [];
-    
-    if (localStorage.getItem('cart') != null){
+
+    if (localStorage.getItem('cart') != null) {
       let cart = JSON.parse(localStorage.getItem('cart'));
-      for (var i = 0; i < cart.length; i++ ){
+      for (var i = 0; i < cart.length; i++) {
         let item = JSON.parse(cart[i]);
         this.items.push({
           food: item.food,
           quantity: item.quantity
         });
         this.total += item.food.price * item.quantity;
-        this.discount = (this.total * this.discount_rate)/100;
-        this.tax = (this.total * this.tax_rate)/100;
-        this.grandTotal = this.total - this.discount + this.tax ;
+        this.discount = (this.total * this.discount_rate) / 100;
+        this.tax = (this.total * this.tax_rate) / 100;
+        this.grandTotal = this.total - this.discount + this.tax;
       }
-    } 
+    }
     this.checkPayment();
   }
 
-  checkPayment(){
+  checkPayment() {
     let items = JSON.parse(localStorage.getItem('cart'));
-    
-    if(items.length > 0 && this.customer['id'] != -1 ){
+
+    if (items.length > 0 && this.customer['id'] != -1) {
       this.paymentReady = false;
     } else {
       this.paymentReady = true;
@@ -150,14 +150,14 @@ export class PosComponent implements OnInit {
     console.log(this.paymentReady);
   }
 
-  removeCardItem(id: number){
+  removeCardItem(id: number) {
     let cart: any = JSON.parse(localStorage.getItem('cart'));
     let index = -1;
 
-    for (var i = 0; i < cart.length; i++ ) {
+    for (var i = 0; i < cart.length; i++) {
       let item: Item = JSON.parse(cart[i]);
-      if(item.food.id == id) {
-        cart.splice(i , 1 );
+      if (item.food.id == id) {
+        cart.splice(i, 1);
         break;
       }
     }
@@ -165,23 +165,31 @@ export class PosComponent implements OnInit {
     this.loadCart();
   }
 
-  callCustomerDialog(){
+  callCustomerDialog() {
     const customerDialogRef = this.dialog.open(CustomersComponent, {
       escapeToClose: true,
       clickOutsideToClose: true
     });
     customerDialogRef.afterClosed().subscribe(customer => {
       console.log(customer);
-      if(customer != 'close'){
+      if (customer != 'close') {
         this.customer = customer
         this.checkPayment();
       }
     });
   }
-  callPaymentdialog(){
+  callPaymentdialog() {
     const paymentDialogRef = this.dialog.open(PaymentConfirmComponent, {
       escapeToClose: true,
-      clickOutsideToClose: false
+      clickOutsideToClose: false,
+      data: {
+        'items': this.items,
+        'total': this.total,
+        'tax': this.tax,
+        'discount': this.discount,
+        'grandtotal': this.grandTotal,
+        'customer': this.customer,
+      },
     });
   }
 }

@@ -1,7 +1,7 @@
 $mdc-theme-primary: #1565c0;
 $mdc-theme-secondary: #388e3c;
 $mdc-theme-background: #fff;
-
+$mdc-theme-remove: #a90707;
 @import "~@angular-mdc/theme/material";
 
 .container-flex {
@@ -18,6 +18,7 @@ $mdc-theme-background: #fff;
   min-width: 1024px;
   width: 1024px;
 }
+
 .col-payment {
   width: 600px;
 }
@@ -35,7 +36,7 @@ $mdc-theme-background: #fff;
   width: 100%;
   margin-left: 10px;
   margin-top: 5px;
-  
+
 }
 
 .item-card {
@@ -53,11 +54,11 @@ $mdc-theme-background: #fff;
 }
 
 .card-payment {
-  
+
   width: 800px;
   margin-left: 10px;
   margin-top: 10px;
-  
+
 }
 
 .row-item {
@@ -139,38 +140,51 @@ img {
 .hiddenDiv {
   display: none;
 }
+
 .buttonAdd {
   position: absolute;
   right: 10px;
 }
+
 .customerInfo {
   position: relative;
   vertical-align: middle;
 }
+
 .customerText {
-  white-space: nowrap; 
+  white-space: nowrap;
   vertical-align: middle;
   margin-top: 1px;
 }
+
 .payment-box {
   position: fix;
   bottom: 0;
   min-height: 50px;
-  
+
 }
+
 .payment-button {
   margin-top: 10px;
   margin-left: 10px;
   min-width: 100%;
 }
+
 .tableFixHeaderFooter {
-  overflow: auto; height: 50px;
+  overflow: auto;
+  height: 50px;
 }
+
 .tableFixHeaderFooter thead {
-  position:sticky;
+  position: sticky;
   top: 0;
 }
+
 .tableFixHeaderFooter tfoot {
-  position:sticky;
+  position: sticky;
   bottom: 0;
+}
+
+.buttonRemove {
+  @include mdc-button-container-fill-color($mdc-theme-remove);
 }

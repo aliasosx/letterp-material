@@ -4,24 +4,66 @@
         <mdc-dialog-title class="titleDialog text-center"><p mdcHeadline5>ຍຶນຍັນການສັ່ງອາຫານ - Order Payment confirmation</p></mdc-dialog-title>
         <mdc-dialog-content>
           <div class="row">
-            <div class="col col-order">
-                <div class="card">
-                  <div class="card-header">Orders</div>
+            <div class="col">
+              <div class="card col-order-box">          
+                    <div class="card-header">ລາຍການອາຫານ</div>
+                    <div class="card-body">
+                      <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of items">
+                          {{ item.food.food_name }} <br/>
+                          ຈຳນວນ {{ item.quantity | number }} @ {{ item.food.price | number }} 
+                          <span>{{ item.food.price * item.quantity  | number }} ກິີບ</span>
+                        </li>               
+                      </ul>
+                    </div>
+                    <div class="card">
+                      <div class="card-header">ລວມ</div>
+                      <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              ລວມ : <span> {{ data.total  | number }} </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              ສ່ວນຫຼຸູດ : <span> {{ data.discount  | number }} </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              ອາກອນ : <span> {{ data.tax  | number }} </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              ລວມຍອດທັງໝົດ : <span> {{ data.grandtotal  | number }} </span>
+                            </li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>  
+              </div> 
+              <div class="col">
+                <div class="card col-payment-box">
+                  <div class="card-header">Payment</div>
                   <div class="card-body">
+                    <div class="customer-info">
+                      <span>ລູກຄ້າ : </span><span>{{ customer.fullname }}</span>
+                      <span> ໂທ : </span><span>{{ customer.mobile }}</span><br/>
+                    </div>
 
+                    <div class="row">
+                      <div class="col ">
+                        <p class="label-col">ລວມຍອດທັງໝົດ : </p>
+                      </div>
+                      <div class="col value-col"><h4>{{ data.grandtotal  | number }}</h4></div>
+                    </div>
+                    <div class="row">
+                      <div class="col label-col">
+                        <p>ຮັບຈາກລູກຄ້າ : </p>
+                      </div>
+                      <div class="col value-col">
+                      <mdc-text-field type="number" formControlName="food_name" id="food_name" class="control-space" name="food_name" outlined aria-placeholder="Food name" dense="true"></mdc-text-field>
+                      </div>
+                    </div>
                   </div>
-                </div>
-            </div>
-            <div class="col col-payment">
-                  <div class="card">
-                  <div class="card-header">ຈ່າຍເງິນ</div>
-                  <div class="card-body">
-                    
-                  </div>
-                </div>
-            </div>
-          </div>
-          
+                </div>          
+              </div>
+          </div>       
         </mdc-dialog-content>
         <mdc-dialog-actions>
           <button mdcDialogButton mdcDialogAction="close">ຍົກເລີກ</button>

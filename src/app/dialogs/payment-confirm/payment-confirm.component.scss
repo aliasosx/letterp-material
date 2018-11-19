@@ -1,4 +1,50 @@
 .surface {
-    min-width: 1024px;
-    min-height: 600px;
+  min-width: 1024px;
+  min-height: 900px;
+
+}
+
+.col-order-box {
+  display: flex;
+  position: absolute;
+  min-width: 400px;
+  max-width: 400px;
+  max-height: 800px;
+  border-radius: 5px;
+  border: 1px dotted slategrey;
+  overflow: auto;
+}
+
+.col-payment-box {
+  display: flex;
+  min-width: 550px;
+  max-width: 550px;
+  max-height: 800px;
+  border-radius: 5px;
+  border: 1px dotted slategrey;
+  overflow: auto;
+}
+
+.control-space {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.customer-info {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.label-col {
+  position: relative;
+  min-width: 200px;
+  max-width: 200px;
+  vertical-align: middle;
+}
+
+.value-col {
+  position: relative;
+  min-width: 300px;
+  max-width: 300px;
+  margin-top: 5px;
 }
