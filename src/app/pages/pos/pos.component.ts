@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Food } from '../../models/food';
 import { Item } from 'src/app/models/item';
-import { MdcDialog, MDC_DIALOG_DATA } from '@angular-mdc/web';
+import { MdcDialog, MDC_DIALOG_DATA, MdcSnackbar } from '@angular-mdc/web';
 import { CustomersComponent } from 'src/app/dialogs/customers/customers.component';
 import { PaymentConfirmComponent } from 'src/app/dialogs/payment-confirm/payment-confirm.component';
 
@@ -13,11 +13,23 @@ import { PaymentConfirmComponent } from 'src/app/dialogs/payment-confirm/payment
 })
 export class PosComponent implements OnInit {
 
-  constructor(private dataService: DataService, private dialog: MdcDialog, ) { }
+  constructor(private dataService: DataService, private dialog: MdcDialog,private snackbar: MdcSnackbar ) { }
   food_types: any;
   foods: any;
   foodCateId: string;
   paymentReady: boolean;
+  
+
+  /* Snackbar */
+  snackBarMsg: string = "test snack bar";
+  action = "OK";
+  multiline = true;
+  dismissOnAction: boolean = true;
+  align: string;
+  focusAction = false;
+  actionOnBottom = false;
+
+
   customer: any = {
     'id': '-1',
     'gender': 'M',
@@ -194,8 +206,35 @@ export class PosComponent implements OnInit {
       },
     });
     paymentDialogRef.afterClosed().subscribe(msg => {
-      console.log(msg);
-      this.loadCart();
+      //console.log(msg);
+      if(msg == 'Success'){
+        this.tax = 0;
+        this.total= 0;
+        this.discount=0;
+        this.grandTotal = 0;
+        this.loadCart();
+        this.showSnackbar('Payment successful and Order in progressing ...')
+      } else {
+        this.showSnackbar('Cancelled');
+      }
+      
+    });
+  }
+  showSnackbar(msg) {
+    if (msg) {
+      this.snackBarMsg = msg;
+    }
+
+    const snackbarRef = this.snackbar.show(this.snackBarMsg, this.action, {
+      align: this.align,
+      multiline: this.multiline,
+      dismissOnAction: this.dismissOnAction,
+      focusAction: this.focusAction,
+      actionOnBottom: this.actionOnBottom,
+    });
+    this.getFoods();
+    snackbarRef.afterDismiss().subscribe(() => {
+      //console.log('The snack-bar was dismissed')
     });
   }
 }
