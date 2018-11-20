@@ -121,7 +121,9 @@ export class PosComponent implements OnInit {
   loadCart() {
     this.total = 0;
     this.items = [];
-
+    if (localStorage.getItem('cart') == null) {
+      return;
+    }
     if (localStorage.getItem('cart') != null) {
       let cart = JSON.parse(localStorage.getItem('cart'));
       for (var i = 0; i < cart.length; i++) {
@@ -190,6 +192,10 @@ export class PosComponent implements OnInit {
         'grandtotal': this.grandTotal,
         'customer': this.customer,
       },
+    });
+    paymentDialogRef.afterClosed().subscribe(msg => {
+      console.log(msg);
+      this.loadCart();
     });
   }
 }

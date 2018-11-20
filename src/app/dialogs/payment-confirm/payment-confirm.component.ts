@@ -59,20 +59,26 @@ export class PaymentConfirmComponent implements OnInit {
         'items': this.items,
       }
     };
-    console.log(order);
 
     this.dataService.createOrder(order).subscribe(result => {
-      if (result['status'].affectedRows > 0) {
-        this.dialog.closeAll();
-      } else {
+      try {
         console.log(result);
+        if (result['status'] == 'success') {
+          localStorage.removeItem('cart');
+          this.dialogRef.close('Success');
+        } else {
+          console.log(result);
+        }
+      } catch (err) {
+        console.log(err);
       }
+
     });
 
   }
   qSelected(e, tag) {
     this.qTagUsed = parseInt(tag);
-    console.log(this.qTagUsed);
+    //console.log(this.qTagUsed);
   }
 
 }
