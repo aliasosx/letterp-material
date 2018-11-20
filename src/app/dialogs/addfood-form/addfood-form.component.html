@@ -35,11 +35,18 @@
                   <mdc-text-field formControlName="price" id="price" required type="number" class="control-space"
                     aria-placeholder="ລາຄາຕົ້ນຂາຍ" outlined name="price" label="ລາຄາຕົ້ນຂາຍ">
                   </mdc-text-field>
+
                   <mdc-select id="currcode" formControlName="currcode" required class="control-space" label="ສະກຸນເງິນ"
                     outlined>
                     <option value="" disabled>---------- ເລືອກ ----------</option>
                     <option value="{{ curr.curr_code }}" *ngFor="let curr of currcodes">{{
                       curr.curr_name_la }}</option>
+                  </mdc-select>
+
+                  <mdc-select id="kitchen_code" formControlName="kitchen_code" required class="control-space" label="ຫ້ອງຄົວ"
+                    outlined>
+                    <option value="" disabled>---------- ເລືອກ ----------</option>
+                    <option value="{{ k.id }}" *ngFor="let k of kitchens">{{ k.kitchen_code }}</option>
                   </mdc-select>
                 </div>
               </div>

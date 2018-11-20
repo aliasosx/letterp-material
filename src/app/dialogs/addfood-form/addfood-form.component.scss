@@ -55,5 +55,6 @@ $mdc-theme-background: #fff;
 }
 
 .surface {
-  width: 100%;
+  min-width: 600px;
+  min-height: 600px;
 }

@@ -31,6 +31,9 @@
               <th class="text-center text-nowrap">
                 <mfDefaultSorter by="currcode">ສະກຸນເງິນ</mfDefaultSorter>
               </th>
+              <th class="text-center text-nowrap">
+                <mfDefaultSorter by="kitchen_code">ຫ້ອງຄົວ</mfDefaultSorter>
+              </th>
               <th class="text-center">
                 <mfDefaultSorter by="enabled">ນຳໃຊ້</mfDefaultSorter>
               </th>
@@ -46,10 +49,11 @@
                   <img class="text-center align-middle w-25" src="{{ food.photo }}">
                 </div>
               </td>
-              <td class="align-middle text-center">{{ food.food_type_desc_la }}</td>
+              <td class="align-middle text-center text-nowrap">{{ food.food_type_desc_la }}</td>
               <td class="align-middle text-right">{{ food.cost | number: '.2' }}</td>
               <td class="align-middle text-right">{{ food.price | number: '.2' }}</td>
               <td class="align-middle text-center">{{ food.curr_name_la }}</td>
+              <td class="align-middle text-center">{{ food.kitchen_code }}</td>
               <td class="align-middle text-center">
                 <div class="form-check checkbox-slider--c">
                   <label>

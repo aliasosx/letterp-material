@@ -79,10 +79,17 @@ export class DataService {
   getFoodByCategory(catid) {
     return this.http.get(this.url + 'foodbycat/' + catid, this.httpOptions);
   }
-  getCustomers(){
+  getCustomers() {
     return this.http.get(this.url + 'customers', this.httpOptions);
   }
-  getQTags(){
+  getQTags() {
     return this.http.get(this.url + 'q', this.httpOptions);
+  }
+  getKitchens() {
+    return this.http.get(this.url + 'kitchens', this.httpOptions);
+  }
+
+  createOrder(order) {
+    return this.http.post(this.url + 'order', JSON.stringify(order), this.httpOptions);
   }
 }
