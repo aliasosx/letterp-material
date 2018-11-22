@@ -1,5 +1,5 @@
 <div class="container" #mainContent>
-  <div class="card-main">
+  <div class="col card-main">
     <div class="card">
       <div class="card-header">
         <h4>ລາຍການອາຫານທັງໝົດ</h4>
@@ -12,9 +12,7 @@
                 <mfDefaultSorter by="i">#</mfDefaultSorter>
               </th>
               <th class="text-center text-nowrap ">
-                <mfDefaultSorter by="food_name">
-                  ລາຍການອາຫານ
-                </mfDefaultSorter>
+                <mfDefaultSorter by="food_name"> ລາຍການອາຫານ </mfDefaultSorter>
               </th>
               <th class="text-center">
                 <mfDefaultSorter by="photo">ຮູບພາບ</mfDefaultSorter>
@@ -46,12 +44,18 @@
               <td class="align-middle text-nowrap">{{ food.food_name }}</td>
               <td class="align-middle">
                 <div class="text-center">
-                  <img class="text-center align-middle w-25" src="{{ food.photo }}">
+                  <img class="text-center align-middle w-25" src="{{ food.photo }}" />
                 </div>
               </td>
-              <td class="align-middle text-center text-nowrap">{{ food.food_type_desc_la }}</td>
-              <td class="align-middle text-right">{{ food.cost | number: '.2' }}</td>
-              <td class="align-middle text-right">{{ food.price | number: '.2' }}</td>
+              <td class="align-middle text-center text-nowrap">
+                {{ food.food_type_desc_la }}
+              </td>
+              <td class="align-middle text-right">
+                {{ food.cost | number: '.2' }}
+              </td>
+              <td class="align-middle text-right">
+                {{ food.price | number: '.2' }}
+              </td>
               <td class="align-middle text-center">{{ food.curr_name_la }}</td>
               <td class="align-middle text-center">{{ food.kitchen_code }}</td>
               <td class="align-middle text-center">
@@ -62,15 +66,13 @@
                 </div>
               </td>
               <td class="align-middle text-center text-nowrap">
-
-                <button mdc-fab [mini]="true" class="buttonEdit" (click)="updateOnClick(food);">
+                <button mdc-fab [mini]="true" class="buttonEdit" (click)="updateOnClick(food)">
                   <mdc-icon>edit</mdc-icon>
                 </button>
 
                 <button mdc-fab [mini]="true" class="buttonRemove" (click)="showDialog(food.id)">
                   <mdc-icon>remove</mdc-icon>
                 </button>
-
               </td>
             </tr>
           </tbody>
@@ -86,7 +88,7 @@
     </div>
   </div>
 </div>
-<button mdc-fab class="fab-add-new" extended position='bottomRight' (click)="addFoodDialog()">
+<button mdc-fab class="fab-add-new" extended position="bottomRight" (click)="addFoodDialog()">
   <mdc-icon>add</mdc-icon>
   <mdc-fab-label>Create</mdc-fab-label>
 </button>

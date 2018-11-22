@@ -1,24 +1,68 @@
-<mdc-dialog class="dialog-form">
+<mdc-dialog>
   <mdc-dialog-container>
-    <mdc-dialog-surface>
-      <mdc-dialog-title class="titleDialog">
-        ລາຍການອາຫານ <b>{{ data[0].food_name }}</b>
+    <mdc-dialog-surface class="surface">
+      <mdc-dialog-title class="titleDialog"> ລາຍການອາຫານ <b>{{ food.food_name }}</b>
       </mdc-dialog-title>
-      <mdc-dialog-content>
-        <div class="row">
-          <div class="col">
-            <div class="imgDiv">
-              <img class="w-100" [mdcElevation]="5" [src]="data[0].photo" >
+      <mdc-dialog-content class="dialogContent">
+
+        <div class="row mainContent">
+          <div class="col-md-4 text-center">
+            <div mdcElevation=7 class="framImg">
+              <img #foodImg id="photo" src="{{ food.photo }}">
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="formframe">
+
+              <div class="form-group">
+                <label for="inputFoodName">ອາຫານ</label>
+                <input type="text" class="form-control" #foodName required id="inputFoodName" placeholder="Enter email"
+                  value="{{ food.food_name }}">
+              </div>
+              <div class="form-group">
+                <label for="foodTypeSelect">ປະເພດອາຫານ</label>
+                <select id="foodTypeSelect" #foodtype class="form-control" [ngModel]="ft">
+                  <option selected>Choose...</option>
+                  <option *ngFor="let ft of foodtypes" [ngValue]="ft" [value]="ft.id">{{ft.food_type_desc_la}}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="costtxt">ຕົ້ນທຶນ</label>
+                <div class="input-group mb-3">
+                  <input type="number" #foodcost id="costtxt" class="form-control" value="{{ food.cost }}">
+                  <div class="input-group-append">
+                    <span class="input-group-text">ກິບ</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="pricetxt">ລາຄາຂາຍ</label>
+                <div class="input-group mb-3">
+                  <input type="number" #foodprice id="pricetxt" class="form-control" value="{{ food.price }}">
+                  <div class="input-group-append">
+                    <span class="input-group-text">ກິບ</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="kitchenSelect">ຄົວ</label>
+                <select id="kitchenSelect" #foodKitchen class="form-control" [ngModel]="kt">
+                  <option [value]="">Choose...</option>
+                  <option *ngFor="let kt of kitchens" [ngValue]="kt" [value]="kt.id">{{ kt.kitchen_code }}</option>
+                </select>
+              </div>
 
             </div>
           </div>
-          <div class="col">
-            <span>ປະເພດ</span>
-          </div>
+
         </div>
+
       </mdc-dialog-content>
       <mdc-dialog-actions>
-        <button mdcDialogButton mdcDialogAction="close">ປິດ</button>
+        <button class="btn btn-primary btn-lg button-close" (click)="updateFood(foodName.value,foodtype.value,foodcost.value,foodprice.value,foodKitchen.value,foodImg.value)">ປ່ຽນແປງ</button>
       </mdc-dialog-actions>
     </mdc-dialog-surface>
   </mdc-dialog-container>

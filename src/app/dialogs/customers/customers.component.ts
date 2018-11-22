@@ -13,17 +13,19 @@ export class CustomersComponent implements OnInit {
   constructor(public dialogRef: MdcDialogRef<CustomersComponent>, private dialog: MdcDialog, private dataService: DataService) { }
   customers: any;
   searchField: string = 'fullname';
+
+  searchtxt: any;
   ngOnInit() {
     this.loadCustomers();
   }
-  loadCustomers(){
+  loadCustomers() {
     console.log('Customer loading ...');
     this.dataService.getCustomers().subscribe(customers => this.customers = customers);
   }
-  selectCustomer(customer){
+  selectCustomer(customer) {
     this.dialogRef.close(customer);
   }
-  setSearchType(event){
+  setSearchType(event) {
     this.searchField = event.value.toLowerCase();
   }
 

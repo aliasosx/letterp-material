@@ -73,6 +73,9 @@ export class DataService {
     console.log(discount);
     return this.http.post(this.url + 'discount', discount, this.httpOptions);
   }
+  updateFood(food) {
+    return this.http.put(this.url + 'food', food, this.httpOptions);
+  }
   getFoodByNoDiscount() {
     return this.http.get(this.url + 'foodnodiscounts', this.httpOptions);
   }

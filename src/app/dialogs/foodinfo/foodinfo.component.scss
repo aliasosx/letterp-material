@@ -4,7 +4,50 @@ $mdc-theme-background: #fff;
 
 @import "~@angular-mdc/theme/material";
 
-.imgDiv {
-  margin-top: 10px;
-  left: 50%;
+
+.surface{
+  position: relative;
+  align-content: center;
+  padding: 0;
+  min-width: 200px;
+  max-width: 800px;
+}
+.mainContent {
+  position: absolute;
+  min-width: 800px;
+  margin-top: 100px;
+}
+.dialogContent {
+  min-width: 600px;
+  max-width: 800px;
+  min-height: 600px;
+}
+img {
+  max-width: 200px;
+  min-width: 200px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  border: 1px solid #42A5F5;
+}
+.framImg {
+  position: relative;
+  padding: 10px;
+  max-width: 220px;
+  background-color: #E3F2FD;
+  border-radius: 5px;
+  border: 1px solid #42A5F5;
+}
+.foodname {
+  position: relative;
+  margin-top: 100px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-width: 220px;
+
+}
+.formframe {
+  position: relative;
+  padding: 10px;
+}
+.button-close {
+  min-width: 100px;
 }

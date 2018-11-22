@@ -11,7 +11,7 @@ import { Food } from 'src/app/models/food';
   styleUrls: ['./addfood-form.component.scss']
 })
 export class AddfoodFormComponent implements OnInit {
-  photoPath: any = "../../../assets/images/No_Image_Available.gif";
+  photoPath: any = '../../../assets/images/No_Image_Available.gif';
   file: File;
   foot_type_list: any;
   currcodes: any;
@@ -61,7 +61,7 @@ export class AddfoodFormComponent implements OnInit {
 
   addFood() {
     if (this.addFoodformGroup) {
-      let food = {
+      const food = {
         'food': {
           'food_name': this.addFoodformGroup.get('food_name').value,
           'food_type_id': this.addFoodformGroup.get('food_type_id').value,

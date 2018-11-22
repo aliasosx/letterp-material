@@ -25,7 +25,7 @@
                     label="ຊື່ອາຫານ" outlined aria-placeholder="Food name" dense="true"></mdc-text-field>
                   <mdc-select formControlName="food_type_id" id="food_type_id" required class="control-space" label="ປະເພດ"
                     outlined>
-                    <option value="" disabled>---------- ເລືອກ ----------</option>
+                    <option value="">---------- ເລືອກ ----------</option>
                     <option value="{{ f.id }}" *ngFor="let f of foot_type_list">{{
                       f.food_type_desc_la }}</option>
                   </mdc-select>
@@ -38,14 +38,14 @@
 
                   <mdc-select id="currcode" formControlName="currcode" required class="control-space" label="ສະກຸນເງິນ"
                     outlined>
-                    <option value="" disabled>---------- ເລືອກ ----------</option>
+                    <option value="">---------- ເລືອກ ----------</option>
                     <option value="{{ curr.curr_code }}" *ngFor="let curr of currcodes">{{
                       curr.curr_name_la }}</option>
                   </mdc-select>
 
                   <mdc-select id="kitchen_code" formControlName="kitchen_code" required class="control-space" label="ຫ້ອງຄົວ"
                     outlined>
-                    <option value="" disabled>---------- ເລືອກ ----------</option>
+                    <option value="">---------- ເລືອກ ----------</option>
                     <option value="{{ k.id }}" *ngFor="let k of kitchens">{{ k.kitchen_code }}</option>
                   </mdc-select>
                 </div>

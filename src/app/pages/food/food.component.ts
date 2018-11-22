@@ -33,12 +33,12 @@ export class FoodComponent implements OnInit {
   food: Food = new Food();
   public addFoodformGroup: FormGroup;
   file: File;
-  photoPath: any = "../../../assets/images/No_image_available.svg";
+  photoPath: any = '../../../assets/images/No_image_available.svg';
   env = environment.imageUrl;
   envtoken = environment.token;
   /* Snackbar */
-  snackBarMsg: string = "test snack bar";
-  action = "OK";
+  snackBarMsg: string = 'test snack bar';
+  action = 'OK';
   multiline = false;
   dismissOnAction: boolean = true;
   align: string;
@@ -92,20 +92,25 @@ export class FoodComponent implements OnInit {
           scrollable: true,
           data: food
         });
+        foodInfoDialogRef.afterClosed().subscribe(result => {
+          this.showSnackbar('Updated');
+          this.getFoods();
+
+        });
       });
     }
   }
   getFoodTypes() {
     this.dataService.getFoodTypes().subscribe(foodtypes => {
       this.foot_type_list = foodtypes;
-      //console.log(foodtypes);
+      // console.log(foodtypes);
     });
   }
 
   getCurrCode() {
     this.dataService.getCurrCodes().subscribe(currcodes => {
       this.currcodes = currcodes;
-      //console.log(currcodes);
+      // console.log(currcodes);
     });
   }
   addFood(food) {
@@ -116,10 +121,10 @@ export class FoodComponent implements OnInit {
       this.dataService.addFood(food).subscribe(data => {
         console.log(data);
         this.addFoodformGroup.reset();
-        this.photoPath = "../../../assets/images/No_image_available.svg";
-        //this.getFoods();
+        this.photoPath = '../../../assets/images/No_image_available.svg';
+        // this.getFoods();
 
-        if (data["status"].toLowerCase() == 'operation success') {
+        if (data['status'].toLowerCase() === 'operation success') {
           this.showSnackbar('ເພິ່ມລາຍການອາຫານສຳເລັດ');
         }
       });
@@ -127,7 +132,7 @@ export class FoodComponent implements OnInit {
   }
   deleteFood(id) {
     if (id) {
-      let food = {
+      const food = {
         'food': {
           'id': id
         }
@@ -141,13 +146,13 @@ export class FoodComponent implements OnInit {
     }
   }
 
-  onFileChange(event) {
-    this.file = event.target.files[0];
-    var reader = new FileReader();
+  onFileChange(e) {
+    this.file = e.target.files[0];
+    const reader = new FileReader();
     reader.readAsDataURL(this.file);
-    reader.onload = (event) => {
+    reader.onload = (e) => {
       this.photoPath = (<FileReader>event.target).result;
-    }
+    };
     console.log(this.file);
   }
 
@@ -165,7 +170,7 @@ export class FoodComponent implements OnInit {
     });
     this.getFoods();
     snackbarRef.afterDismiss().subscribe(() => {
-      //console.log('The snack-bar was dismissed')
+      console.log('The snack-bar was dismissed');
     });
   }
   showDialog(id) {
@@ -175,7 +180,7 @@ export class FoodComponent implements OnInit {
       clickOutsideToClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result == 'accept') {
+      if (result === 'accept') {
         this.deleteFood(id);
       } else {
         this.showSnackbar('ລາຍການຖືກຍົກເລີກ');
