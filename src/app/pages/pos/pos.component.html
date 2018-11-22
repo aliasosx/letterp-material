@@ -35,10 +35,12 @@
             <div class="row">
               <div class="product-grid" mdcElevation="8" *ngFor="let fd of foods" (click)="addItemToCard(fd)">
                 <div class="image">
+                  <h6 class="text-center price-text">{{ fd.food_name }}</h6>
                   <a>
                     <img src="{{ fd.photo }}">
                   </a>
-                  <h5 class="text-center price-text">ລາຄາ: {{ fd.price | number }} ກິບ</h5>
+
+                  <h6 class="text-center price-text">ລາຄາ: {{ fd.price | number }} ກິບ</h6>
                 </div>
               </div>
             </div>
@@ -50,98 +52,99 @@
     </div>
     <div class="col col-payment">
       <div class="payment-panel">
-      <div class="row">
-        <div class="card order-card">
-          <div class="card-header">
-            <p class="h5">ລາຍການອາຫານທີ່ເລືອກໄວ້</p>
-          </div>
-          <div class="card-body">
-            <table class="table table-striped table-hover tableFixHeaderFooter" style="margin:0;">
-              <tr>
+        <div class="row">
+          <div class="card order-card">
+            <div class="card-header">
+              <p class="h5">ລາຍການອາຫານທີ່ເລືອກໄວ້</p>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped table-hover tableFixHeaderFooter" style="margin:0;">
+                <tr>
                   <th class="text-center">ລຶບ</th>
                   <th class="text-center">ເມນູ</th>
                   <th class="text-center">ລາຄາຕໍ່ຫນ່ວຍ</th>
-                  <th class="text-center" >ຈຳນວນ</th>
+                  <th class="text-center">ຈຳນວນ</th>
                   <th class="text-center">ລວມ</th>
-              </tr>
-              <tr *ngFor="let item of items">
+                </tr>
+                <tr *ngFor="let item of items">
                   <td class="text-center">
                     <button mdc-fab [mini]="true" class="buttonRemove" (click)="removeCardItem(item.food.id)">
                       <mdc-icon>remove</mdc-icon>
                     </button>
                   </td>
                   <td class="text-left">{{item.food.food_name}}</td>
-                  <td class="text-right">{{item.food.price |  number}}</td>
+                  <td class="text-right">{{item.food.price | number}}</td>
                   <td class="text-right">{{item.quantity}}</td>
-                  <td class="text-right">{{item.food.price * item.quantity |  number }}</td>
-              </tr>
-              
-              <tfoot>
+                  <td class="text-right">{{item.food.price * item.quantity | number }}</td>
+                </tr>
+
+                <tfoot>
                   <tr>
-                      <td colspan="4" class="text-right">ລວມທັງໝົດ </td>
-                      <td class="text-right"> {{total |  number }}</td>
+                    <td colspan="4" class="text-right">ລວມທັງໝົດ </td>
+                    <td class="text-right"> {{total | number }}</td>
                   </tr>
                   <tr>
-                      <td colspan="4" class="text-right">ສ່ວນຫຼຸດ {{ discount_rate }} %</td>
-                      <td class="text-right"> {{ discount | number }}</td>
+                    <td colspan="4" class="text-right">ສ່ວນຫຼຸດ {{ discount_rate }} %</td>
+                    <td class="text-right"> {{ discount | number }}</td>
                   </tr>
                   <tr>
-                      <td colspan="4" class="text-right">ອາກອນມູນຄ່າເພີ່ມ {{ tax_rate }} %</td>
-                      <td class="text-right"> {{ tax | number }}</td>
+                    <td colspan="4" class="text-right">ອາກອນມູນຄ່າເພີ່ມ {{ tax_rate }} %</td>
+                    <td class="text-right"> {{ tax | number }}</td>
                   </tr>
                   <tr>
-                      <td colspan="4" class="text-right">ລວມທັງໝົດທີ່ຕ້ອງຈ່າຍ</td>
-                      <td class="text-right"> {{ grandTotal | number }}</td>
+                    <td colspan="4" class="text-right">ລວມທັງໝົດທີ່ຕ້ອງຈ່າຍ</td>
+                    <td class="text-right"> {{ grandTotal | number }}</td>
                   </tr>
-              </tfoot>
-          </table>
+                </tfoot>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
-     
-      <div class="row">
-        <div class="card card-payment">
-          <div class="card-header">Payment</div>
-          <div class="card-body">
-            <div class="row customerInfo">
+
+        <div class="row">
+          <div class="card card-payment">
+            <div class="card-header">Payment</div>
+            <div class="card-body">
+              <div class="row customerInfo">
                 <div class="col text-left customerText">
-                    <p mdcSubtitle1>ລູກຄ້າ :</p>
+                  <p mdcSubtitle1>ລູກຄ້າ :</p>
                 </div>
-                <div class="col text-left customerText" >
+                <div class="col text-left customerText">
                   <p mdcSubtitle1>
                     <ng-template [ngIf]="customer.gender == 'M'">Mr. {{ customer.fullname }}</ng-template>
                     <ng-template [ngIf]="customer.gender == 'F'">Ms. {{ customer.fullname }}</ng-template>
-                </p>
+                  </p>
                 </div>
                 <div class="col customerText">
-                    <p mdcSubtitle1>ເບີໂທ :</p>
+                  <p mdcSubtitle1>ເບີໂທ :</p>
                 </div>
-                <div class="col text-center customerText" >
-                    <p mdcSubtitle1>
-                      {{ customer.mobile }}  
-                    </p>
+                <div class="col text-center customerText">
+                  <p mdcSubtitle1>
+                    {{ customer.mobile }}
+                  </p>
                 </div>
                 <div class="col customerText" style="margin-top:0;">
-                  <button mdc-fab [mini]="true" class="buttonAdd" (click)="callCustomerDialog()" >
-                  <mdc-icon>add</mdc-icon>
-                </button>
+                  <button mdc-fab [mini]="true" class="buttonAdd" (click)="callCustomerDialog()">
+                    <mdc-icon>add</mdc-icon>
+                  </button>
                 </div>
-            </div>
+              </div>
 
-            <div class="row payment-box">
-              <div class="row text-center">
-                <div class="col" style="min-width:300px">
-                  <button mdc-button class="payment-button" [disabled]="paymentReady" (click)="callPaymentdialog()" outlined="true">Cash</button>
-                </div>
-                <div class="col" style="min-width:300px">
+              <div class="row payment-box">
+                <div class="row text-center">
+                  <div class="col" style="min-width:300px">
+                    <button mdc-button class="payment-button" [disabled]="paymentReady" (click)="callPaymentdialog()"
+                      outlined="true">Cash</button>
+                  </div>
+                  <div class="col" style="min-width:300px">
                     <button mdc-button disabled="true" class="payment-button" outlined="true">Credit</button>
                   </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </div>

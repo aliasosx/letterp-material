@@ -4,6 +4,7 @@ import { DataService } from 'src/app/services/data.service';
 import { AddfoodtypeComponent } from 'src/app/dialogs/addfoodtype/addfoodtype.component';
 import { ConfirmationComponent } from 'src/app/dialogs/confirmation/confirmation.component';
 import { AdddiscountComponent } from 'src/app/dialogs/adddiscount/adddiscount.component';
+import { UpdatefoodtypeComponent } from 'src/app/dialogs/updatefoodtype/updatefoodtype.component';
 
 @Component({
   selector: 'app-administrator',
@@ -87,7 +88,12 @@ export class AdministratorComponent implements OnInit {
   }
   deleteFoodType(id) {
     this.dataService.deleteFoodType(id).subscribe(result => {
-      this.showSnackbar('ປະເພດອາຫານຖືກລຶບແລ້ວ')
+      if (result) {
+        this.showSnackbar('ປະເພດອາຫານຖືກລຶບແລ້ວ')
+      } else {
+        this.showSnackbar('ບໍ່ສາມາດລຶບໄດ້ !!!!!!!!');
+      }
+
       this.getFoodTypes();
     })
   }
@@ -156,6 +162,19 @@ export class AdministratorComponent implements OnInit {
         this.showSnackbar('ຍົກເລີກ');
         this.getDiscounts();
       }
+    });
+  }
+
+  updateOnClick(food) {
+    const updateDialogRef = this.dialog.open(UpdatefoodtypeComponent, {
+      escapeToClose: true,
+      clickOutsideToClose: true,
+      data: food,
+    });
+    updateDialogRef.afterClosed().subscribe(result => {
+      if (result === 'close') return;
+      this.showSnackbar('ແກ້ໄຂສຳເລັດ');
+      this.getFoodTypes();
     });
   }
 

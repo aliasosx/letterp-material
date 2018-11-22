@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdcDialogRef, MDC_DIALOG_DATA } from '@angular-mdc/web';
 import { DataService } from 'src/app/services/data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-foodinfo',
@@ -14,6 +15,11 @@ export class FoodinfoComponent implements OnInit {
   kitchens: any;
   kt: any;
   ft: any;
+  file: File;
+  photoPath: any = '../../../assets/images/No_Image_Available.gif';
+  env = environment.imageUrl;
+
+
 
   ngOnInit() {
     this.food = this.data[0];
@@ -22,6 +28,7 @@ export class FoodinfoComponent implements OnInit {
     this.kt = this.food['kid'];
     this.ft = this.food['food_type_id'];
     console.log(this.kt);
+    this.photoPath = this.food['photo'];
   }
   getFoodType() {
     this.dataService.getFoodTypes().subscribe(foodtypes => this.foodtypes = foodtypes);
@@ -30,6 +37,12 @@ export class FoodinfoComponent implements OnInit {
     this.dataService.getKitchens().subscribe(kitchens => this.kitchens = kitchens);
   }
   updateFood(fn, ft, fc, fp, fk, img) {
+    let photoFile = '';
+    if (this.file) {
+      photoFile = this.env + this.file.name;
+    } else {
+      photoFile = this.food['photo'];
+    }
     const food = {
       'food': {
         'id': this.food['id'],
@@ -38,19 +51,31 @@ export class FoodinfoComponent implements OnInit {
         'cost': fc,
         'price': fp,
         'kid': fk,
-        'photo': this.food['photo'],
+        'photo': photoFile,
         'currcode': this.food['currcode'],
       }
     }
-    console.log(food);
-    this.dataService.updateFood(food).subscribe(result => {
 
-      console.log(result);
+    this.dataService.updateFood(food).subscribe(result => {
       if (result['changedRows'] == 1) {
+        if (this.file) {
+          const uploadData = new FormData();
+          uploadData.append('image', this.file, this.file.name);
+          this.dataService.uploadFoodPhoto(uploadData).subscribe(data => {
+            console.log(data);
+          });
+        }
         this.dialogRef.close(result);
       }
     })
-
+  }
+  onFileChange(e) {
+    this.file = e.target.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(this.file);
+    reader.onload = (event) => {
+      this.photoPath = (<FileReader>event.target).result;
+    }
   }
 
 }

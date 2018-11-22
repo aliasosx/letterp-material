@@ -29,6 +29,8 @@ import { CustomersComponent } from './dialogs/customers/customers.component';
 import { CustomerFilter } from './pipes/customersFilter';
 import { CustomerTelePhoneFilterPipe } from './pipes/customer-tele-phone-filter.pipe';
 import { PaymentConfirmComponent } from './dialogs/payment-confirm/payment-confirm.component';
+import { UpdatefoodtypeComponent } from './dialogs/updatefoodtype/updatefoodtype.component';
+import { OrdertrackingComponent } from './pages/ordertracking/ordertracking.component';
 
 
 const routes: Routes = [
@@ -38,6 +40,7 @@ const routes: Routes = [
   { path: 'terminal', component: TerminalComponent },
   { path: 'administrator', component: AdministratorComponent },
   { path: 'pos', component: PosComponent },
+  { path: 'tracking', component: OrdertrackingComponent },
 ];
 @NgModule({
   declarations: [
@@ -59,6 +62,8 @@ const routes: Routes = [
     CustomerFilter,
     CustomerTelePhoneFilterPipe,
     PaymentConfirmComponent,
+    UpdatefoodtypeComponent,
+    OrdertrackingComponent,
 
   ],
 
@@ -70,6 +75,7 @@ const routes: Routes = [
     AdddiscountComponent,
     CustomersComponent,
     PaymentConfirmComponent,
+    UpdatefoodtypeComponent,
   ],
 
   imports: [
@@ -80,9 +86,9 @@ const routes: Routes = [
     MdcIconModule,
     MdcListModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, 
-      { 
-        preloadingStrategy: PreloadAllModules 
+    RouterModule.forRoot(routes,
+      {
+        preloadingStrategy: PreloadAllModules
       }),
     DataTableModule,
     FormsModule,

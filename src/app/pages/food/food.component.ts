@@ -93,9 +93,9 @@ export class FoodComponent implements OnInit {
           data: food
         });
         foodInfoDialogRef.afterClosed().subscribe(result => {
+          if (result === 'close') return;
           this.showSnackbar('Updated');
           this.getFoods();
-
         });
       });
     }
@@ -197,6 +197,25 @@ export class FoodComponent implements OnInit {
       console.log(data);
       this.addFood(data);
     });
+  }
+  activateFood(e, id) {
+    console.log(e.checked);
+    let sign = 1;
+    if (e.checked === false) {
+      sign = 0;
+    }
+    const food = {
+      'food': {
+        'id': id,
+        'enabled': sign
+      }
+    }
+    /*
+    this.dataService.activateFood(food).subscribe(result => {
+      this.showSnackbar(result);
+    });
+    */
+
   }
 
 }

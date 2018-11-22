@@ -8,8 +8,9 @@
         <div class="row mainContent">
           <div class="col-md-4 text-center">
             <div mdcElevation=7 class="framImg">
-              <img #foodImg id="photo" src="{{ food.photo }}">
+              <img #foodImg id="photo" [src]="photoPath" (click)="fileInput.click()">
             </div>
+            <input style="display: none" type="file" required (change)="onFileChange($event)" #fileInput>
           </div>
           <div class="col-md-5">
             <div class="formframe">

@@ -55,6 +55,10 @@ export class DataService {
   deleteFoodType(id) {
     return this.http.delete(this.url + 'foodtype/' + id, this.httpOptions);
   }
+  updateFoodType(foodtype) {
+    return this.http.put(this.url + 'foodtype', foodtype, this.httpOptions);
+  }
+
   getDiscounts() {
     return this.http.get(this.url + 'discounts', this.httpOptions);
   }
@@ -95,4 +99,12 @@ export class DataService {
   createOrder(order) {
     return this.http.post(this.url + 'order', JSON.stringify(order), this.httpOptions);
   }
+  activateFood(food) {
+    return this.http.put(this.url + 'foodactive', food, this.httpOptions);
+  }
+
+  getOrderTrackings() {
+    return this.http.get(this.url + 'ordertracking', this.httpOptions);
+  }
+
 }

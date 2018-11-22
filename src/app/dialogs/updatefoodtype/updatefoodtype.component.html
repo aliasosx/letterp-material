@@ -1,0 +1,29 @@
+<mdc-dialog>
+  <mdc-dialog-container>
+    <mdc-dialog-surface class="surface">
+      <mdc-dialog-title class="titleDialog">ປ່ຽນແປງປະເພດອາຫານ
+      </mdc-dialog-title>
+      <mdc-dialog-content class="dialogContent">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="inputfoodTypeCode">ລະຫັດປະເພດອາຫານ</label>
+              <input type="text" class="form-control" #foodTypeCode maxlength="4" required id="inputfoodTypeCode" value="{{ foodType.food_type }}">
+            </div>
+            <div class="form-group">
+              <label for="inputfoodTypeNameEng">ຊື່ປະເພດອາຫານ ພາສາອັງກິດ</label>
+              <input type="text" class="form-control" #foodTypeNameEng required id="inputfoodTypeNameEng" value="{{ foodType.food_type_desc }}">
+            </div>
+            <div class="form-group">
+              <label for="inputfoodTypeNameLa">ຊື່ປະເພດອາຫານ ພາສາລາວ</label>
+              <input type="text" class="form-control" #foodTypeNameLa required id="inputfoodTypeNameLa" value="{{ foodType.food_type_desc_la }}">
+            </div>
+          </div>
+        </div>
+      </mdc-dialog-content>
+      <mdc-dialog-actions>
+        <button class="btn btn-primary btn-lg button-close" (click)="updateFoodType(foodTypeCode.value, foodTypeNameEng.value, foodTypeNameLa.value)">ປ່ຽນແປງ</button>
+      </mdc-dialog-actions>
+    </mdc-dialog-surface>
+  </mdc-dialog-container>
+</mdc-dialog>
