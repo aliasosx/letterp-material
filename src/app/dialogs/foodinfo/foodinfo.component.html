@@ -55,12 +55,9 @@
                   <option *ngFor="let kt of kitchens" [ngValue]="kt" [value]="kt.id">{{ kt.kitchen_code }}</option>
                 </select>
               </div>
-
             </div>
           </div>
-
         </div>
-
       </mdc-dialog-content>
       <mdc-dialog-actions>
         <button class="btn btn-primary btn-lg button-close" (click)="updateFood(foodName.value,foodtype.value,foodcost.value,foodprice.value,foodKitchen.value,foodImg.value)">ປ່ຽນແປງ</button>

@@ -13,10 +13,9 @@
         <div class="row">
           <table class="table table-striped table-hover">
             <thead>
-              <th>#</th>
-              <th class="text-center">ບັດຄິວ</th>
-              <th class="text-center">ລູກຄ້າ</th>
-              <th class="text-center">ຍອດລວມ</th>
+              <th class="text-center text-nowrap">ບັດຄິວ</th>
+              <th class="text-center text-nowrap">ລູກຄ້າ</th>
+              <th class="text-center text-nowrap">ຍອດລວມ</th>
               <th class="text-center text-nowrap">ສະຖານະ</th>
               <th class="text-center text-nowrap">ສະຖານທີ່</th>
               <th class="text-center text-nowrap">ເວລາສັ່ງ</th>
@@ -26,23 +25,37 @@
             </thead>
             <tbody>
               <tr *ngFor="let order of ordertracking">
-                <td class="text-center text-nowrap">{{ order.id }}</td>
                 <td class="text-center text-nowrap">{{ order.qtag }}</td>
-                <td class="text-center text-nowrap">{{ order.fullname }}</td>
-                <td class="text-right">{{ order.grandtotal |number }} ກີບ</td>
+                <td class="text-left text-nowrap">{{ order.fullname }}</td>
+                <td class="text-right text-nowrap">{{ order.grandtotal |number }} ກີບ</td>
                 <td class="text-center text-nowrap">{{ order.order_status }}</td>
                 <td class="text-center text-nowrap">{{ order.position }}</td>
                 <td class="text-center text-nowrap">{{ order.starttime | date:'HH:mm:ss'}}</td>
-                <td class="text-center text-nowrap">{{ order.starttime - nowdate | date: 'HH:mm:ss' }}</td>
-                <td class="text-center text-nowrap">{{ order.finishtime | date: 'HH:mm:ss' }}</td>
+                <td class="text-center text-nowrap">{{ order.starttime | date:'HH:mm:ss'}}</td>
+                <td class="text-center text-nowrap" *ngIf="order.finishtime; else finishtimeTemplate">{{
+                  order.finishtime | date:'HH:mm:ss'}}</td>
+                <ng-template #finishtimeTemplate>
+                  <td></td>
+                </ng-template>
                 <td *ngIf="order.done === 0 ;else takeit" class="text-center">
-                  <button class="btn btn-warning">ຍັງລໍຖ້າ</button>
+                  <button class="btn btn-warning button-result" (click)="updateFinishOrder(order)">ຍັງລໍຖ້າ</button>
                 </td>
                 <ng-template #takeit>
-                  <td class="text-center"><button class="btn btn-success">ສົ່ງແລ້ວ</button></td>
+                  <td class="text-center"><button class="btn btn-success button-result">ສົ່ງແລ້ວ</button></td>
                 </ng-template>
               </tr>
             </tbody>
+            <tfoot>
+              <th class="text-center">ບັດຄິວ</th>
+              <th class="text-center">ລູກຄ້າ</th>
+              <th class="text-center text-nowrap">ຍອດລວມ</th>
+              <th class="text-center text-nowrap">ສະຖານະ</th>
+              <th class="text-center text-nowrap">ສະຖານທີ່</th>
+              <th class="text-center text-nowrap">ເວລາສັ່ງ</th>
+              <th class="text-center text-nowrap">ຜ່ານໄປແລ້ວ</th>
+              <th class="text-center text-nowrap">ເວລາສຳເລັດ</th>
+              <th class="text-center">ລູກຄ້າຮັບແລ້ວ</th>
+            </tfoot>
           </table>
         </div>
       </div>

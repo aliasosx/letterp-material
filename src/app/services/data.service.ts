@@ -106,5 +106,8 @@ export class DataService {
   getOrderTrackings() {
     return this.http.get(this.url + 'ordertracking', this.httpOptions);
   }
+  updateOrderTrackDone(orderTrack) {
+    return this.http.put(this.url + 'ordertracking', orderTrack, this.httpOptions);
+  }
 
 }
