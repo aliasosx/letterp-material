@@ -31,6 +31,7 @@ import { CustomerTelePhoneFilterPipe } from './pipes/customer-tele-phone-filter.
 import { PaymentConfirmComponent } from './dialogs/payment-confirm/payment-confirm.component';
 import { UpdatefoodtypeComponent } from './dialogs/updatefoodtype/updatefoodtype.component';
 import { OrdertrackingComponent } from './pages/ordertracking/ordertracking.component';
+import { PrintreceiptComponent } from './pages/printreceipt/printreceipt.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'administrator', component: AdministratorComponent },
   { path: 'pos', component: PosComponent },
   { path: 'tracking', component: OrdertrackingComponent },
+  { path: 'print', component: PrintreceiptComponent }
 ];
 @NgModule({
   declarations: [
@@ -64,6 +66,7 @@ const routes: Routes = [
     PaymentConfirmComponent,
     UpdatefoodtypeComponent,
     OrdertrackingComponent,
+    PrintreceiptComponent,
 
   ],
 
