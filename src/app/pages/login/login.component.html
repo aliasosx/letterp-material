@@ -1,12 +1,38 @@
-<div class="mdc-layout-grid">
-  <div class="mdc-layout-grid__inner">
-    <div class="mdc-layout-grid__cell">
-      <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell"><span>Second level</span></div>
-        <div class="mdc-layout-grid__cell"><span>Second level</span></div>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+  <div class="row">
+
+    <!-- Mixins-->
+    <!-- Pen Title-->
+    <div class="pen-title">
+
+    </div>
+    <div class="container">
+      <div class="card"></div>
+      <div class="card">
+        <h1 class="title">Login</h1>
+        <form [formGroup]="loginForm">
+          <div class="input-container">
+            <input type="email" formControlName="email" id="Username" required="required" />
+            <label for="Username">email</label>
+            <div class="bar"></div>
+          </div>
+          <div class="input-container">
+            <input type="password" formControlName="password" minlength="6" id="Password" required="required" />
+            <label for="Password">Password</label>
+            <div class="bar"></div>
+          </div>
+          <div class="button-container">
+            <button (click)="login()"><span>Go</span></button>
+          </div>
+          <div class="footer"><a href="#">Forgot your password?</a></div>
+        </form>
       </div>
     </div>
-    <div class="mdc-layout-grid__cell">First level</div>
-    <div class="mdc-layout-grid__cell">First level</div>
+
   </div>
 </div>

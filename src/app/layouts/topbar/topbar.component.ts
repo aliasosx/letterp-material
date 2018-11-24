@@ -67,4 +67,8 @@ export class TopbarComponent implements OnInit {
       });
     }
   }
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('login');
+  }
 }

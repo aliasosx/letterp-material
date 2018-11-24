@@ -32,17 +32,20 @@ import { PaymentConfirmComponent } from './dialogs/payment-confirm/payment-confi
 import { UpdatefoodtypeComponent } from './dialogs/updatefoodtype/updatefoodtype.component';
 import { OrdertrackingComponent } from './pages/ordertracking/ordertracking.component';
 import { PrintreceiptComponent } from './pages/printreceipt/printreceipt.component';
+import { Page404Component } from './pages/page404/page404.component';
 
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'food', component: FoodComponent },
   { path: 'terminal', component: TerminalComponent },
   { path: 'administrator', component: AdministratorComponent },
   { path: 'pos', component: PosComponent },
   { path: 'tracking', component: OrdertrackingComponent },
-  { path: 'print', component: PrintreceiptComponent }
+  { path: 'print', component: PrintreceiptComponent },
+  { path: '**', component: Page404Component },
 ];
 @NgModule({
   declarations: [
@@ -67,6 +70,7 @@ const routes: Routes = [
     UpdatefoodtypeComponent,
     OrdertrackingComponent,
     PrintreceiptComponent,
+    Page404Component,
 
   ],
 
