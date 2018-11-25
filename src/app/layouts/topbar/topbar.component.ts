@@ -26,7 +26,7 @@ export class TopbarComponent implements OnInit {
   ativeMenu: string;
   title: string;
   drawerDismissible: MdcDrawer;
-
+  showTopBar: string = "";
 
   ngOnInit() {
     this.title = ''/*'Letterp Restaurant'*/;
@@ -42,6 +42,9 @@ export class TopbarComponent implements OnInit {
         this.username = this.tokenResponse.payload.split("|")[0];
         this.getmenus();
         this.getCompany();
+
+      } else {
+        this.showTopBar = "toggleShowTop"
       }
     });
   }
@@ -69,6 +72,7 @@ export class TopbarComponent implements OnInit {
   }
   logout() {
     localStorage.removeItem('token');
-    this.router.navigateByUrl('login');
+    location.reload();
+    //this.router.navigateByUrl('login');
   }
 }

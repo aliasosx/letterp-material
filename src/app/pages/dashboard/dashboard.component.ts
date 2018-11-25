@@ -15,19 +15,17 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.title = 'Letter-p';
     this.token = localStorage.getItem('token');
-    if (this.token) {
-      this.auth.getTokenDecode({
-        'token': this.token
-      }).subscribe(result => {
-        if (result) {
-          this.title = "Letterp Welcome " + result['payload'];
-        } else {
-          this.router.navigateByUrl('login');
-        }
-      });
-    } else {
-      this.router.navigateByUrl('/login');
-    }
-  }
 
+    this.auth.getTokenDecode({
+      'token': this.token
+    }).subscribe(result => {
+      if (result) {
+        this.title = "Letterp Welcome " + result['payload'];
+
+      } else {
+        this.router.navigateByUrl('login');
+      }
+    });
+
+  }
 }

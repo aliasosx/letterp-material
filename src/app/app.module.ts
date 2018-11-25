@@ -33,11 +33,11 @@ import { UpdatefoodtypeComponent } from './dialogs/updatefoodtype/updatefoodtype
 import { OrdertrackingComponent } from './pages/ordertracking/ordertracking.component';
 import { PrintreceiptComponent } from './pages/printreceipt/printreceipt.component';
 import { Page404Component } from './pages/page404/page404.component';
+import { PrintReciptComponent } from './dialogs/print-recipt/print-recipt.component';
 
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
-  { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'food', component: FoodComponent },
   { path: 'terminal', component: TerminalComponent },
@@ -71,6 +71,7 @@ const routes: Routes = [
     OrdertrackingComponent,
     PrintreceiptComponent,
     Page404Component,
+    PrintReciptComponent,
 
   ],
 
@@ -83,6 +84,7 @@ const routes: Routes = [
     CustomersComponent,
     PaymentConfirmComponent,
     UpdatefoodtypeComponent,
+    PrintReciptComponent,
   ],
 
   imports: [
@@ -93,10 +95,7 @@ const routes: Routes = [
     MdcIconModule,
     MdcListModule,
     HttpClientModule,
-    RouterModule.forRoot(routes,
-      {
-        preloadingStrategy: PreloadAllModules
-      }),
+    RouterModule.forRoot(routes),
     DataTableModule,
     FormsModule,
     ReactiveFormsModule,

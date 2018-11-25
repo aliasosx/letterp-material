@@ -35,18 +35,16 @@ export class LoginComponent implements OnInit {
     });
 
     /* Load login */
-
-    this.userlogin = localStorage.getItem('token');
-    console.log(this.userlogin);
-    if (this.userlogin) {
-      this.authService.getTokenDecode({
-        'token': this.userlogin
-      }).subscribe(result => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      this.authService.getTokenDecode({ 'token': token }).subscribe(result => {
         if (result['payload']) {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('');
         }
       });
     }
+
+
   }
 
   login() {
@@ -57,12 +55,12 @@ export class LoginComponent implements OnInit {
       }
     }
     this.authService.getlogin(loginData).subscribe(result => {
-      console.log(result);
 
       if (result['status'] === 'Success') {
         this.userlogin = result['token'];
         localStorage.setItem('token', this.userlogin);
-        this.router.navigateByUrl('');
+        location.reload();
+        //this.router.navigateByUrl('');
       } else {
         this.showSnackbar('Username or Password incorrect ')
       }

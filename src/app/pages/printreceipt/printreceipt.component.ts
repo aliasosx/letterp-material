@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route } from '@angular/router';
+import { MdcDialog, MDC_DIALOG_DATA } from '@angular-mdc/web';
+import { PrintReciptComponent } from 'src/app/dialogs/print-recipt/print-recipt.component';
 
 @Component({
   selector: 'app-printreceipt',
@@ -8,20 +10,17 @@ import { Router, Route } from '@angular/router';
 })
 export class PrintreceiptComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dialog: MdcDialog) { }
 
   ngOnInit() {
     console.log(this.router.url);
   }
   print() {
-    const printContent = document.getElementById("invoice-POS");
-    const WindowPrt = window.open('', '', 'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0');
-    WindowPrt.document.write(printContent.innerHTML);
-    WindowPrt.document.write('<link rel="stylesheet" type="text/css" href="styles.css">');
-    WindowPrt.document.close();
-    WindowPrt.focus();
-    WindowPrt.print();
-    WindowPrt.close();
+    const dialogRef = this.dialog.open(PrintReciptComponent, {
+      escapeToClose: true,
+      clickOutsideToClose: true,
+      scrollable: true
+    });
   }
 
 }

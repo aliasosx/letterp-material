@@ -1,25 +1,28 @@
-<header id="topbar">
-  <mdc-top-app-bar #topappbar [fixed]="true" [dense]="true">
-    <mdc-top-app-bar-row>
-      <mdc-top-app-bar-section align="start" title="">
-        <mdc-icon mdcTopAppBarNavIcon (click)="drawerDismissible.open = !drawerDismissible.open">menu</mdc-icon>
-        <img style="width: 109px; height: 40px;" src="../../../assets/images/logo_gmail_lockup_dark_1x.png">
-      </mdc-top-app-bar-section>
-      <mdc-top-app-bar-section align="end">
-        <a class="nav-link">Logged in : {{ username }}</a>
-        <a class="nav-link">{{ nowdate | date:'HH:mm:ss' }}</a>
-        <mdc-icon mdcTopAppBarActionItem (click)="drawerDismissible.open = !drawerDismissible.open">apps</mdc-icon>
-        <mdc-icon mdcTopAppBarActionItem>settings</mdc-icon>
-        <mdc-icon mdcTopAppBarActionItem (click)="logout()">exit_to_app</mdc-icon>
-      </mdc-top-app-bar-section>
-    </mdc-top-app-bar-row>
-  </mdc-top-app-bar>
-</header>
-<aside>
-  <mdc-drawer class="drawer" drawer="dismissible" #drawerDismissible>
-    <h6 mdcListGroupSubheader>Labels</h6>
-    <a mdc-list-item routerLink="{{ menu.menu_link }}" *ngFor="let menu of menus">
-      <mdc-icon mdcListItemGraphic>{{ menu.menu_icon }}</mdc-icon>{{ menu.menu_name }}
-    </a>
-  </mdc-drawer>
-</aside>
+<div [ngClass]="showTopBar">
+  <header id="topbar">
+    <mdc-top-app-bar #topappbar [fixed]="true" [dense]="true">
+      <mdc-top-app-bar-row>
+        <mdc-top-app-bar-section align="start" title="">
+          <mdc-icon mdcTopAppBarNavIcon (click)="drawerDismissible.open = !drawerDismissible.open">menu</mdc-icon>
+          <img style="width: 109px; height: 40px;" src="../../../assets/images/logo_gmail_lockup_dark_1x.png">
+        </mdc-top-app-bar-section>
+        <mdc-top-app-bar-section align="end">
+          <a class="nav-link">Logged in : {{ username }}</a>
+          <a class="nav-link">{{ nowdate | date:'HH:mm:ss' }}</a>
+          <mdc-icon mdcTopAppBarActionItem (click)="drawerDismissible.open = !drawerDismissible.open">apps</mdc-icon>
+          <mdc-icon mdcTopAppBarActionItem>settings</mdc-icon>
+          <mdc-icon mdcTopAppBarActionItem (click)="logout()">exit_to_app</mdc-icon>
+        </mdc-top-app-bar-section>
+      </mdc-top-app-bar-row>
+    </mdc-top-app-bar>
+  </header>
+  <aside>
+    <mdc-drawer class="drawer" drawer="dismissible" #drawerDismissible>
+      <h6 mdcListGroupSubheader>Labels</h6>
+      <a mdc-list-item routerLink="{{ menu.menu_link }}" (click)="drawerDismissible.open = !drawerDismissible.open"
+        *ngFor="let menu of menus">
+        <mdc-icon mdcListItemGraphic>{{ menu.menu_icon }}</mdc-icon>{{ menu.menu_name }}
+      </a>
+    </mdc-drawer>
+  </aside>
+</div>

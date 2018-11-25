@@ -9,12 +9,13 @@ body {
 
 /* Pen Title */
 .pen-title {
+  
   padding: 20px 0;
   text-align: center;
   letter-spacing: 2px;
 }
 .pen-title h1 {
-  margin: 0 0 20px;
+  margin: 0;
   font-size: 40px;
   font-weight: 300;
 }
@@ -163,6 +164,7 @@ body {
 /* Card */
 .card {
   position: relative;
+
   background: #ffffff;
   border-radius: 5px;
   padding: 60px 0 40px 0;
