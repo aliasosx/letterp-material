@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { DatePipe } from '@angular/common';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ordertracking',
@@ -12,7 +14,7 @@ export class OrdertrackingComponent implements OnInit {
   nowdate: Date;
   interval: any;
 
-  constructor(public dataService: DataService) {
+  constructor(public dataService: DataService, private auth: AuthenticationService, private router: Router) {
     /*
     setInterval(() => {
       this.nowdate = new Date();
@@ -21,9 +23,19 @@ export class OrdertrackingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadOrderTrackings();
+    this.auth.isAuthenticated().subscribe(result => {
+      if (result === true) {
+        this.dataService.getMenuPermitt(this.router.url.replace("/", "")).subscribe(result => {
+          console.log(result);
+        });
 
+        this.loadOrderTrackings();
+      } else {
+        this.router.navigateByUrl('login');
+      }
+    });
   }
+
   loadOrderTrackings(): any {
     this.dataService.getOrderTrackings().subscribe(data => this.ordertracking = data);
   }
@@ -37,6 +49,7 @@ export class OrdertrackingComponent implements OnInit {
         'order_status': 'DELIVERED',
         'position': 'FRONT COUNTER',
         'finishtime': pipe.transform(now, 'yyyy-MM-dd HH:mm:ss'),
+        'qtag': order.qtag,
       }
     };
 

@@ -18,6 +18,12 @@ export class DataService {
   getMenu() {
     return this.http.get(this.url + 'menus/usermenu', this.httpOptions);
   }
+  getMenuPermitt(link) {
+    let usermenu = {
+      'menu_link': link
+    };
+    return this.http.post(this.url + 'menus/usermenu', usermenu, this.httpOptions);
+  }
   getCompany(company) {
     return this.http.post(this.url + 'company', company, this.httpOptions);
   }
