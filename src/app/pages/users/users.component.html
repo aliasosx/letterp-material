@@ -1,0 +1,42 @@
+<div class="table-users">
+  <div class="header">Users</div>
+
+  <table cellspacing="0">
+    <tr>
+      <th class="text-center">Picture</th>
+      <th class="text-center">Gender</th>
+      <th class="text-center">Name</th>
+      <th class="text-center">Username</th>
+      <th class="text-center">email</th>
+      <th class="text-center text-nowrap">Date Of Birth</th>
+      <th class="text-center">Current Address</th>
+      <th class="text-center">Mobile</th>
+      <th class="text-center">Role</th>
+      <th class="text-center">Command</th>
+    </tr>
+
+    <tr *ngFor="let user of users">
+      <td><img src="{{ user.photo }}" alt="" /></td>
+      <td class="text-center" *ngIf="user.gender == 'M';else templateGender">Mr.</td>
+      <ng-template #templateGender>
+        <td class="text-center">Ms.</td>
+      </ng-template>
+      <td class="text-center text-nowrap">{{ user.fullname }}</td>
+      <td class="text-center text-nowrap">{{ user.username }}</td>
+      <td class="text-center">{{ user.email }}</td>
+      <td class="text-center text-nowrap">{{ user.dateofbirth | date:'dd-MM-yyyy'}}</td>
+      <td>{{ user.current_address }}</td>
+      <td class="text-center">{{ user.mobile }}</td>
+      <td class="text-center">{{ user.role_code }}</td>
+      <td class="text-center text-nowrap">
+        <button mdc-fab class="yellow800Fab" icon="edit"></button>
+        <button mdc-fab class="button-spacer red800Fab" icon="delete"></button>
+      </td>
+    </tr>
+
+  </table>
+</div>
+<button mdc-fab class="fab-add-new" extended position="bottomRight" (click)="addUserDialog()">
+  <mdc-icon>add</mdc-icon>
+  <mdc-fab-label>Create</mdc-fab-label>
+</button>

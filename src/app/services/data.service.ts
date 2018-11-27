@@ -115,5 +115,8 @@ export class DataService {
   updateOrderTrackDone(orderTrack) {
     return this.http.put(this.url + 'ordertracking', orderTrack, this.httpOptions);
   }
+  getUsers() {
+    return this.http.get(this.url + 'users', this.httpOptions);
+  }
 
 }

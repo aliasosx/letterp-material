@@ -1,0 +1,38 @@
+.btn-dialog {
+    margin-left: 10px;
+}
+.surface {
+    min-width: 900px;
+    min-height: 500px;
+
+}
+.photo {
+    position: relative;
+    max-width: 200px;
+    min-width: 200px;
+    min-height: 200px;
+    background-color: rgb(200, 224, 245);
+    border: 1px solid rgb(24, 142, 245);
+}
+.img {
+    max-width: 200px;
+    min-width: 200px;
+    min-height: 200px;
+}
+.card {
+    margin-left: 10px;
+    overflow: auto;
+}
+.form-group {
+    margin: 10px;
+}
+.titleDialog {
+    background-color: #337AB7;
+    color: aliceblue;
+}
+.main-row {
+    margin-top: 10px;
+}
+.btn-submit {
+    min-width: 100px;
+}

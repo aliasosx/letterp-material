@@ -1,0 +1,97 @@
+<mdc-dialog>
+  <mdc-dialog-container>
+    <mdc-dialog-surface class="surface">
+      <mdc-dialog-title class="titleDialog">Add new user</mdc-dialog-title>
+      <mdc-dialog-content>
+        <div class="row main-row">
+          <div class="col col-md-3">
+            <div class="photo">
+              <img class="w-100" src="../../../assets/images/No_Image_Available.gif" (click)="fileinput.click()">
+            </div>
+            <input type="file" hidden #fileinput>
+          </div>
+          <div class="col col-md-9">
+
+            <div class="card">
+              <form>
+                <div class="row">
+                  <div class="col col-md-6">
+                    <div class="form-group">
+                      <label for="genderSelect">Gender</label>
+                      <select id="genderSelect" class="form-control">
+                        <option value="">Choose</option>
+                        <option value="M">Mr.</option>
+                        <option value="F">Ms.</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="usernametxt">Username</label>
+                      <input type="text" class="form-control" id="usernametxt">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="dateofbirthtxt">Date Of Birth</label>
+                      <input type="date" class="form-control" id="dateofbirthtxt">
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="passwordtxt">Password</label>
+                      <input type="password" class="form-control" id="passwordtxt">
+                    </div>
+                    <div class="form-group">
+                      <label for="mobiletxt">Mobile</label>
+                      <input type="tel" class="form-control" id="mobiletxt">
+                    </div>
+
+
+                  </div>
+
+
+
+                  <div class="col col-md-6">
+                    <div class="form-group">
+                      <label for="fulltxt">Full name</label>
+                      <input type="text" class="form-control" id="fulltxt">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="emailtxt">Email</label>
+                      <input type="email" class="form-control" id="emailtxt">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="currentaddrtxt">Current address</label>
+                      <input type="text" class="form-control" id="currentaddrtxt">
+                    </div>
+
+
+
+                    <div class="form-group">
+                      <label for="passwordconfirmtxt">Password Confirmation</label>
+                      <input type="password" class="form-control" id="passwordconfirmtxt">
+                    </div>
+                    <div class="form-group">
+                      <label for="genderSelect">Role</label>
+                      <select id="genderSelect" class="form-control">
+                        <option value="">Choose</option>
+                        <option value="M">Admin</option>
+                        <option value="F">Staff</option>
+                      </select>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </mdc-dialog-content>
+      <mdc-dialog-actions>
+        <button class="btn btn-primary btn-dialog btn-lg btn-submit" type="submit" (click)="addnewDiscount()">ບັນທຶກ</button>
+      </mdc-dialog-actions>
+    </mdc-dialog-surface>
+  </mdc-dialog-container>
+</mdc-dialog>

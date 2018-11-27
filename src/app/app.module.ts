@@ -34,6 +34,8 @@ import { OrdertrackingComponent } from './pages/ordertracking/ordertracking.comp
 import { PrintreceiptComponent } from './pages/printreceipt/printreceipt.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { PrintReciptComponent } from './dialogs/print-recipt/print-recipt.component';
+import { UsersComponent } from './pages/users/users.component';
+import { AddUserComponent } from './dialogs/add-user/add-user.component';
 
 
 const routes: Routes = [
@@ -45,7 +47,9 @@ const routes: Routes = [
   { path: 'pos', component: PosComponent },
   { path: 'tracking', component: OrdertrackingComponent },
   { path: 'print', component: PrintreceiptComponent },
+  { path: 'users', component: UsersComponent },
   { path: '**', component: Page404Component },
+
 ];
 @NgModule({
   declarations: [
@@ -72,6 +76,8 @@ const routes: Routes = [
     PrintreceiptComponent,
     Page404Component,
     PrintReciptComponent,
+    UsersComponent,
+    AddUserComponent,
 
   ],
 
@@ -85,6 +91,7 @@ const routes: Routes = [
     PaymentConfirmComponent,
     UpdatefoodtypeComponent,
     PrintReciptComponent,
+    AddUserComponent,
   ],
 
   imports: [
