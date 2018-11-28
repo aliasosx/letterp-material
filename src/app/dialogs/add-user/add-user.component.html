@@ -18,7 +18,7 @@
                   <div class="col col-md-6">
                     <div class="form-group">
                       <label for="genderSelect">Gender</label>
-                      <select formControlName="gender" id="genderSelect" class="form-control">
+                      <select formControlName="gender" id="genderSelect" class="form-control" tabindex="1">
                         <option value="">Choose</option>
                         <option value="M">Mr.</option>
                         <option value="F">Ms.</option>
@@ -26,46 +26,49 @@
                     </div>
                     <div class="form-group">
                       <label for="usernametxt">Username</label>
-                      <input formControlName="username" type="text" class="form-control" id="usernametxt">
+                      <input formControlName="username" type="text" class="form-control" id="usernametxt" tabindex="3">
                     </div>
                     <div class="form-group">
                       <label for="dateofbirthtxt">Date Of Birth</label>
-                      <input type="date" formControlName="dateofbirth" class="form-control" id="dateofbirthtxt">
+                      <input type="date" formControlName="dateofbirth" class="form-control" id="dateofbirthtxt"
+                        tabindex="5">
                     </div>
                     <div class="form-group">
                       <label for="passwordtxt">Password</label>
-                      <input type="password" formControlName="password" class="form-control" id="passwordtxt">
+                      <input type="password" formControlName="password" class="form-control" id="passwordtxt" tabindex="7">
                     </div>
                     <div class="form-group">
                       <label for="mobiletxt">Mobile</label>
-                      <input type="tel" formControlName="mobile" class="form-control" id="mobiletxt">
+                      <input type="tel" formControlName="mobile" class="form-control" id="mobiletxt" tabindex="9">
                     </div>
                   </div>
                   <div class="col col-md-6">
                     <div class="form-group">
                       <label for="fulltxt">Full name</label>
-                      <input type="text" formControlName="fullname" class="form-control" id="fulltxt">
+                      <input type="text" formControlName="fullname" class="form-control" id="fulltxt" tabindex="2">
                     </div>
 
                     <div class="form-group">
                       <label for="emailtxt">Email</label>
-                      <input type="email" formControlName="email" class="form-control" id="emailtxt">
+                      <input type="email" formControlName="email" class="form-control" id="emailtxt" tabindex="4">
                     </div>
 
                     <div class="form-group">
                       <label for="currentaddrtxt">Current address</label>
-                      <input type="text" formControlName="current_address" class="form-control" id="currentaddrtxt">
+                      <input type="text" formControlName="current_address" class="form-control" id="currentaddrtxt"
+                        tabindex="6">
                     </div>
 
 
 
                     <div class="form-group">
                       <label for="passwordconfirmtxt">Password Confirmation</label>
-                      <input type="password" formControlName="password_confirmation" class="form-control" id="passwordconfirmtxt">
+                      <input type="password" formControlName="password_confirmation" class="form-control" id="passwordconfirmtxt"
+                        tabindex="8">
                     </div>
                     <div class="form-group">
                       <label for="roleSelect">Role</label>
-                      <select id="roleSelect" formControlName="role_code" class="form-control">
+                      <select id="roleSelect" formControlName="role_code" class="form-control" tabindex="10">
                         <option value="">Choose</option>
                         <option *ngFor="let role of roles" value="{{ role.role_code }}">{{ role.role_name }}</option>
                       </select>
@@ -79,7 +82,7 @@
         </div>
       </mdc-dialog-content>
       <mdc-dialog-actions>
-        <button class="btn btn-primary btn-dialog btn-lg btn-submit" type="button" (click)="addnewUser()">ບັນທຶກ</button>
+        <button class="btn btn-primary btn-dialog btn-lg btn-submit" type="button" (click)="addnewUser()" tabindex="11">ບັນທຶກ</button>
       </mdc-dialog-actions>
     </mdc-dialog-surface>
   </mdc-dialog-container>

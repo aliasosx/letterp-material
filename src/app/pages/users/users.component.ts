@@ -37,7 +37,12 @@ export class UsersComponent implements OnInit {
       scrollable: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.showSnackbar('Add user successful');
+      if (result == 'success') {
+        this.showSnackbar('Add user successful');
+      } else {
+        this.showSnackbar('Add user Cancelled');
+      }
+
     });
   }
   showSnackbar(msg) {
