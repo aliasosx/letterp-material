@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { MdcDialog } from '@angular-mdc/web';
+import { MdcDialog, MdcSnackbar } from '@angular-mdc/web';
 import { AddUserComponent } from 'src/app/dialogs/add-user/add-user.component';
 
 @Component({
@@ -10,8 +10,17 @@ import { AddUserComponent } from 'src/app/dialogs/add-user/add-user.component';
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private dataService: DataService, private dialog: MdcDialog) { }
+  constructor(private dataService: DataService, private dialog: MdcDialog, private snackbar: MdcSnackbar) { }
   users: any;
+
+  /* Snackbar */
+  snackBarMsg: string = 'test snack bar';
+  action = 'OK';
+  multiline = false;
+  dismissOnAction: boolean = true;
+  align: string;
+  focusAction = false;
+  actionOnBottom = false;
   ngOnInit() {
     this.getUsers();
   }
@@ -28,8 +37,36 @@ export class UsersComponent implements OnInit {
       scrollable: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      this.showSnackbar('Add user successful');
     });
   }
+  showSnackbar(msg) {
+    if (msg) {
+      this.snackBarMsg = msg;
+    }
 
+    const snackbarRef = this.snackbar.show(this.snackBarMsg, this.action, {
+      align: this.align,
+      multiline: this.multiline,
+      dismissOnAction: this.dismissOnAction,
+      focusAction: this.focusAction,
+      actionOnBottom: this.actionOnBottom,
+    });
+    this.getUsers();
+    snackbarRef.afterDismiss().subscribe(() => {
+      console.log('The snack-bar was dismissed');
+    });
+  }
+  deleteUser(id) {
+    if (id) {
+      this.dataService.deleteUser(id).subscribe(result => {
+        if (result['status'] == 'success') {
+          this.showSnackbar('User delete successfull');
+        } else {
+          this.showSnackbar('Something went wrong!');
+        }
+      });
+    }
+  }
 }
+

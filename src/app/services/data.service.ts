@@ -45,6 +45,8 @@ export class DataService {
   uploadFoodPhoto(file) {
     return this.http.post(this.url + 'food/upload', file);
   }
+
+
   removeFood(food) {
     return this.http.post(this.url + 'food/remove', JSON.stringify(food), this.httpOptions);
   }
@@ -117,6 +119,18 @@ export class DataService {
   }
   getUsers() {
     return this.http.get(this.url + 'users', this.httpOptions);
+  }
+  addUser(user) {
+    return this.http.post(this.url + 'users/add', user, this.httpOptions);
+  }
+  deleteUser(id) {
+    return this.http.delete(this.url + 'users/delete/' + id, this.httpOptions)
+  }
+  getRoles() {
+    return this.http.get(this.url + 'roles', this.httpOptions);
+  }
+  uploadUserPhoto(file) {
+    return this.http.post(this.url + '/users/upload', file);
   }
 
 }

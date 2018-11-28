@@ -2,8 +2,9 @@
     margin-left: 10px;
 }
 .surface {
-    min-width: 900px;
+    min-width: 1024px;
     min-height: 500px;
+
 
 }
 .photo {
@@ -21,7 +22,7 @@
 }
 .card {
     margin-left: 10px;
-    overflow: auto;
+    overflow: hidden;
 }
 .form-group {
     margin: 10px;

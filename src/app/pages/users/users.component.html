@@ -30,7 +30,7 @@
       <td class="text-center">{{ user.role_code }}</td>
       <td class="text-center text-nowrap">
         <button mdc-fab class="yellow800Fab" icon="edit"></button>
-        <button mdc-fab class="button-spacer red800Fab" icon="delete"></button>
+        <button mdc-fab class="button-spacer red800Fab" icon="delete" (click)="deleteUser(user.id)"></button>
       </td>
     </tr>
 
