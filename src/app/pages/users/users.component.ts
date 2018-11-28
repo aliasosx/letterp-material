@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { MdcDialog, MdcSnackbar } from '@angular-mdc/web';
 import { AddUserComponent } from 'src/app/dialogs/add-user/add-user.component';
+import { UserEditComponent } from 'src/app/dialogs/user-edit/user-edit.component';
 
 @Component({
   selector: 'app-users',
@@ -72,6 +73,14 @@ export class UsersComponent implements OnInit {
         }
       });
     }
+  }
+  updateUser(user) {
+    const dialogRef = this.dialog.open(UserEditComponent, {
+      escapeToClose: true,
+      clickOutsideToClose: true,
+      scrollable: true,
+      data: user
+    });
   }
 }
 

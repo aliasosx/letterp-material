@@ -36,6 +36,7 @@ import { Page404Component } from './pages/page404/page404.component';
 import { PrintReciptComponent } from './dialogs/print-recipt/print-recipt.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AddUserComponent } from './dialogs/add-user/add-user.component';
+import { UserEditComponent } from './dialogs/user-edit/user-edit.component';
 
 
 const routes: Routes = [
@@ -78,6 +79,7 @@ const routes: Routes = [
     PrintReciptComponent,
     UsersComponent,
     AddUserComponent,
+    UserEditComponent,
 
   ],
 
@@ -92,6 +94,7 @@ const routes: Routes = [
     UpdatefoodtypeComponent,
     PrintReciptComponent,
     AddUserComponent,
+    UserEditComponent,
   ],
 
   imports: [

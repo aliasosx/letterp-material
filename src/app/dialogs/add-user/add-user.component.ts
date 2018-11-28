@@ -18,7 +18,7 @@ export class AddUserComponent implements OnInit {
   photoPath: any = "../../../assets/images/No_Image_Available.gif";
   file: File;
 
-  env = environment.imageUrl;
+  env = environment.userImageUrl;
 
   ngOnInit() {
     this.addUserform = new FormGroup({
@@ -80,9 +80,7 @@ export class AddUserComponent implements OnInit {
       } else {
         alert('Password mismatch');
       }
-
     }
-
   }
   getRole() {
     this.dataService.getRoles().subscribe(roles => this.roles = roles);
