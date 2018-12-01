@@ -6,7 +6,9 @@ $rally-container: #363640;
 
 @import "~@angular-mdc/theme/material";
 
-
+.container {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT'
+}
 .card-main {
   margin-top: 50px;
   position: relative;

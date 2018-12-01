@@ -1,20 +1,20 @@
 <div class="container-flex">
-  <div class="row">
+  <div class="row ">
     <div class="col col-lg-8 col-main">
       <div class="row">
         <div class="card item-card-category">
           <div class="card-header">
             <p class="h5">ປະເພດອາຫານ</p>
           </div>
-          <div class="card-body">
+          <div class="card-body category-item-cover">
             <!-- Start Product category item -->
-            <div class="row">
-              <div class="category-item " mdcElevation="5" (click)="onClickCategory('all')">
+            <div class="row text-center">
+              <div class="category-item " mdcElevation="3" (click)="onClickCategory('all')">
                 <div class="text-center detail">
                   <h4>ທັງໝົດ</h4>
                 </div>
               </div>
-              <div class="category-item" mdcElevation="5" *ngFor="let ft of food_types" (click)="onClickCategory(ft.id)">
+              <div class="category-item" mdcElevation="3" *ngFor="let ft of food_types" (click)="onClickCategory(ft.id)">
                 <div class="text-center detail">
                   <h4>{{ ft.food_type_desc_la }}</h4>
                 </div>
@@ -33,14 +33,12 @@
           <div class="card-body">
             <!-- Start Food item -->
             <div class="row">
-              <div class="product-grid" mdcElevation="8" *ngFor="let fd of foods" (click)="addItemToCard(fd)">
+              <div class="product-grid" mdcElevation="3" *ngFor="let fd of foods" (click)="addItemToCard(fd)">
                 <div class="image">
-                  <h6 class="text-center price-text">{{ fd.food_name }}</h6>
                   <a>
-                    <img src="{{ fd.photo }}">
+                    <img class="img-thumbnail" src="{{ fd.photo }}">
                   </a>
-
-                  <h6 class="text-center price-text">ລາຄາ: {{ fd.price | number }} ກິບ</h6>
+                  <h6 class="text-center price-text font-weight-bold">{{ fd.food_name }}</h6>
                 </div>
               </div>
             </div>
@@ -60,7 +58,7 @@
             <div class="card-header">
               <p class="h5">ລາຍການອາຫານທີ່ເລືອກໄວ້</p>
             </div>
-            <div class="card-body">
+            <div class="card-body item-body">
               <table class="table table-striped table-hover tableFixHeaderFooter" style="margin:0;">
                 <tr>
                   <th class="text-center">ລຶບ</th>
@@ -106,42 +104,49 @@
 
         <div class="row">
           <div class="card card-payment">
-            <div class="card-header">Payment</div>
+            <div class="card-header">
+              <p class="h5">ຂັ້ນຕອນການຈ່າຍເງິນ</p>
+              <button mdc-fab [mini]="true" class="buttonAdd" (click)="callCustomerDialog()">
+                <mdc-icon>add</mdc-icon>
+              </button>
+            </div>
             <div class="card-body">
+
               <div class="row customerInfo">
                 <div class="col text-left customerText">
-                  <p mdcSubtitle1>ລູກຄ້າ :</p>
+                  <p>ລູກຄ້າ :</p>
                 </div>
                 <div class="col text-left customerText">
-                  <p mdcSubtitle1>
-                    <ng-template [ngIf]="customer.gender == 'M'">Mr. {{ customer.fullname }}</ng-template>
-                    <ng-template [ngIf]="customer.gender == 'F'">Ms. {{ customer.fullname }}</ng-template>
+                  <p>
+                    <ng-template [ngIf]="customer.gender == 'M'">ທ່ານ. {{ customer.fullname }}</ng-template>
+                    <ng-template [ngIf]="customer.gender == 'F'">ທ່ານນາງ. {{ customer.fullname }}</ng-template>
                   </p>
                 </div>
                 <div class="col customerText">
-                  <p mdcSubtitle1>ເບີໂທ :</p>
+                  <p>ເບີໂທ :</p>
                 </div>
-                <div class="col text-center customerText">
-                  <p mdcSubtitle1>
+                <div class="col text-left customerText">
+                  <p>
                     {{ customer.mobile }}
                   </p>
-                </div>
-                <div class="col customerText" style="margin-top:0;">
-                  <button mdc-fab [mini]="true" class="buttonAdd" (click)="callCustomerDialog()">
-                    <mdc-icon>add</mdc-icon>
-                  </button>
+
                 </div>
               </div>
 
-              <div class="row payment-box">
-                <div class="row text-center">
-                  <div class="col" style="min-width:300px">
-                    <button mdc-button class="payment-button" [disabled]="paymentReady" (click)="callPaymentdialog()"
-                      outlined="true">Cash</button>
+
+              <div class="card">
+                <div class="card-body">
+                  <div class="row payment-box">
+
+                    <div class="col col-md-6">
+                      <button class="btn btn-primary payment-button" [disabled]="paymentReady" (click)="callPaymentdialog()"
+                        outlined="true">ຈ່າຍດ້ວຍເງິນສົດ</button>
+                    </div>
+                    <div class="col col-md-6">
+                      <button class="btn btn-primary payment-button" disabled=" true">ຈ່າຍດ້ວຍບັດ</button>
+                    </div>
                   </div>
-                  <div class="col" style="min-width:300px">
-                    <button mdc-button disabled="true" class="payment-button" outlined="true">Credit</button>
-                  </div>
+
                 </div>
               </div>
             </div>
