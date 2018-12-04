@@ -202,3 +202,11 @@ a#menu-share:hover>i {
 .buttonRemove {
   @include mdc-button-container-fill-color($mdc-theme-remove);
 }
+.card-header {
+  background-color: rgb(17, 88, 170);
+  color: aliceblue;
+}
+thead, tfoot {
+  background-color: rgb(17, 88, 170);
+  color: aliceblue;
+}

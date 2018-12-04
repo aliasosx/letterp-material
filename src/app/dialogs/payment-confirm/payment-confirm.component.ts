@@ -56,48 +56,49 @@ export class PaymentConfirmComponent implements OnInit {
   }
   paymentExecute(recvAmt, changeAmt) {
     //make Json Order
-    let changeAmtNumber: number = changeAmt.replace(',','');
-    if(changeAmtNumber < 0) {
+    let changeAmtNumber: number = changeAmt.replace(',', '');
+    if (changeAmtNumber < 0) {
       this.showSnackbar('Money not enought!!!');
     } else {
-          let order = {
-                'order': {
-                  'customer': this.customer,
-                  'recipt_printed': 1,
-                  'paid': 1,
-                  'qtag': this.qTagUsed,
-                  'total': this.data.total,
-                  'discount': this.data.discount,
-                  'tax': this.data.tax,
-                  'grandtotal': this.data.grandtotal,
-                  'user_code': 'E4F43B3284BF3F9065CC5EB6A46F2514',
-                  'items': this.items,
-                  'recieved' : recvAmt,
-                  'change': changeAmt.replace(',',''),
-                }
-              };
+      let order = {
+        'order': {
+          'customer': this.customer,
+          'recipt_printed': 1,
+          'paid': 1,
+          'qtag': this.qTagUsed,
+          'total': this.data.total,
+          'discount': this.data.discount,
+          'tax': this.data.tax,
+          'grandtotal': this.data.grandtotal,
+          'user_code': 'E4F43B3284BF3F9065CC5EB6A46F2514',
+          'items': this.items,
+          'recieved': recvAmt,
+          'change': changeAmt.replace(',', ''),
+          'terminal_id': '1',
+        }
+      };
 
-              this.dataService.createOrder(order).subscribe(result => {
-                try {
-                  console.log(result);
-                  if (result['status'] == 'success') {
-                    localStorage.removeItem('cart');
-                    this.dialogRef.close('Success');
-                  } else {
-                    console.log(result);
-                  }
-                } catch (err) {
-                  console.log(err);
-                }
+      this.dataService.createOrder(order).subscribe(result => {
+        try {
+          console.log(result);
+          if (result['status'] == 'success') {
+            localStorage.removeItem('cart');
+            this.dialogRef.close('Success');
+          } else {
+            console.log(result);
+          }
+        } catch (err) {
+          console.log(err);
+        }
 
-              });
+      });
     }
   }
   qSelected(e, tag) {
     this.qTagUsed = parseInt(tag);
     //console.log(this.qTagUsed);
   }
-  onRecvChange($event, v){
+  onRecvChange($event, v) {
     console.log(v);
   }
 

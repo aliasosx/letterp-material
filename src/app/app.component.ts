@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'app';
   constructor(private router: Router) { }
+  elem;
   ngOnInit() {
     console.log(this.router.url);
   }
+
 }

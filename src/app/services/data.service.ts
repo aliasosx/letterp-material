@@ -1,3 +1,4 @@
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -7,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class DataService {
   token = localStorage.getItem("token");
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthenticationService) { }
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -15,6 +16,7 @@ export class DataService {
     })
   };
   url = environment.url;
+  current_User: any;
   getMenu() {
     return this.http.get(this.url + 'menus/usermenu', this.httpOptions);
   }
@@ -131,6 +133,9 @@ export class DataService {
   }
   uploadUserPhoto(file) {
     return this.http.post(this.url + '/users/upload', file);
+  }
+  getUserInfo(user) {
+    return this.http.post(this.url + 'users/usersbyusername', user, this.httpOptions);
   }
 
 }

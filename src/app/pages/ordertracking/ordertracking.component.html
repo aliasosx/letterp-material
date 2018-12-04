@@ -2,7 +2,7 @@
   <div class="main">
     <div class="card">
       <div class="card-header">
-        Order Tracking
+        <div class="h4">ຕິດຕາມລາຍການ</div>
       </div>
       <div class="card-body">
         <div class="row">
@@ -37,11 +37,14 @@
                 <ng-template #finishtimeTemplate>
                   <td></td>
                 </ng-template>
-                <td *ngIf="order.done === 0 ;else takeit" class="text-center">
+                <td *ngIf="order.done === 0 ;else takeit" class="text-center text-nowrap">
                   <button class="btn btn-warning button-result" (click)="updateFinishOrder(order)">ຍັງລໍຖ້າ</button>
+                  <button class="btn btn-danger button-result" (click)="cancelOrder(order)">ຍົກເລີກ</button>
                 </td>
                 <ng-template #takeit>
-                  <td class="text-center"><button class="btn btn-success button-result">ສົ່ງແລ້ວ</button></td>
+                  <td class="text-center">
+                    <button class="btn btn-success button-result">ສົ່ງແລ້ວ</button>
+                  </td>
                 </ng-template>
               </tr>
             </tbody>

@@ -10,13 +10,13 @@ $mdc-theme-remove: #e30808;
   margin-right: 6px;
   padding-bottom: 10px;
   padding-right: 10px;
-  border-radius: 5px; 
-  
+  border-radius: 5px;
+
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,'Phetsarath OT';
   min-width: 1625px;
-  max-width: 1625px;
+
   background-color: #07334f;
-  
+
 }
 
 .col-main {
@@ -52,14 +52,14 @@ $mdc-theme-remove: #e30808;
   height: 600px;
   overflow: auto;
   background-color: #20538c;
-  
+
 }
 
 .item-card-category {
   width: 100%;
   margin-top: 5px;
   margin-left: 20px;
-  
+
 }
 
 .card-payment {
@@ -95,7 +95,7 @@ $mdc-theme-remove: #e30808;
   margin-top: 3px;
   margin-bottom: 3px;
   vertical-align: middle;
-  
+
   cursor: pointer;
 }
 .product-grid {
@@ -104,7 +104,7 @@ $mdc-theme-remove: #e30808;
   padding-left: 1px;
   padding-right: 1px;
   margin: 7px;
-  border-radius: 2px;
+  border-radius: 5px;
   cursor: pointer;
   min-width: 180px;
   min-height: 160px;
@@ -133,7 +133,7 @@ img {
   min-height: 150px;
   max-height: 150px;
   margin: 0 auto;
-  
+
 }
 
 .image {
@@ -202,7 +202,7 @@ img {
   font-size: 16px;
   font-family: 'Courier New', Courier, monospace,'Phetsarath OT';
   padding: 0;
-  
+
 }
 
 .buttonRemove {
