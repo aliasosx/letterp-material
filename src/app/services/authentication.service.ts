@@ -39,5 +39,12 @@ export class AuthenticationService {
     }
     );
   }
+  tokenDecode(token): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'login/decode', token, this.httpOptions).subscribe(result => {
+        resolve(result);
+      });
+    });
+  }
 
 }

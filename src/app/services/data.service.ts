@@ -116,9 +116,7 @@ export class DataService {
   getOrderTrackings() {
     return this.http.get(this.url + 'ordertracking', this.httpOptions);
   }
-  updateOrderTrackDone(orderTrack) {
-    return this.http.put(this.url + 'ordertracking', orderTrack, this.httpOptions);
-  }
+
   getUsers() {
     return this.http.get(this.url + 'users', this.httpOptions);
   }
@@ -136,6 +134,22 @@ export class DataService {
   }
   getUserInfo(user) {
     return this.http.post(this.url + 'users/usersbyusername', user, this.httpOptions);
+  }
+
+
+  getUserInforByUsername(user): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'users/usersbyusername', user, this.httpOptions).subscribe(result => {
+        resolve(result);
+      });
+    });
+  }
+  updateOrderTrack(orderTrack): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.url + 'ordertracking', orderTrack, this.httpOptions).subscribe(result => {
+        resolve(result);
+      });
+    });
   }
 
 }

@@ -13,12 +13,12 @@ import { PaymentConfirmComponent } from 'src/app/dialogs/payment-confirm/payment
 })
 export class PosComponent implements OnInit {
 
-  constructor(private dataService: DataService, private dialog: MdcDialog,private snackbar: MdcSnackbar ) { }
+  constructor(private dataService: DataService, private dialog: MdcDialog, private snackbar: MdcSnackbar) { }
   food_types: any;
   foods: any;
   foodCateId: string;
   paymentReady: boolean;
-  
+
 
   /* Snackbar */
   snackBarMsg: string = "test snack bar";
@@ -207,17 +207,18 @@ export class PosComponent implements OnInit {
     });
     paymentDialogRef.afterClosed().subscribe(msg => {
       //console.log(msg);
-      if(msg == 'Success'){
+      if (msg == 'Success') {
         this.tax = 0;
-        this.total= 0;
-        this.discount=0;
+        this.total = 0;
+        this.discount = 0;
         this.grandTotal = 0;
         this.loadCart();
+        this.paymentReady = false;
         this.showSnackbar('Payment successful and Order in progressing ...')
       } else {
         this.showSnackbar('Cancelled');
       }
-      
+
     });
   }
   showSnackbar(msg) {

@@ -14,12 +14,18 @@ export class OrdertrackingComponent implements OnInit {
   nowdate: Date;
   interval: any;
 
-  constructor(public dataService: DataService, private auth: AuthenticationService, private router: Router) {
-
-  }
-
+  constructor(public dataService: DataService, private auth: AuthenticationService, private router: Router) { }
+  //current_user: string;
   ngOnInit() {
-    //console.log(this.dataService.CurrentUser);
+
+    this.dataService.getUserInforByUsername({
+      'user': {
+        'user_name': 'admin'
+      }
+    }).then((val) => {
+      console.log(val);
+    });
+
     this.auth.isAuthenticated().subscribe(result => {
       if (result === true) {
         this.dataService.getMenuPermitt(this.router.url.replace("/", "")).subscribe(result => {
@@ -38,20 +44,21 @@ export class OrdertrackingComponent implements OnInit {
     this.dataService.getOrderTrackings().subscribe(data => this.ordertracking = data);
   }
   updateFinishOrder(order) {
+
     let pipe = new DatePipe('en-US');
     const now = new Date();
 
     let token = localStorage.getItem('token');
 
-    this.auth.getTokenDecode({ 'token': token }).subscribe(result => {
+    this.auth.tokenDecode({ 'token': token }).then((result) => {
       let user = {
         'user': {
           'user_name': result['payload'].split("|")[0]
         }
-      };
-      this.dataService.getUserInfo(user).subscribe(userResult => {
-        let userInfo = userResult;
-        const orderTracking = {
+      }
+      this.dataService.getUserInforByUsername(user).then(result => {
+        let userInfo = result;
+        const OrderTracking = {
           'ordertrack': {
             'order_id': order.order_id,
             'done': 1,
@@ -62,29 +69,29 @@ export class OrdertrackingComponent implements OnInit {
             'emp_id': userInfo[0].emp_id
           }
         };
-        if (userInfo[0].emp_id) {
-          this.dataService.updateOrderTrackDone(orderTracking).subscribe(result => {
-            console.log(result);
-            this.loadOrderTrackings();
-            alert('Order Completed');
-          });
-        }
+
+        this.dataService.updateOrderTrack(OrderTracking).then((result) => {
+          this.loadOrderTrackings();
+          alert('Order Ended');
+        });
       });
     });
   }
+
+
   cancelOrder(order) {
     let pipe = new DatePipe('en-US');
     const now = new Date();
     let token = localStorage.getItem('token');
 
-    this.auth.getTokenDecode({ 'token': token }).subscribe(result => {
+    this.auth.tokenDecode({ 'token': token }).then((result) => {
       let user = {
         'user': {
           'user_name': result['payload'].split("|")[0]
         }
-      };
-      this.dataService.getUserInfo(user).subscribe(userResult => {
-        let userInfo = userResult;
+      }
+      this.dataService.getUserInforByUsername(user).then(result => {
+        let userInfo = result;
         const OrderTracking = {
           'ordertrack': {
             'order_id': order.order_id,
@@ -96,28 +103,12 @@ export class OrdertrackingComponent implements OnInit {
             'emp_id': userInfo[0].emp_id
           }
         };
-        console.log(OrderTracking);
-        if (userInfo[0].emp_id) {
-          this.dataService.updateOrderTrackDone(OrderTracking).subscribe(result => {
-            console.log(result);
-            this.loadOrderTrackings();
-            alert('Order Cancelled');
-          });
-        }
+
+        this.dataService.updateOrderTrack(OrderTracking).then((result) => {
+          this.loadOrderTrackings();
+          alert('Order Cancelled');
+        });
       });
-
-
-
-
-
-
-
-
-
     });
-
-
-
   }
-
 }
