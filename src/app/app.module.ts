@@ -37,6 +37,7 @@ import { PrintReciptComponent } from './dialogs/print-recipt/print-recipt.compon
 import { UsersComponent } from './pages/users/users.component';
 import { AddUserComponent } from './dialogs/add-user/add-user.component';
 import { UserEditComponent } from './dialogs/user-edit/user-edit.component';
+import { KitchenMonitorComponent } from './pages/kitchen-monitor/kitchen-monitor.component';
 
 
 const routes: Routes = [
@@ -49,7 +50,9 @@ const routes: Routes = [
   { path: 'tracking', component: OrdertrackingComponent },
   { path: 'print', component: PrintreceiptComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'kitchenmon', component: KitchenMonitorComponent },
   { path: '**', component: Page404Component },
+
 
 ];
 @NgModule({
@@ -80,6 +83,7 @@ const routes: Routes = [
     UsersComponent,
     AddUserComponent,
     UserEditComponent,
+    KitchenMonitorComponent,
 
   ],
 
