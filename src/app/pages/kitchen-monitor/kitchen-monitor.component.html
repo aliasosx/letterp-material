@@ -4,18 +4,15 @@
       <div class="h5">Kitchen monitoring</div>
     </div>
     <div class="card-body">
-      <div class="row">
+      <div class="row" *ngFor="let ordertrack of orderTrackings |groupBy 'ordertrack.qtag'">
         <div class="col col-md-2">
           <div mdcElevation="3" class="text-center q-number">
-            <div class="display-4">1</div>
+            <div class="display-4">{{ ordertrack.qtag }}</div>
           </div>
         </div>
         <div class="col col-md-8">
           <ul>
-            <li>Checken x 3 </li>
-            <li>Coke x 4</li>
-            <li>pepsi x 5</li>
-            <li>Papaya x 1</li>
+            {{ ordertrack.food_name }}
           </ul>
         </div>
         <div class="col col-md-2">

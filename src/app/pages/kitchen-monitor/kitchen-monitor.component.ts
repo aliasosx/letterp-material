@@ -1,3 +1,4 @@
+import { DataService } from 'src/app/services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KitchenMonitorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
+  orderTrackings: any;
+  order_details: any;
 
   ngOnInit() {
+    this.dataService.getOrdertrackingPending().then((result) => {
+      this.orderTrackings = result;
+      console.log(this.orderTrackings);
+    });
   }
+
 
 }

@@ -152,4 +152,19 @@ export class DataService {
     });
   }
 
+  getOrdertrackingPending(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'ordertrackingpending', this.httpOptions).subscribe(result => {
+        resolve(result);
+      });
+    });
+  }
+  getOrderDetailByOrderId(order_id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'orderbyid/' + order_id, this.httpOptions).subscribe(result => {
+        resolve(result);
+      });
+    });
+  }
+
 }

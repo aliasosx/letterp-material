@@ -18,7 +18,7 @@
   </header>
   <aside>
     <mdc-drawer class="drawer" drawer="dismissible" #drawerDismissible>
-      <h6 mdcListGroupSubheader>Labels</h6>
+      <h6 mdcListGroupSubheader>Menu</h6>
       <a mdc-list-item routerLink="{{ menu.menu_link }}" (click)="drawerDismissible.open = !drawerDismissible.open"
         *ngFor="let menu of menus">
         <mdc-icon mdcListItemGraphic>{{ menu.menu_icon }}</mdc-icon>{{ menu.menu_name }}
