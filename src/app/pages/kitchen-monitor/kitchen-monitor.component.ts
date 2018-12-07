@@ -12,11 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KitchenMonitorComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+    setInterval(() => {
+      this.nowdate = new Date();
+    });
+  }
   orderTrackings: any;
   order_details: any;
   orders: Array<any> = [];
   order_tracks: any;
+  nowdate: Date;
   ngOnInit() {
     this.dataService.getOrdertrackingPending().then((result) => {
       this.orderTrackings = result;
@@ -33,12 +38,13 @@ export class KitchenMonitorComponent implements OnInit {
     this.order_tracks = {
       'order': this.orders
     }
-    console.log(this.order_tracks);
-
+    //console.log(this.order_tracks);
+    let time1: any = new Date("2018-12-08 01:00:00").getTime();
   }
   getOrderById(order_id): any {
     this.dataService.getOrderDetailByOrderId(order_id).then(orderDetails => {
       return orderDetails;
     });
   }
+
 }

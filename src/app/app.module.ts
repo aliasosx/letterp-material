@@ -39,6 +39,7 @@ import { AddUserComponent } from './dialogs/add-user/add-user.component';
 import { UserEditComponent } from './dialogs/user-edit/user-edit.component';
 import { KitchenMonitorComponent } from './pages/kitchen-monitor/kitchen-monitor.component';
 import { GroupByPipe } from './pipes/groupBy.pipe';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 const routes: Routes = [
@@ -86,6 +87,7 @@ const routes: Routes = [
     UserEditComponent,
     KitchenMonitorComponent,
     GroupByPipe,
+    ProfileComponent,
 
   ],
 

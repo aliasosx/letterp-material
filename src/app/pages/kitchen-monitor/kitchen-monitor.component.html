@@ -32,13 +32,13 @@
                 <div class="col col-sm-3 text-left">X {{ food.quantity }} ຈານ/ຈອກ</div>
                 <div class="col col-sm-4 text-left">ຄຳສັ່ງພິເສດ</div>
               </div>
-
             </li>
           </ul>
         </div>
         <div class="col col-md-2">
-          <div class="text-center display-4">
-            <div class="time-div">30</div>
+          <div class="text-center">
+            <div class="text-center h5">{{ order[0].created_at | date: 'H:mm:ss' }}</div>
+            <div class="text-center h5">{{ nowdate - order[0].created_at |date: 'dd-MM-yyyy H:mm:ss' }}</div>
           </div>
         </div>
         <hr>
