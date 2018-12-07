@@ -3,10 +3,18 @@
 }
 .card-header {
   background-color: rgb(17, 88, 170);
-  color: azure;
+  color: rgb(255, 255, 255);
 }
 .q-number {
-  background-color: rgb(151, 210, 233);
+  background-color: rgb(114, 216, 144);
   border-radius: 3px;
   margin-top: 5px;
+  top: 50%;
+
+}
+.q-row {
+  margin-top: 2px;
+  border: 1px solid rgb(180, 184, 182);
+  border-radius: 2px;
+  padding: 5px;
 }

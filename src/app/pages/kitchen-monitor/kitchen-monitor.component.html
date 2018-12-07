@@ -1,18 +1,18 @@
 <div class="container container-main">
   <div mdcElevation="3" class="card">
     <div class="card-header">
-      <div class="h5">Kitchen monitoring</div>
+      <div class="h5">ຕິດຕາມລາຍການອາຫານ ທີ່ຍັງບໍ່ໄດ້ສົ່ງໃຫ້ລູກຄ້າ</div>
     </div>
     <div class="card-body">
-      <div class="row" *ngFor="let ordertrack of orderTrackings |groupBy 'ordertrack.qtag'">
-        <div class="col col-md-2">
+      <div class="row q-row" *ngFor="let order of order_tracks.order">
+        <div class="col col-md-2 ">
           <div mdcElevation="3" class="text-center q-number">
-            <div class="display-4">{{ ordertrack.qtag }}</div>
+            <div class="display-4">{{ order[0].qtag }}</div>
           </div>
         </div>
         <div class="col col-md-8">
-          <ul>
-            {{ ordertrack.food_name }}
+          <ul class="list-group" *ngFor="let food of order ; index as i ">
+            <li class="list-group-item">{{ i + 1 }} . {{ food.food_name }} ຈຳນວນ {{ food.quantity }} </li>
           </ul>
         </div>
         <div class="col col-md-2">
@@ -20,6 +20,7 @@
             <div class="time-div">30</div>
           </div>
         </div>
+        <hr>
       </div>
     </div>
   </div>
