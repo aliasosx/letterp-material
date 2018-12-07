@@ -4,15 +4,36 @@
       <div class="h5">ຕິດຕາມລາຍການອາຫານ ທີ່ຍັງບໍ່ໄດ້ສົ່ງໃຫ້ລູກຄ້າ</div>
     </div>
     <div class="card-body">
+      <div class="row header-row">
+        <div class="col col-md-2">
+          <div class="h4 text-center">ຄິວ</div>
+        </div>
+        <div class="col col-md-8">
+          <div class="h4 text-center">ລາຍການອາຫານ</div>
+        </div>
+        <div class="col col-md-2">
+          <div class="h4 text-center">ເວລາສັ່ງ</div>
+        </div>
+      </div>
       <div class="row q-row" *ngFor="let order of order_tracks.order">
         <div class="col col-md-2 ">
           <div mdcElevation="3" class="text-center q-number">
-            <div class="display-4">{{ order[0].qtag }}</div>
+            <div class="inner-q">
+              <div class="display-4">{{ order[0].qtag }}</div>
+            </div>
           </div>
         </div>
         <div class="col col-md-8">
           <ul class="list-group" *ngFor="let food of order ; index as i ">
-            <li class="list-group-item">{{ i + 1 }} . {{ food.food_name }} ຈຳນວນ {{ food.quantity }} </li>
+            <li class="list-group-item h6 text-nowrap">
+              <div class="row">
+                <div class="col col-sm-1 text-center">{{ i + 1 }} </div>
+                <div class="col col-sm-4 text-left">{{ food.food_name }} </div>
+                <div class="col col-sm-3 text-left">X {{ food.quantity }} ຈານ/ຈອກ</div>
+                <div class="col col-sm-4 text-left">ຄຳສັ່ງພິເສດ</div>
+              </div>
+
+            </li>
           </ul>
         </div>
         <div class="col col-md-2">
