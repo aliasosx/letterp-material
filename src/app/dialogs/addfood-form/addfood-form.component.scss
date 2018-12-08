@@ -38,6 +38,7 @@ $mdc-theme-background: #fff;
 .control-space {
   margin-top: 16px;
   width: 100%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT'
 }
 
 .control-col {
@@ -48,13 +49,20 @@ $mdc-theme-background: #fff;
 .imgDiv {
   margin-top: 10px;
   left: 50%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT'
 }
 
 .titleDialog {
-  @include mdc-dialog-container-fill-color($mdc-theme-primary);
+  background-color: #1565c0;
+  color: #ffff;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
 }
 
 .surface {
   min-width: 600px;
-  min-height: 600px;
+  min-height: 400px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT'
+}
+.card {
+  margin-top: 5px;
 }

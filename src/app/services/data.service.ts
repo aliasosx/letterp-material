@@ -17,6 +17,8 @@ export class DataService {
   };
   public url = environment.url;
   current_User: any;
+
+
   getMenu() {
     return this.http.get(this.url + 'menus/usermenu', this.httpOptions);
   }
@@ -41,8 +43,13 @@ export class DataService {
   getCurrCodes() {
     return this.http.get(this.url + 'currcodes', this.httpOptions);
   }
-  addFood(food) {
-    return this.http.post(this.url + 'food/addFood', JSON.stringify(food), this.httpOptions);
+  addFood(food): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'food/addFood', JSON.stringify(food), this.httpOptions).subscribe(result => {
+        resolve(result);
+      });
+    })
+
   }
   uploadFoodPhoto(file) {
     return this.http.post(this.url + 'food/upload', file);
@@ -140,7 +147,20 @@ export class DataService {
   getUserInforByUsername(user): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(this.url + 'users/usersbyusername', user, this.httpOptions).subscribe(result => {
+        console.log(result);
         resolve(result);
+      });
+    });
+  }
+  getCurrentUserSession(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.auth.getTokenDecode({ 'token': this.token }).subscribe(result => {
+        let userToken = result['payload'].split('|');
+        if (userToken[0]) {
+          this.http.post(this.url + 'users/usersbyusername', { 'user': { 'user_name': userToken[0] } }, this.httpOptions).subscribe(result => {
+            resolve(result);
+          });
+        }
       });
     });
   }
@@ -162,6 +182,13 @@ export class DataService {
   getOrderDetailByOrderId(order_id): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.url + 'orderbyid/' + order_id, this.httpOptions).subscribe(result => {
+        resolve(result);
+      });
+    });
+  }
+  auditUser(user): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'users/audit', user, this.httpOptions).subscribe(result => {
         resolve(result);
       });
     });

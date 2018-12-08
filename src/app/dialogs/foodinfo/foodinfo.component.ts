@@ -39,7 +39,7 @@ export class FoodinfoComponent implements OnInit {
   updateFood(fn, ft, fc, fp, fk, img) {
     let photoFile = '';
     if (this.file) {
-      photoFile = this.env + this.file.name;
+      photoFile = this.file.name;
     } else {
       photoFile = this.food['photo'];
     }

@@ -7,8 +7,8 @@
 
         <div class="row mainContent">
           <div class="col-md-4 text-center">
-            <div mdcElevation=7 class="framImg">
-              <img #foodImg id="photo" [src]="photoPath" (click)="fileInput.click()">
+            <div mdcElevation=3 class="framImg">
+              <img #foodImg id="photo" [src]="env + photoPath" (click)="fileInput.click()">
             </div>
             <input style="display: none" type="file" required (change)="onFileChange($event)" #fileInput>
           </div>

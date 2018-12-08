@@ -44,7 +44,7 @@ export class FoodComponent implements OnInit {
   align: string;
   focusAction = false;
   actionOnBottom = false;
-
+  currentUserSession_code: any;
 
   url = environment.imageUrl;
 
@@ -71,6 +71,9 @@ export class FoodComponent implements OnInit {
         this.username = this.tokenResponse.payload.split('|')[0];
         this.initData();
       }
+    });
+    this.dataService.getCurrentUserSession().then(userInfo => {
+      this.currentUserSession_code = userInfo[0].emp_id;
     });
   }
   initData() {
@@ -119,6 +122,7 @@ export class FoodComponent implements OnInit {
     if (food) {
       this.file = food.file;
       console.log(this.file);
+      /*
       this.dataService.addFood(food).subscribe(data => {
         console.log(data);
         this.addFoodformGroup.reset();
@@ -129,6 +133,22 @@ export class FoodComponent implements OnInit {
           this.showSnackbar('ເພິ່ມລາຍການອາຫານສຳເລັດ');
         }
       });
+      */
+      this.dataService.addFood(food).then(result => {
+        this.addFoodformGroup.reset();
+        this.photoPath = '../../../assets/images/No_image_available.svg';
+        if (result['status'].toLowerCase() === 'operation success') {
+          this.showSnackbar('ເພິ່ມລາຍການອາຫານສຳເລັດ');
+        }
+        console.log(food);
+        this.dataService.auditUser({
+          'user': {
+            'emp_id': this.currentUserSession_code,
+            'activity': 'Add new food : ' + food.food.food_name,
+          }
+        }).then(console.log);
+      });
+
     }
   }
   deleteFood(id) {
@@ -141,6 +161,12 @@ export class FoodComponent implements OnInit {
 
       this.dataService.removeFood(food).subscribe(data => {
         console.log(data);
+        this.dataService.auditUser({
+          'user': {
+            'emp_id': this.currentUserSession_code,
+            'activity': 'delete food id : ' + id,
+          }
+        }).then(console.log);
         this.showSnackbar('ລາຍການຖືກລຶບໂດຍສົມບູນ!');
         this.getFoods();
       });
@@ -191,11 +217,10 @@ export class FoodComponent implements OnInit {
   addFoodDialog() {
     const dialogRef = this.dialog.open(AddfoodFormComponent, {
       escapeToClose: true,
-      clickOutsideToClose: false,
+      clickOutsideToClose: true,
       scrollable: true
     });
     dialogRef.afterClosed().subscribe(data => {
-      console.log(data);
       this.addFood(data);
     });
   }

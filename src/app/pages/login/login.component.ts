@@ -25,12 +25,10 @@ export class LoginComponent implements OnInit {
   focusAction = false;
   actionOnBottom = false;
 
-
-
   ngOnInit() {
 
     this.loginForm = new FormGroup({
-      'email': new FormControl(),
+      'username': new FormControl(),
       'password': new FormControl()
     });
 
@@ -50,7 +48,7 @@ export class LoginComponent implements OnInit {
   login() {
     const loginData = {
       'user': {
-        'email': this.loginForm.get('email').value,
+        'username': this.loginForm.get('username').value,
         'password': this.loginForm.get('password').value
       }
     }

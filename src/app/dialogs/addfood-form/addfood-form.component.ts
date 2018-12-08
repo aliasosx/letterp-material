@@ -21,6 +21,7 @@ export class AddfoodFormComponent implements OnInit {
   kitchens: any;
   constructor(public dialogRef: MdcDialogRef<AddfoodFormComponent>, private dataService: DataService, @Inject(MDC_DIALOG_DATA) public data: AddfoodFormComponent) { }
   selectedFoodType = 'FOOD';
+  currentUserSession_code: any;
   ngOnInit() {
     this.addFoodformGroup = new FormGroup({
       food_name: new FormControl(),
@@ -31,9 +32,12 @@ export class AddfoodFormComponent implements OnInit {
       kitchen_code: new FormControl,
 
     });
-    this.getFoodTypes();
-    this.getCurrCode();
-    this.getKitchens();
+    this.dataService.getCurrentUserSession().then(userInfo => {
+      this.currentUserSession_code = userInfo[0].emp_id;
+      this.getFoodTypes();
+      this.getCurrCode();
+      this.getKitchens();
+    });
   }
   onFileChange(event) {
     this.file = event.target.files[0];
@@ -68,7 +72,7 @@ export class AddfoodFormComponent implements OnInit {
           'cost': this.addFoodformGroup.get('cost').value,
           'price': this.addFoodformGroup.get('price').value,
           'currcode': this.addFoodformGroup.get('currcode').value,
-          'created_by': 'ADMIN',
+          'created_by': this.currentUserSession_code,
           'photo': this.file.name,
           'kid': this.addFoodformGroup.get('kitchen_code').value,
         }
