@@ -15,7 +15,7 @@ export class DataService {
       'authorization': 'Bearer ' + this.token
     })
   };
-  url = environment.url;
+  public url = environment.url;
   current_User: any;
   getMenu() {
     return this.http.get(this.url + 'menus/usermenu', this.httpOptions);

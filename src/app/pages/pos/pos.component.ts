@@ -5,6 +5,7 @@ import { Item } from 'src/app/models/item';
 import { MdcDialog, MDC_DIALOG_DATA, MdcSnackbar } from '@angular-mdc/web';
 import { CustomersComponent } from 'src/app/dialogs/customers/customers.component';
 import { PaymentConfirmComponent } from 'src/app/dialogs/payment-confirm/payment-confirm.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pos',
@@ -18,6 +19,7 @@ export class PosComponent implements OnInit {
   foods: any;
   foodCateId: string;
   paymentReady: boolean;
+  url = environment.imageUrl;
 
 
   /* Snackbar */

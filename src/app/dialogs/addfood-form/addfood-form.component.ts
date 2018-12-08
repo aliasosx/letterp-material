@@ -69,7 +69,7 @@ export class AddfoodFormComponent implements OnInit {
           'price': this.addFoodformGroup.get('price').value,
           'currcode': this.addFoodformGroup.get('currcode').value,
           'created_by': 'ADMIN',
-          'photo': this.env + this.file.name,
+          'photo': this.file.name,
           'kid': this.addFoodformGroup.get('kitchen_code').value,
         }
       };

@@ -46,6 +46,7 @@ export class FoodComponent implements OnInit {
   actionOnBottom = false;
 
 
+  url = environment.imageUrl;
 
   ngOnInit() {
     this.title = 'Atlas';
