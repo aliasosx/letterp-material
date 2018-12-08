@@ -40,6 +40,11 @@ export class KitchenMonitorComponent implements OnInit {
     }
     //console.log(this.order_tracks);
     let time1: any = new Date("2018-12-08 01:00:00").getTime();
+
+
+    this.dataService.getUserInforByUsername({ 'user': 'admin' }).then(data => {
+      console.log(data);
+    })
   }
   getOrderById(order_id): any {
     this.dataService.getOrderDetailByOrderId(order_id).then(orderDetails => {

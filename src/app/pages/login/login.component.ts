@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
       this.authService.getTokenDecode({ 'token': token }).subscribe(result => {
         if (result['payload']) {
           this.router.navigateByUrl('');
+        } else {
+          this.router.navigateByUrl('**');
         }
       });
     }
-
-
   }
 
   login() {
