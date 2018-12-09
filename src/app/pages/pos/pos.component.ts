@@ -43,9 +43,9 @@ export class PosComponent implements OnInit {
   total: number = 0;
   items: Item[] = [];
   tax: number = 0;
-  tax_rate: number = 7;
+  tax_rate: number = 0;
   discount: number = 0;
-  discount_rate: number = 10;
+  discount_rate: number = 0;
   grandTotal: number = 0;
 
   displayElement = "text-center display-4";

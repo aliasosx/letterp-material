@@ -30,7 +30,7 @@ export class PaymentConfirmComponent implements OnInit {
   align: string;
   focusAction = false;
   actionOnBottom = false;
-
+  currentUser: any;
   constructor(public dialogRef: MdcDialogRef<PaymentConfirmComponent>,
     private dataService: DataService, private snackbar: MdcSnackbar,
     private dialog: MdcDialog, @Inject(MDC_DIALOG_DATA) data: Item) {
@@ -60,36 +60,48 @@ export class PaymentConfirmComponent implements OnInit {
     if (changeAmtNumber < 0) {
       this.showSnackbar('Money not enought!!!');
     } else {
-      let order = {
-        'order': {
-          'customer': this.customer,
-          'recipt_printed': 1,
-          'paid': 1,
-          'qtag': this.qTagUsed,
-          'total': this.data.total,
-          'discount': this.data.discount,
-          'tax': this.data.tax,
-          'grandtotal': this.data.grandtotal,
-          'user_code': 'E4F43B3284BF3F9065CC5EB6A46F2514',
-          'items': this.items,
-          'recieved': recvAmt,
-          'change': changeAmt.replace(',', ''),
-          'terminal_id': '1',
-        }
-      };
 
-      this.dataService.createOrder(order).subscribe(result => {
-        try {
-          console.log(result);
-          if (result['status'] == 'success') {
-            localStorage.removeItem('cart');
-            this.dialogRef.close('Success');
-          } else {
-            console.log(result);
+      this.dataService.getCurrentUserSession().then(currentUser => {
+        this.currentUser = currentUser[0].emp_id;
+        //make order json
+        let order = {
+          'order': {
+            'customer': this.customer,
+            'recipt_printed': 1,
+            'paid': 1,
+            'qtag': this.qTagUsed,
+            'total': this.data.total,
+            'discount': this.data.discount,
+            'tax': this.data.tax,
+            'grandtotal': this.data.grandtotal,
+            'user_code': this.currentUser,
+            'items': this.items,
+            'recieved': recvAmt,
+            'change': changeAmt.replace(',', ''),
+            'terminal_id': '1',
           }
-        } catch (err) {
-          console.log(err);
-        }
+        };
+        //Make Order call service
+        this.dataService.createOrder(order).subscribe(result => {
+          try {
+            console.log(result);
+            if (result['status'] == 'success') {
+              localStorage.removeItem('cart');
+              this.dialogRef.close('Success');
+            } else {
+              console.log(result);
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        });
+
+        this.dataService.auditUser({
+          'user': {
+            'emp_id': this.currentUser,
+            'activity': 'Make Order order on POS module',
+          }
+        }).then(console.log);
 
       });
     }

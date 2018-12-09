@@ -4,6 +4,8 @@ import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, Route } from '@angular/router';
 import { Form, FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { DataService } from 'src/app/services/data.service';
+
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ import { Form, FormControl, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService, private router: Router, private snackbar: MdcSnackbar) { }
+  constructor(private authService: AuthenticationService, private router: Router, private snackbar: MdcSnackbar, private dataService: DataService, ) { }
   userlogin: string;
   loggedIn: boolean = false;
   loginForm: FormGroup;
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
     let token = localStorage.getItem('token');
     if (token) {
       this.authService.getTokenDecode({ 'token': token }).subscribe(result => {
+        console.log(result);
         if (result['payload']) {
           this.router.navigateByUrl('');
         } else {
@@ -53,17 +56,28 @@ export class LoginComponent implements OnInit {
       }
     }
     this.authService.getlogin(loginData).subscribe(result => {
-
       if (result['status'] === 'Success') {
         this.userlogin = result['token'];
         localStorage.setItem('token', this.userlogin);
-        location.reload();
+        try {
+          this.dataService.getCurrentUserSession().then(user => {
+            this.addAuditUser(user[0].emp_id, 'User login success');
+            location.reload();
+          });
+        } catch (err) {
+          location.reload();
+        }
+
+        //this.setLocalStorage(this.userlogin);
+        //location.reload();
         //this.router.navigateByUrl('');
       } else {
+        this.addAuditUser(this.loginForm.get('username').value, 'User login fail attempt');
         this.showSnackbar('Username or Password incorrect ')
       }
     });
   }
+
   showSnackbar(msg) {
     if (msg) {
       this.snackBarMsg = msg;
@@ -76,5 +90,13 @@ export class LoginComponent implements OnInit {
       focusAction: this.focusAction,
       actionOnBottom: this.actionOnBottom,
     });
+  }
+  addAuditUser(emp_id, message) {
+    this.dataService.auditUser({
+      'user': {
+        'emp_id': emp_id,
+        'activity': message
+      }
+    }).then(console.log);
   }
 }

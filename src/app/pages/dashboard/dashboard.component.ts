@@ -17,14 +17,14 @@ export class DashboardComponent implements OnInit {
   token: string;
   currentUserSession: any;
   ngOnInit() {
-    this.title = 'Letter-p';
+    this.title = 'Data still loading';
     this.token = localStorage.getItem('token');
 
     this.auth.getTokenDecode({
       'token': this.token
     }).subscribe(result => {
       if (result) {
-        this.title = "Letterp Welcome " + result['payload'];
+        this.title = "Letterp Welcome ";
         this.dataService.getCurrentUserSession().then(userInfo => {
           let firstLogin = userInfo[0].first_login;
           if (firstLogin === 1) {
@@ -39,7 +39,6 @@ export class DashboardComponent implements OnInit {
               } else {
                 alert('Error happening Please contact admin');
               }
-
             });
           }
 

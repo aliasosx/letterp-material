@@ -48,8 +48,8 @@ export class OrdertrackingComponent implements OnInit {
     let pipe = new DatePipe('en-US');
     const now = new Date();
 
-    let token = localStorage.getItem('token');
-
+    //let token = localStorage.getItem('token');
+    /*
     this.auth.tokenDecode({ 'token': token }).then((result) => {
       let user = {
         'user': {
@@ -76,8 +76,40 @@ export class OrdertrackingComponent implements OnInit {
         });
       });
     });
+    */
+
+    this.dataService.getCurrentUserSession().then(result => {
+      let userInfo = result;
+      const OrderTracking = {
+        'ordertrack': {
+          'order_id': order.order_id,
+          'done': 1,
+          'order_status': 'DELIVERED',
+          'position': 'FRONT COUNTER',
+          'finishtime': pipe.transform(now, 'yyyy-MM-dd HH:mm:ss'),
+          'qtag': order.qtag,
+          'emp_id': userInfo[0].emp_id
+        }
+      };
+
+      this.dataService.updateOrderTrack(OrderTracking).then((result) => {
+        this.loadOrderTrackings();
+        this.auditUserAdd(userInfo[0].emp_id, 'Update Order completed and send to customer order id : ' + order.order_id);
+        alert('Order Ended');
+      });
+    });
+
+
   }
 
+  auditUserAdd(emp_id, activity) {
+    this.dataService.auditUser({
+      'user': {
+        'emp_id': emp_id,
+        'activity': activity
+      }
+    }).then(console.log);
+  }
 
   cancelOrder(order) {
     let pipe = new DatePipe('en-US');
@@ -106,6 +138,7 @@ export class OrdertrackingComponent implements OnInit {
 
         this.dataService.updateOrderTrack(OrderTracking).then((result) => {
           this.loadOrderTrackings();
+          this.auditUserAdd(userInfo[0].emp_id, 'Update Order Cancelled order id : ' + order.order_id);
           alert('Order Cancelled');
         });
       });

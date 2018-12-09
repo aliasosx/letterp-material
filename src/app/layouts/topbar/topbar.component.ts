@@ -72,6 +72,15 @@ export class TopbarComponent implements OnInit {
   }
   logout() {
     localStorage.removeItem('token');
+    this.dataService.getCurrentUserSession().then(user => {
+      this.dataService.auditUser({
+        'user': {
+          'emp_id': user[0].emp_id,
+          'activity': 'User logout',
+        }
+      }).then(console.log);
+    });
+
     location.reload();
     //this.router.navigateByUrl('login');
   }
