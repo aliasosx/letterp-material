@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/data.service';
 import { MdcDialog, MdcSnackbar } from '@angular-mdc/web';
 import { AddUserComponent } from 'src/app/dialogs/add-user/add-user.component';
 import { UserEditComponent } from 'src/app/dialogs/user-edit/user-edit.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-users',
@@ -13,6 +14,7 @@ export class UsersComponent implements OnInit {
 
   constructor(private dataService: DataService, private dialog: MdcDialog, private snackbar: MdcSnackbar) { }
   users: any;
+  imgUrl = environment.userImageUrl;
 
   /* Snackbar */
   snackBarMsg: string = 'test snack bar';

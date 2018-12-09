@@ -1,0 +1,31 @@
+<mdc-dialog>
+  <mdc-dialog-container>
+    <mdc-dialog-surface class="surface">
+      <mdc-dialog-title class="titleDialog">ຕັ້ງຄ່າລະຫັດຜ່ານໃໝ່</mdc-dialog-title>
+      <mdc-dialog-content>
+        <form [formGroup]="changePassword">
+          <div class="row">
+            <div class="form-group">
+              <label for="password">ຕັ້ງລະຫັດຜ່ານ</label>
+              <input formControlName="password" type="password" class="form-control" autocomplete="off" id="password"
+                tabindex="1">
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">ອິກຄັ້ງ</label>
+              <input formControlName="confirmPassword" type="password" class="form-control" (input)="passwordChk($event.target.value)"
+                autocomplete="off" id="confirmPassword" tabindex="2">
+            </div>
+          </div>
+        </form>
+        <div [ngClass]="alertClass" role="alert">
+          ລະຫັດຜ່ານບໍ່ຄືກັນ
+        </div>
+      </mdc-dialog-content>
+      <mdc-dialog-actions>
+
+        <button class="btn btn-primary btn-lg" mdc [disabled]="buttonSave" type="button" (click)="doChangePassword()">ບັນທຶກ</button>
+
+      </mdc-dialog-actions>
+    </mdc-dialog-surface>
+  </mdc-dialog-container>
+</mdc-dialog>

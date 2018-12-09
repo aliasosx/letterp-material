@@ -188,9 +188,14 @@ export class DataService {
   }
   auditUser(user): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post(this.url + 'users/audit', user, this.httpOptions).subscribe(result => {
+      this.http.post(this.url + 'users/audit', user).subscribe(result => {
         resolve(result);
       });
+    });
+  }
+  changePasswordByEmpId(user): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'users/changePasswordUserByEmpId', user, this.httpOptions).subscribe(result => resolve(result));
     });
   }
 

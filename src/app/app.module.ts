@@ -40,6 +40,7 @@ import { UserEditComponent } from './dialogs/user-edit/user-edit.component';
 import { KitchenMonitorComponent } from './pages/kitchen-monitor/kitchen-monitor.component';
 import { GroupByPipe } from './pipes/groupBy.pipe';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { FirstloginComponent } from './dialogs/firstlogin/firstlogin.component';
 
 
 const routes: Routes = [
@@ -88,6 +89,7 @@ const routes: Routes = [
     KitchenMonitorComponent,
     GroupByPipe,
     ProfileComponent,
+    FirstloginComponent,
 
   ],
 
@@ -103,6 +105,7 @@ const routes: Routes = [
     PrintReciptComponent,
     AddUserComponent,
     UserEditComponent,
+    FirstloginComponent,
   ],
 
   imports: [

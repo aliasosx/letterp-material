@@ -16,7 +16,7 @@
     </tr>
 
     <tr *ngFor="let user of users">
-      <td><img src="{{ user.photo }}" alt="" /></td>
+      <td><img src="{{ imgUrl + user.photo }}" alt="" /></td>
       <td class="text-center" *ngIf="user.gender == 'M';else templateGender">Mr.</td>
       <ng-template #templateGender>
         <td class="text-center">Ms.</td>

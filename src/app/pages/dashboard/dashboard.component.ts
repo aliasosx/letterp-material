@@ -1,6 +1,9 @@
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
+import { MdcDialog } from '@angular-mdc/web';
+import { FirstloginComponent } from 'src/app/dialogs/firstlogin/firstlogin.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,9 +12,10 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private router: Router, private auth: AuthenticationService) { }
+  constructor(private router: Router, private auth: AuthenticationService, private dataService: DataService, private dialog: MdcDialog) { }
   title: string;
   token: string;
+  currentUserSession: any;
   ngOnInit() {
     this.title = 'Letter-p';
     this.token = localStorage.getItem('token');
@@ -21,6 +25,25 @@ export class DashboardComponent implements OnInit {
     }).subscribe(result => {
       if (result) {
         this.title = "Letterp Welcome " + result['payload'];
+        this.dataService.getCurrentUserSession().then(userInfo => {
+          let firstLogin = userInfo[0].first_login;
+          if (firstLogin === 1) {
+            const dialogRef = this.dialog.open(FirstloginComponent, {
+              escapeToClose: false,
+              clickOutsideToClose: false,
+              scrollable: false
+            });
+            dialogRef.afterClosed().subscribe(result => {
+              if (result['status'] === 'success') {
+                alert('Password has been changed');
+              } else {
+                alert('Error happening Please contact admin');
+              }
+
+            });
+          }
+
+        });
 
       } else {
         this.router.navigateByUrl('login');

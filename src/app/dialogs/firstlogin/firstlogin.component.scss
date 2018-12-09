@@ -1,0 +1,27 @@
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
+}
+.surface {
+    display: flex;
+    width: 400px;
+    height: 300px;
+}
+.surface .btn {
+    width: 150px;
+}
+.surface .titleDialog {
+    background-color: #337AB7;
+    color: #ffffff;
+}
+.surface .form-control {
+    width: 380px;
+}
+.row {
+    position: absolute;
+    display: flex;
+    top: 65px;
+}
+.hidden {
+    display: none;
+}
+

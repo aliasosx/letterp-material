@@ -45,7 +45,7 @@ export class AddUserComponent implements OnInit {
             "fullname": this.addUserform.get('fullname').value,
             "username": this.addUserform.get('username').value,
             "email": this.addUserform.get('email').value,
-            "photo": this.env + this.file.name,
+            "photo": this.file.name,
             "dateofbirth": this.addUserform.get('dateofbirth').value,
             "current_address": this.addUserform.get('current_address').value,
             "mobile": this.addUserform.get('mobile').value,
