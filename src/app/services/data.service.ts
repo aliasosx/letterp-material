@@ -154,14 +154,18 @@ export class DataService {
   }
   getCurrentUserSession(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.auth.getTokenDecode({ 'token': this.token }).subscribe(result => {
-        let userToken = result['payload'].split('|');
-        if (userToken[0]) {
-          this.http.post(this.url + 'users/usersbyusername', { 'user': { 'user_name': userToken[0] } }, this.httpOptions).subscribe(result => {
-            resolve(result);
-          });
-        }
-      });
+      if (this.token) {
+        this.auth.getTokenDecode({ 'token': this.token }).subscribe(result => {
+          let userToken = result['payload'].split('|');
+          if (userToken[0]) {
+            this.http.post(this.url + 'users/usersbyusername', { 'user': { 'user_name': userToken[0] } }, this.httpOptions).subscribe(result => {
+              resolve(result);
+            });
+          }
+        });
+      } else {
+        resolve();
+      }
     });
   }
   updateOrderTrack(orderTrack): Promise<any> {

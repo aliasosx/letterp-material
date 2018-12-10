@@ -59,17 +59,12 @@ export class LoginComponent implements OnInit {
       if (result['status'] === 'Success') {
         this.userlogin = result['token'];
         localStorage.setItem('token', this.userlogin);
-        try {
-          this.dataService.getCurrentUserSession().then(user => {
-            this.addAuditUser(user[0].emp_id, 'User login success');
-            location.reload();
-          });
-        } catch (err) {
-          location.reload();
-        }
+        this.dataService.getCurrentUserSession().then(user => {
+          this.addAuditUser(user[0].emp_id, 'User login success');
 
+        });
         //this.setLocalStorage(this.userlogin);
-        //location.reload();
+        location.reload();
         //this.router.navigateByUrl('');
       } else {
         this.addAuditUser(this.loginForm.get('username').value, 'User login fail attempt');

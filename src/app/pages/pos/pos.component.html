@@ -1,22 +1,20 @@
 <div class="container-fluid container-flex">
   <div class="row ">
-    <div class="col col-md-8 col-main">
+    <div class="col col-md-7 col-main">
       <div class="row">
         <div class="card item-card-category">
-          <div class="card-header">
-            <p class="h5">ປະເພດອາຫານ</p>
-          </div>
+
           <div class="card-body category-item-cover">
             <!-- Start Product category item -->
             <div class="row text-center">
               <div class="category-item " mdcElevation="3" (click)="onClickCategory('all')">
                 <div class="text-center detail">
-                  <h4>ທັງໝົດ</h4>
+                  <h6>ທັງໝົດ</h6>
                 </div>
               </div>
               <div class="category-item" mdcElevation="3" *ngFor="let ft of food_types" (click)="onClickCategory(ft.id)">
                 <div class="text-center detail">
-                  <h4>{{ ft.food_type_desc_la }}</h4>
+                  <h6>{{ ft.food_type_desc_la }}</h6>
                 </div>
               </div>
             </div>
@@ -28,11 +26,22 @@
       <div class="row">
         <div class="card item-card">
           <div class="card-header">
-            <p class="h5">ລາຍການອາຫານ</p>
+            <p class="h6">ລາຍການອາຫານ</p>
           </div>
           <div class="card-body">
             <!-- Start Food item -->
             <div class="row">
+
+              <div class="grid" *ngFor="let fd of foods; index as i " (click)="addItemToCard(fd)">
+                <div class="item" [ngStyle]="{'background-image': 'url(' + url + fd.photo + ')'}">
+                  <div class="item__details">
+                    {{ fd.food_name }}
+                  </div>
+                </div>
+              </div>
+
+
+              <!--
               <div class="product-grid" mdcElevation="3" *ngFor="let fd of foods" (click)="addItemToCard(fd)">
                 <div class="image">
                   <a>
@@ -41,6 +50,19 @@
                   <h6 class="text-center price-text font-weight-bold">{{ fd.food_name }}</h6>
                 </div>
               </div>
+
+
+
+              <div class="card item" *ngFor="let fd of foods" (click)="addItemToCard(fd)">
+                  <img class="card-img-top img-fluid " src="{{ url + fd.photo }}" alt="Card image cap">
+                  <div class="card-body">
+                    <h6 class="card-title">{{ fd.food_name }}</h6>
+                  </div>
+                </div>
+              -->
+
+
+
             </div>
             <!-- End Food item -->
           </div>
@@ -49,12 +71,12 @@
       </div>
     </div>
 
-    <div class="col col-md-4 col-payment">
+    <div class="col col-md-5 col-payment">
       <div class="payment-panel">
         <div class="row">
           <div class="card order-card">
             <div class="card-header">
-              <p class="h5">ລາຍການອາຫານທີ່ເລືອກໄວ້</p>
+              <p class="h6">ລາຍການອາຫານທີ່ເລືອກໄວ້</p>
             </div>
             <div class="card-body item-body">
               <table class="table table-striped table-hover tableFixHeaderFooter" style="margin:0;">
@@ -64,6 +86,7 @@
                   <th class="text-center">ລາຄາຕໍ່ຫນ່ວຍ</th>
                   <th class="text-center">ຈຳນວນ</th>
                   <th class="text-center">ລວມ</th>
+                  <th class="text-center">ພິເສດ</th>
                 </tr>
                 <tr *ngFor="let item of items">
                   <td class="text-center">
@@ -75,23 +98,24 @@
                   <td class="text-right">{{item.food.price | number}}</td>
                   <td class="text-right">{{item.quantity}}</td>
                   <td class="text-right">{{item.food.price * item.quantity | number }}</td>
+                  <td class="text-center"></td>
                 </tr>
 
                 <tfoot>
                   <tr>
-                    <td colspan="4" class="text-right">ລວມທັງໝົດ </td>
+                    <td colspan="5" class="text-right">ລວມທັງໝົດ </td>
                     <td class="text-right"> {{total | number }}</td>
                   </tr>
                   <tr>
-                    <td colspan="4" class="text-right">ສ່ວນຫຼຸດ {{ discount_rate }} %</td>
+                    <td colspan="5" class="text-right">ສ່ວນຫຼຸດ {{ discount_rate }} %</td>
                     <td class="text-right"> {{ discount | number }}</td>
                   </tr>
                   <tr>
-                    <td colspan="4" class="text-right">ອາກອນມູນຄ່າເພີ່ມ {{ tax_rate }} %</td>
+                    <td colspan="5" class="text-right">ອາກອນມູນຄ່າເພີ່ມ {{ tax_rate }} %</td>
                     <td class="text-right"> {{ tax | number }}</td>
                   </tr>
                   <tr>
-                    <td colspan="4" class="text-right">ລວມທັງໝົດທີ່ຕ້ອງຈ່າຍ</td>
+                    <td colspan="5" class="text-right">ລວມທັງໝົດທີ່ຕ້ອງຈ່າຍ</td>
                     <td class="text-right"> {{ grandTotal | number }}</td>
                   </tr>
                 </tfoot>
@@ -103,7 +127,7 @@
         <div class="row">
           <div class="card card-payment">
             <div class="card-header">
-              <p class="h5">ຂັ້ນຕອນການຈ່າຍເງິນ</p>
+              <p class="h6">ຂັ້ນຕອນການຈ່າຍເງິນ</p>
               <button mdc-fab [mini]="true" class="buttonAdd" (click)="callCustomerDialog()">
                 <mdc-icon>add</mdc-icon>
               </button>
