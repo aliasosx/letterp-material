@@ -202,5 +202,12 @@ export class DataService {
       this.http.post(this.url + 'users/changePasswordUserByEmpId', user, this.httpOptions).subscribe(result => resolve(result));
     });
   }
+  getFoodTypeByName(foodtype): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'foodtypebyname', foodtype, this.httpOptions).subscribe(result => {
+        resolve(result);
+      });
+    });
+  }
 
 }

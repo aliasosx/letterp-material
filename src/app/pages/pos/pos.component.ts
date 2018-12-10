@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Food } from '../../models/food';
@@ -6,6 +7,8 @@ import { MdcDialog, MDC_DIALOG_DATA, MdcSnackbar } from '@angular-mdc/web';
 import { CustomersComponent } from 'src/app/dialogs/customers/customers.component';
 import { PaymentConfirmComponent } from 'src/app/dialogs/payment-confirm/payment-confirm.component';
 import { environment } from 'src/environments/environment';
+
+
 
 @Component({
   selector: 'app-pos',
@@ -50,7 +53,7 @@ export class PosComponent implements OnInit {
 
   displayElement = "text-center display-4";
   ngOnInit() {
-    this.foodCateId = "all";
+    this.foodCateId = "ທັງໝົດ";
     this.getFoodtype();
     this.getFoods();
 
@@ -60,10 +63,24 @@ export class PosComponent implements OnInit {
   getFoodtype() {
     this.dataService.getFoodTypes().subscribe(food_type => {
       this.food_types = food_type;
+      console.log(this.food_types);
+    });
+  }
+
+
+  getFoodTypeByName(typeName) {
+    this.dataService.getFoodTypeByName({
+      'foodtype': {
+        'food_type_desc_la': typeName
+      }
+    }).then(result => {
+      this.foodCateId = result[0].id;
+      this.getFoods();
     });
   }
   getFoods() {
-    if (this.foodCateId == "all") {
+    //console.log(this.foodCateId);
+    if (this.foodCateId == "ທັງໝົດ") {
       this.dataService.getFoods().subscribe(foods => {
         if (foods) {
           //console.log(foods);
@@ -76,6 +93,7 @@ export class PosComponent implements OnInit {
     } else {
       this.dataService.getFoodByCategory(this.foodCateId).subscribe(foods => {
         if (foods) {
+          //console.log(foods);
           //console.log(this.foods);
           this.foods = foods;
           this.displayElement = "hiddenDiv";
@@ -86,8 +104,12 @@ export class PosComponent implements OnInit {
     }
   }
   onClickCategory(catid) {
-    this.foodCateId = catid;
-    this.getFoods();
+    if (catid.tab.label == "ທັງໝົດ") {
+      this.foodCateId = "ທັງໝົດ";
+      this.getFoods();
+    } else {
+      this.getFoodTypeByName(catid.tab.label);
+    }
   }
   addItemToCard(food: Food) {
     //console.log(food);
@@ -163,7 +185,7 @@ export class PosComponent implements OnInit {
     } else {
       this.paymentReady = true;
     }
-    console.log(this.paymentReady);
+    //console.log(this.paymentReady);
   }
 
   removeCardItem(id: number) {
@@ -239,5 +261,8 @@ export class PosComponent implements OnInit {
     snackbarRef.afterDismiss().subscribe(() => {
       //console.log('The snack-bar was dismissed')
     });
+  }
+  logTab(event) {
+    console.log(event);
   }
 }

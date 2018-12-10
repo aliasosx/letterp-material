@@ -3,6 +3,7 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
 }
 .card-header {
+  margin-top: 2px;
   background-color: rgb(17, 88, 170);
   color: rgb(255, 255, 255);
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
@@ -26,13 +27,10 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
 }
 .header-row {
-  border: 1px solid rgb(180, 184, 182);
-  border-radius: 3px;
-  margin-bottom: 4px;
-  padding: 4px;
+  top:80px;
   background-color: rgb(17, 88, 170);
   color: white;
-  min-height: 50px;
+
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
 }
 .inner-q {

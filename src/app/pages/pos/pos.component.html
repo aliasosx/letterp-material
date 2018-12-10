@@ -1,37 +1,32 @@
-<div class="container-fluid container-flex">
+<div class="container ">
   <div class="row ">
-    <div class="col col-md-7 col-main">
+    <div class="col col-md-8">
       <div class="row">
         <div class="card item-card-category">
 
-          <div class="card-body category-item-cover">
-            <!-- Start Product category item -->
-            <div class="row text-center">
-              <div class="category-item " mdcElevation="3" (click)="onClickCategory('all')">
-                <div class="text-center detail">
-                  <h6>ທັງໝົດ</h6>
-                </div>
-              </div>
-              <div class="category-item" mdcElevation="3" *ngFor="let ft of food_types" (click)="onClickCategory(ft.id)">
-                <div class="text-center detail">
-                  <h6>{{ ft.food_type_desc_la }}</h6>
-                </div>
-              </div>
+          <div class="card-header">
+            <div class="row">
+              <div class="h5" align="start">ຮັບລາຍການ</div>
             </div>
-            <!-- End Product category item -->
+          </div>
+          <div class="card-body">
+            <div class="category-item">
+              <mdc-tab-bar #demoStackedTabBar (activated)="onClickCategory($event)">
+                <mdc-tab-scroller>
+                  <mdc-tab class="tablabel" label="ທັງໝົດ"></mdc-tab>
+                  <mdc-tab class="tablabel" label="{{ ft.food_type_desc_la }}" *ngFor="let ft of food_types"></mdc-tab>
+                </mdc-tab-scroller>
+              </mdc-tab-bar>
+            </div>
+
           </div>
         </div>
       </div>
-
       <div class="row">
         <div class="card item-card">
-          <div class="card-header">
-            <p class="h6">ລາຍການອາຫານ</p>
-          </div>
           <div class="card-body">
             <!-- Start Food item -->
             <div class="row">
-
               <div class="grid" *ngFor="let fd of foods; index as i " (click)="addItemToCard(fd)">
                 <div class="item" [ngStyle]="{'background-image': 'url(' + url + fd.photo + ')'}">
                   <div class="item__details">
@@ -47,35 +42,46 @@
       </div>
     </div>
 
-    <div class="col col-md-5 col-payment">
+    <div class="col col-md-4  col-payment">
       <div class="payment-panel">
         <div class="row">
           <div class="card order-card">
             <div class="card-header">
-              <p class="h6">ລາຍການອາຫານທີ່ເລືອກໄວ້</p>
+              <div class="row">
+                <div class="h5" align="start">ລາຍການອາຫານທີ່ເລືອກໄວ້</div>
+                <button mdc-fab [mini]="true" class="buttonAdd" (click)="callCustomerDialog()">
+                  <mdc-icon>add</mdc-icon>
+                </button>
+              </div>
+
             </div>
             <div class="card-body item-body">
-              <table class="table table-sm table-striped table-hover tableFixHeaderFooter" style="margin:0;">
+              <table class="table table-sm table-striped table-hover tableFixHeaderFooter">
                 <tr>
                   <th class="text-center">ລຶບ</th>
                   <th class="text-center">ເມນູ</th>
-                  <th class="text-center">ລາຄາຕໍ່ຫນ່ວຍ</th>
+                  <th class="text-center">ລາຄາ</th>
                   <th class="text-center">ຈຳນວນ</th>
                   <th class="text-center">ລວມ</th>
                   <th class="text-center">ພິເສດ</th>
                 </tr>
                 <tr *ngFor="let item of items">
                   <td class="text-center">
+                    <!--
                     <button mdc-fab [mini]="true" class="buttonRemove" (click)="removeCardItem(item.food.id)">
-                      <mdc-icon>remove</mdc-icon>
+                      <mdc-icon>delete</mdc-icon>
                     </button>
+                    -->
+                    <i class="material-icons" style="cursor: pointer; color: #ea1010;" (click)="removeCardItem(item.food.id)">
+                      delete
+                    </i>
                   </td>
                   <td class="text-left">{{item.food.food_name}}</td>
                   <td class="text-right">{{item.food.price | number}}</td>
                   <td class="text-right">{{item.quantity}}</td>
-                  <td class="text-right">{{item.food.price * item.quantity | number }}</td>
+                  <td class="text-right"><strong>{{item.food.price * item.quantity | number }}</strong></td>
                   <td class="text-center">
-
+                    <a href="#">ພິເສດ</a>
                   </td>
                 </tr>
 
@@ -98,17 +104,18 @@
                   </tr>
                 </tfoot>
               </table>
+              <button mdc-fab extended label="{{ grandTotal | number }}" [disabled]="!paymentReady" class="buttonPayment"
+                (click)="callPaymentdialog()">
+                <mdc-icon>payment</mdc-icon>
+              </button>
             </div>
           </div>
         </div>
-
+        <!--
         <div class="row">
           <div class="card card-payment">
             <div class="card-header">
               <p class="h6">ຂັ້ນຕອນການຈ່າຍເງິນ</p>
-              <button mdc-fab [mini]="true" class="buttonAdd" (click)="callCustomerDialog()">
-                <mdc-icon>add</mdc-icon>
-              </button>
             </div>
             <div class="card-body">
 
@@ -132,12 +139,9 @@
 
                 </div>
               </div>
-
-
               <div class="card">
                 <div class="card-body">
                   <div class="row payment-box">
-
                     <div class="col col-md-6">
                       <button class="btn btn-primary payment-button" [disabled]="paymentReady" (click)="callPaymentdialog()"
                         outlined="true">ຈ່າຍດ້ວຍເງິນສົດ</button>
@@ -152,6 +156,10 @@
             </div>
           </div>
         </div>
+      -->
+
+
+
       </div>
     </div>
   </div>
