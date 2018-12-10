@@ -39,30 +39,6 @@
                   </div>
                 </div>
               </div>
-
-
-              <!--
-              <div class="product-grid" mdcElevation="3" *ngFor="let fd of foods" (click)="addItemToCard(fd)">
-                <div class="image">
-                  <a>
-                    <img class="img-thumbnail" src="{{ url + fd.photo }}">
-                  </a>
-                  <h6 class="text-center price-text font-weight-bold">{{ fd.food_name }}</h6>
-                </div>
-              </div>
-
-
-
-              <div class="card item" *ngFor="let fd of foods" (click)="addItemToCard(fd)">
-                  <img class="card-img-top img-fluid " src="{{ url + fd.photo }}" alt="Card image cap">
-                  <div class="card-body">
-                    <h6 class="card-title">{{ fd.food_name }}</h6>
-                  </div>
-                </div>
-              -->
-
-
-
             </div>
             <!-- End Food item -->
           </div>
@@ -79,7 +55,7 @@
               <p class="h6">ລາຍການອາຫານທີ່ເລືອກໄວ້</p>
             </div>
             <div class="card-body item-body">
-              <table class="table table-striped table-hover tableFixHeaderFooter" style="margin:0;">
+              <table class="table table-sm table-striped table-hover tableFixHeaderFooter" style="margin:0;">
                 <tr>
                   <th class="text-center">ລຶບ</th>
                   <th class="text-center">ເມນູ</th>
@@ -98,7 +74,9 @@
                   <td class="text-right">{{item.food.price | number}}</td>
                   <td class="text-right">{{item.quantity}}</td>
                   <td class="text-right">{{item.food.price * item.quantity | number }}</td>
-                  <td class="text-center"></td>
+                  <td class="text-center">
+
+                  </td>
                 </tr>
 
                 <tfoot>

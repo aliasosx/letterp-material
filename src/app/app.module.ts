@@ -9,7 +9,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import {
   MdcDrawerModule, MdcButtonModule, MdcTopAppBarModule, MdcIconModule, MdcListModule, MdcFabModule,
   MdcSwitchModule, MdcCardModule, MdcTextFieldModule, MdcImageListModule, MdcSelectModule, MdcLinearProgressModule, MdcTabModule,
-  MdcTabBarModule, MdcSnackbarModule, MdcRadioModule, MdcDialogModule, MdcDialogRef, MdcElevationModule, MdcTypographyModule, MdcRippleModule
+  MdcTabBarModule, MdcSnackbarModule, MdcRadioModule, MdcDialogModule, MdcDialogRef, MdcElevationModule, MdcTypographyModule, MdcRippleModule, MdcMenuModule, MdcMenuSurfaceModule,
 } from '@angular-mdc/web';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -91,6 +91,7 @@ const routes: Routes = [
     ProfileComponent,
     FirstloginComponent,
 
+
   ],
 
   entryComponents: [
@@ -135,6 +136,8 @@ const routes: Routes = [
     MdcElevationModule,
     MdcTypographyModule,
     MdcRippleModule,
+    MdcMenuModule,
+    MdcMenuSurfaceModule,
 
   ],
   providers: [
