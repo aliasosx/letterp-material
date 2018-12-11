@@ -1,4 +1,4 @@
-//$mdc-theme-primary: ;
+$mdc-theme-primary: #3700B3;
 $mdc-theme-secondary: #388e3c;
 $mdc-theme-background: #fff;
 @import "~@angular-mdc/theme/material";
@@ -32,4 +32,7 @@ body {
 }
 .container {
   background-color: #fff;
+}
+.app-top-bar{
+  background-color: #000051;
 }

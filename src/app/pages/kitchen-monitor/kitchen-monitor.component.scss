@@ -4,12 +4,13 @@
 }
 .card-header {
   margin-top: 2px;
-  background-color: rgb(17, 88, 170);
-  color: rgb(255, 255, 255);
+  background-color: #1a237e;
+  color: #ffffff;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
 }
 .q-number {
-  background-color: rgb(114, 216, 144);
+  background-color: #bf360c;
+  color: #ffffff;
   border-radius: 3px;
   margin-top: 5px;
   top: 50%;
@@ -18,23 +19,34 @@
 .q-row {
   margin-top: 2px;
   border: 1px solid rgb(180, 184, 182);
-  border-radius: 3px;
+  border-radius: 2px;
   padding: 1px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
+  margin-bottom: 4px;
 }
 .list-group-item {
   margin: 1px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
 }
 .header-row {
-  top:80px;
-  background-color: rgb(17, 88, 170);
-  color: white;
+  position: relative;
+  top:5px;
 
+  background-color: #1a237e;
+  color: #ffffff;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
 }
 .inner-q {
   position: relative;
   vertical-align: middle;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
+  margin: 5px;
+}
+.card-body {
+  padding-top: 2px;
+}
+.note-div {
+  color: #bf360c;
+  font-weight: bold;
+  font-size: 2em;
 }

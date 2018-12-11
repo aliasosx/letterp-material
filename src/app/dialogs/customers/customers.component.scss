@@ -1,13 +1,28 @@
 .surface {
   min-width: 900px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,'Phetsarath OT';
 }
 .searchtxt {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,'Phetsarath OT';
 }
 .mainDialog {
   position: absolute;
   top: 0;
   left: 0;
+}
+.titleDialog {
+  background-color: #1a237e;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,'Phetsarath OT';
+}
+.footer-div {
+  background-color: #1a237e;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,'Phetsarath OT';
+}
+.close-btn {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,'Phetsarath OT';
+  color: #ffffff;
 }

@@ -1,12 +1,18 @@
 <mdc-dialog>
   <mdc-dialog-container>
     <mdc-dialog-surface class="surface">
-      <mdc-dialog-title class="titleDialog">Add Kitchen note</mdc-dialog-title>
+      <mdc-dialog-title class="titleDialog">ຄຳສັ່ງພິເສດ</mdc-dialog-title>
       <mdc-dialog-content>
-        
+        <form [formGroup]="addNoteForm">
+          <div class="form-group">
+            <label for="ຳextraId">ຄຳສັ່ງພິເສດ</label>
+            <input type="text" style="min-width:200px;" required formControlName="extraNote" class="form-control" id="ຳextraId"
+              tabindex="1">
+          </div>
+        </form>
       </mdc-dialog-content>
-      <mdc-dialog-actions>
-        <button class="btn btn-primary btn-dialog btn-lg btn-submit" type="button" tabindex="11">ບັນທຶກ</button>
+      <mdc-dialog-actions class="footer-div">
+        <button class="btn btn-lg btn-save" (click)="addNote()" type="button" tabindex="2">ບັນທຶກ</button>
       </mdc-dialog-actions>
     </mdc-dialog-surface>
   </mdc-dialog-container>

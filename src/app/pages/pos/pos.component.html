@@ -66,13 +66,16 @@
                           <strong>{{item.food.food_name}}</strong>
                         </div>
                         <div class="row">
-                          ຈຳນວນ <div class="txtQ">{{ item.quantity }} </div> x {{ item.food.price | number }}
+                          ຈຳນວນ <div class="txtQ">{{ item.quantity }} </div> x {{ item.food.price | number }} <span>{{
+                            item.note }}</span>
+
                         </div>
                       </div>
                       <div class="col col-xs-4 text-right ">
                         {{ item.food.price * item.quantity | number }}
                       </div>
                       <i class="material-icons" style="cursor: pointer; color: #ea1010;" (click)="removeCardItem(item.food.id)">delete</i>
+                      <i class="material-icons" style="cursor: pointer; color: #000051;" (click)="callAddNoteDialog(item.food.id)">note_add</i>
                     </div>
                   </li>
                   <li class="list-group-item">
@@ -82,9 +85,8 @@
                     </div>
                   </li>
                   <li class="list-group-item">
-                    <button mdc-fab extended label="{{ grandTotal | number }}" [disabled]="!paymentReady" class="buttonPayment"
-                      (click)="callPaymentdialog()">
-                      <mdc-icon>payment</mdc-icon>
+                    <button [disabled]="!paymentReady" class="btn btn-lg buttonPayment btn-5" (click)="callPaymentdialog()">
+                      ຈ່າຍ
                     </button>
                   </li>
                 </ul>
@@ -138,10 +140,9 @@
           </div>
         </div>
       -->
-
-
-
       </div>
     </div>
+
   </div>
+
 </div>

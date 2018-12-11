@@ -113,6 +113,7 @@ const routes: Routes = [
     AddUserComponent,
     UserEditComponent,
     FirstloginComponent,
+    AddnoteComponent,
   ],
 
   imports: [

@@ -112,16 +112,17 @@ export class PosComponent implements OnInit {
       this.getFoodTypeByName(catid.tab.label);
     }
   }
-  addItemToCard(food: Food) {
+  addItemToCard(food: Food, note) {
     //console.log(food);
 
     if (food) {
-      console.log(food);
+      //console.log(food);
       let items: Item = {
         food: food,
-        quantity: 1
+        quantity: 1,
+        note: note,
       };
-      console.log(items);
+      //console.log(items);
 
       if (localStorage.getItem('cart') == null) {
         let cart: any = [];
@@ -129,7 +130,7 @@ export class PosComponent implements OnInit {
         localStorage.setItem('cart', JSON.stringify(cart));
       } else {
         let cart: any = JSON.parse(localStorage.getItem('cart'));
-        console.log(cart.length);
+        //console.log(cart.length);
         let index: number = -1;
         for (var i = 0; i < cart.length; i++) {
           let item: Item = JSON.parse(cart[i]);
@@ -170,7 +171,8 @@ export class PosComponent implements OnInit {
         let item = JSON.parse(cart[i]);
         this.items.push({
           food: item.food,
-          quantity: item.quantity
+          quantity: item.quantity,
+          note: item.note,
         });
         this.total += item.food.price * item.quantity;
         this.discount = (this.total * this.discount_rate) / 100;
@@ -277,10 +279,33 @@ export class PosComponent implements OnInit {
   logTab(event) {
     console.log(event);
   }
-  callAddNoteDialog() {
+  callAddNoteDialog(foodId) {
     const addNoteFormRef = this.dialog.open(AddnoteComponent, {
       escapeToClose: true,
       clickOutsideToClose: false,
+      data: foodId,
     });
+    addNoteFormRef.afterClosed().subscribe(data => {
+      if (data != 'close') {
+        this.addNoteToItem(data);
+      }
+    });
+  }
+  addNoteToItem(data) {
+    let cart: any = JSON.parse(localStorage.getItem('cart'));
+    //console.log(cart.length);
+    let index: number = -1;
+    for (var i = 0; i < cart.length; i++) {
+      let item: Item = JSON.parse(cart[i]);
+      if (item.food.id == data.foodid) {
+        index = i;
+        break;
+      }
+    }
+    let item: Item = JSON.parse(cart[index]);
+    item.note = data.note;
+    cart[index] = JSON.stringify(item);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.loadCart();
   }
 }

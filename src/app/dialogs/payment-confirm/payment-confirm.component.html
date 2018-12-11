@@ -1,126 +1,130 @@
 <mdc-dialog>
-    <mdc-dialog-container>
-      <mdc-dialog-surface class="surface">
-        <mdc-dialog-title class="titleDialog text-center"><p mdcHeadline5>ຍຶນຍັນການສັ່ງອາຫານ - Order Payment confirmation</p></mdc-dialog-title>
-        <mdc-dialog-content>
-          <div class="row">
-            <div class="col">
-              <div [mdcElevation]=5  class="card col-order-box">          
-                    <div class="card-header">ລາຍການອາຫານ</div>
-                    <div class="card-body">
-                      <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of items">
-                          {{ item.food.food_name }} <br/>
-                          ຈຳນວນ {{ item.quantity | number }} @ {{ item.food.price | number }} 
-                          <span>{{ item.food.price * item.quantity  | number }} ກິບ</span>
-                        </li>               
-                      </ul>
-                    </div>
-                    <div  class="card">
-                      <div class="card-header">ລວມ</div>
-                      <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                              ລວມ : <span> {{ data.total  | number }} ກິບ</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                              ສ່ວນຫຼຸູດ : <span> {{ data.discount  | number }} ກິບ</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                              ອາກອນ : <span> {{ data.tax  | number }} ກິບ</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                              ລວມຍອດທັງໝົດ : <span> {{ data.grandtotal  | number }} ກິບ</span>
-                            </li>
-                        </ul>
-                      </div>
-                    </div>
-                </div>  
-              </div> 
-              <div class="col">
-                <div [mdcElevation]=5  class="card col-payment-box">
-                  <div class="card-header">Payment</div>
-                  <div class="card-body">
-                    <div class="form-group row">
-                      <label for="qNumber" class="col-sm-4 col-form-label"> ເລກບັດຄິວ :</label>
-                      <div class="col-sm-4">
-                        <select class="form-control" #Qtag id="qNumber" (change)="qSelected($event , Qtag.value)">
-                          <option>...</option>
-                          <option *ngFor="let q of qTag" value="{{ q.tag }}">{{ q.tag }}</option>
-                        </select>
-                      </div>
-                      
-                    </div>
-                    <div class="form-group row">
-                      <label for="customercode" class="col-sm-4 col-form-label">ລະຫັດລູກຄ້າ :</label>
-                      <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="customercode" value="{{ customer.customer_code }}">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="grandtotalamt" class="col-sm-4 col-form-label">ລູກຄ້າ :</label>
-                      <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="grandtotalamt" value="{{ customer.fullname }}">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="grandtotalamt" class="col-sm-4 col-form-label">ເບີໂທ :</label>
-                      <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="grandtotalamt" value="{{ customer.mobile }}">
-                      </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                      <label for="grandtotalamt" class="col-sm-4 col-form-label">ລວມຍອດທັງໝົດ :</label>
-                      <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="grandtotalamt" value="{{ data.grandtotal  | number }}">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="recieveAmt" class="col-sm-4 col-form-label">ຮັບຈາກລູກຄ້າ :</label>
-                      <div class="col-sm-8">
-                        <input type="number" #recievedAmt class="form-control" id="recieveAmt" step="1000" value="{{ data.grandtotal  }}" [(ngModel)]="recvAmt">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      
-                      <div class="col-sm-12 text-center">
-                        <button type="button" [mdcElevation]=5 (click) = "recievedAmt.value = 5000; recvAmt = 5000" class="form-control btn btn-primary active banknote">5,000</button>
-                        <button type="button" [mdcElevation]=5 (click) = "recievedAmt.value = 10000; recvAmt = 10000" class="form-control btn btn-primary active banknote">10,000</button>
-                        <button type="button" [mdcElevation]=5 (click) = "recievedAmt.value = 20000; recvAmt = 20000" class="form-control btn btn-primary active banknote">20,000</button>
-                        <button type="button" [mdcElevation]=5 (click) = "recievedAmt.value = 50000; recvAmt = 50000"class="form-control btn btn-primary active banknote">50,000</button>
-                        <button type="button" [mdcElevation]=5 (click) = "recievedAmt.value = 100000; recvAmt = 100000" class="form-control btn btn-primary active banknote">100,000</button>
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label for="recieveAmt" class="col-sm-4 col-form-label"> ຖອນ :</label>
-                      <div class="col-sm-8">
-                        <input type="text"  #changeReturn readonly class="form-control" id="changeAmtTxt" [(ngModel)]="changeAmt" value="{{ recvAmt - data.grandtotal | number}}" >
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-sm-12">
-                        <button type="submit" [mdcElevation]=5  color="primary" style="min-height: 50px;" class="form-control btn btn-primary active" (click)="paymentExecute(recievedAmt.value, changeReturn.value)">Pay</button>
-                      </div>
-                    </div>
-
-
-
-
-
-                  </div>
-                </div>          
+  <mdc-dialog-container>
+    <mdc-dialog-surface class="surface">
+      <mdc-dialog-title class="titleDialog text-center">ຍຶນຍັນການສັ່ງອາຫານ - Order Payment confirmation</mdc-dialog-title>
+      <mdc-dialog-content>
+        <div class="row">
+          <div class="col">
+            <div [mdcElevation]=5 class="card col-order-box">
+              <div class="card-header">ລາຍການອາຫານ</div>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of items">
+                    {{ item.food.food_name }} <br />
+                    ຈຳນວນ {{ item.quantity | number }} @ {{ item.food.price | number }}
+                    <span>{{ item.food.price * item.quantity | number }} ກິບ</span>
+                  </li>
+                </ul>
               </div>
-          </div>       
-        </mdc-dialog-content>
-        <mdc-dialog-actions>
-          <button mdcDialogButton mdcDialogAction="close">ຍົກເລີກ</button>
-        </mdc-dialog-actions>
-      </mdc-dialog-surface>
-    </mdc-dialog-container>
-  </mdc-dialog>
-  
+              <div class="card">
+                <div class="card-header">ລວມ</div>
+                <div class="card-body">
+                  <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      ລວມ : <span> {{ data.total | number }} ກິບ</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      ສ່ວນຫຼຸູດ : <span> {{ data.discount | number }} ກິບ</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      ອາກອນ : <span> {{ data.tax | number }} ກິບ</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      ລວມຍອດທັງໝົດ : <span> {{ data.grandtotal | number }} ກິບ</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div [mdcElevation]=5 class="card col-payment-box">
+              <div class="card-header">ຢືນຢັນການຈ່າຍ</div>
+              <div class="card-body">
+                <div class="form-group row">
+                  <label for="qNumber" class="col-sm-4 col-form-label"> ເລກບັດຄິວ :</label>
+                  <div class="col-sm-4">
+                    <select class="form-control" #Qtag id="qNumber" (change)="qSelected($event , Qtag.value)">
+                      <option>...</option>
+                      <option *ngFor="let q of qTag" value="{{ q.tag }}">{{ q.tag }}</option>
+                    </select>
+                  </div>
+
+                </div>
+                <div class="form-group row">
+                  <label for="customercode" class="col-sm-4 col-form-label">ລະຫັດລູກຄ້າ :</label>
+                  <div class="col-sm-8">
+                    <input type="text" readonly class="form-control-plaintext" id="customercode" value="{{ customer.customer_code }}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="grandtotalamt" class="col-sm-4 col-form-label">ລູກຄ້າ :</label>
+                  <div class="col-sm-8">
+                    <input type="text" readonly class="form-control-plaintext" id="grandtotalamt" value="{{ customer.fullname }}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="grandtotalamt" class="col-sm-4 col-form-label">ເບີໂທ :</label>
+                  <div class="col-sm-8">
+                    <input type="text" readonly class="form-control-plaintext" id="grandtotalamt" value="{{ customer.mobile }}">
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="grandtotalamt" class="col-sm-4 col-form-label">ລວມຍອດທັງໝົດ :</label>
+                  <div class="col-sm-8">
+                    <input type="text" readonly class="form-control-plaintext" id="grandtotalamt" value="{{ data.grandtotal  | number }}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="recieveAmt" class="col-sm-4 col-form-label">ຮັບຈາກລູກຄ້າ :</label>
+                  <div class="col-sm-8">
+                    <input type="number" #recievedAmt class="form-control" id="recieveAmt" step="1000" value="{{ data.grandtotal  }}"
+                      [(ngModel)]="recvAmt">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+
+                  <div class="col-sm-12 text-center">
+                    <button type="button" [mdcElevation]=5 (click)="recievedAmt.value = 5000; recvAmt = 5000" class="form-control btn  active banknote">5,000</button>
+                    <button type="button" [mdcElevation]=5 (click)="recievedAmt.value = 10000; recvAmt = 10000" class="form-control btn  active banknote">10,000</button>
+                    <button type="button" [mdcElevation]=5 (click)="recievedAmt.value = 20000; recvAmt = 20000" class="form-control btn  active banknote">20,000</button>
+                    <button type="button" [mdcElevation]=5 (click)="recievedAmt.value = 50000; recvAmt = 50000" class="form-control btn  active banknote">50,000</button>
+                    <button type="button" [mdcElevation]=5 (click)="recievedAmt.value = 100000; recvAmt = 100000" class="form-control btn  active banknote">100,000</button>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="recieveAmt" class="col-sm-4 col-form-label"> ຖອນ :</label>
+                  <div class="col-sm-8">
+                    <input type="text" #changeReturn readonly class="form-control" id="changeAmtTxt" [(ngModel)]="changeAmt"
+                      value="{{ recvAmt - data.grandtotal | number}}">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <button type="submit" [mdcElevation]=5 style="min-height: 50px;" class="form-control btn  active pay-btn"
+                      (click)="paymentExecute(recievedAmt.value, changeReturn.value)">ຈ່າຍ</button>
+                  </div>
+                </div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </mdc-dialog-content>
+      <mdc-dialog-actions class="footer-div">
+        <button mdcDialogButton class="cancel-btn" mdcDialogAction="close">
+          <h5>ຍົກເລີກ</h5>
+        </button>
+      </mdc-dialog-actions>
+    </mdc-dialog-surface>
+  </mdc-dialog-container>
+</mdc-dialog>
