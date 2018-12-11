@@ -1,3 +1,4 @@
+import { AddnoteComponent } from './../../dialogs/addnote/addnote.component';
 
 import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
@@ -21,9 +22,9 @@ export class PosComponent implements OnInit {
   food_types: any;
   foods: any;
   foodCateId: string;
-  paymentReady: boolean;
+  paymentReady: boolean = true;
   url = environment.imageUrl;
-
+  itemCheckClass = "hiddenDiv";
 
   /* Snackbar */
   snackBarMsg: string = "test snack bar";
@@ -156,11 +157,14 @@ export class PosComponent implements OnInit {
 
   loadCart() {
     this.total = 0;
+    this.grandTotal = 0;
     this.items = [];
+    this.itemCheckClass = "hiddenDiv";
     if (localStorage.getItem('cart') == null) {
       return;
     }
     if (localStorage.getItem('cart') != null) {
+      this.itemCheckClass = "col col-md-12 item-list-div";
       let cart = JSON.parse(localStorage.getItem('cart'));
       for (var i = 0; i < cart.length; i++) {
         let item = JSON.parse(cart[i]);
@@ -174,16 +178,16 @@ export class PosComponent implements OnInit {
         this.grandTotal = this.total - this.discount + this.tax;
       }
     }
+
     this.checkPayment();
   }
 
   checkPayment() {
     let items = JSON.parse(localStorage.getItem('cart'));
-
-    if (items.length > 0 && this.customer['id'] != -1) {
-      this.paymentReady = false;
-    } else {
+    if (items.length > 0) {
       this.paymentReady = true;
+    } else {
+      this.paymentReady = false;
     }
     //console.log(this.paymentReady);
   }
@@ -209,14 +213,20 @@ export class PosComponent implements OnInit {
       clickOutsideToClose: true
     });
     customerDialogRef.afterClosed().subscribe(customer => {
-      console.log(customer);
       if (customer != 'close') {
-        this.customer = customer
+        this.customer = customer;
+        this.callPaymentdialog();
         this.checkPayment();
+
       }
     });
   }
   callPaymentdialog() {
+    console.log(this.customer);
+    if (this.customer.id == -1) {
+      this.callCustomerDialog();
+      return;
+    }
     const paymentDialogRef = this.dialog.open(PaymentConfirmComponent, {
       escapeToClose: true,
       clickOutsideToClose: false,
@@ -244,6 +254,8 @@ export class PosComponent implements OnInit {
       }
 
     });
+
+
   }
   showSnackbar(msg) {
     if (msg) {
@@ -264,5 +276,11 @@ export class PosComponent implements OnInit {
   }
   logTab(event) {
     console.log(event);
+  }
+  callAddNoteDialog() {
+    const addNoteFormRef = this.dialog.open(AddnoteComponent, {
+      escapeToClose: true,
+      clickOutsideToClose: false,
+    });
   }
 }

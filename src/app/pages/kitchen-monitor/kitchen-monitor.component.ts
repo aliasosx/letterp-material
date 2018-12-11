@@ -1,6 +1,6 @@
 
-import { from } from 'rxjs';
-import { groupBy, mergeMap, toArray } from 'rxjs/operators';
+import { from, interval } from 'rxjs';
+import { groupBy, mergeMap, toArray, map } from 'rxjs/operators';
 
 import { DataService } from 'src/app/services/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -27,7 +27,7 @@ export class KitchenMonitorComponent implements OnInit {
       this.orderTrackings = result;
 
       console.log(result);
-      
+
       var source = from(result);
       var grouped = source.pipe(
         groupBy(result => result['qtag']),
@@ -54,5 +54,12 @@ export class KitchenMonitorComponent implements OnInit {
       return orderDetails;
     });
   }
-
+  getTimeOrderRemaing(orderTime) {
+    interval(1000).pipe(
+      map((x) => {
+        console.log(x - orderTime.getTime());
+        return x;
+      })
+    );
+  }
 }

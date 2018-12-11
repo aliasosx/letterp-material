@@ -41,6 +41,9 @@ import { KitchenMonitorComponent } from './pages/kitchen-monitor/kitchen-monitor
 import { GroupByPipe } from './pipes/groupBy.pipe';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FirstloginComponent } from './dialogs/firstlogin/firstlogin.component';
+import { FooterComponent } from './layouts/footer/footer.component';
+import { TimeRemainigPipe } from './pipes/time-remainig.pipe';
+import { AddnoteComponent } from './dialogs/addnote/addnote.component';
 
 
 const routes: Routes = [
@@ -90,6 +93,9 @@ const routes: Routes = [
     GroupByPipe,
     ProfileComponent,
     FirstloginComponent,
+    FooterComponent,
+    TimeRemainigPipe,
+    AddnoteComponent,
 
 
   ],

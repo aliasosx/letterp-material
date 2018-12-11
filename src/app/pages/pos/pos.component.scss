@@ -1,7 +1,7 @@
 $mdc-theme-primary: #1565c0;
 $mdc-theme-secondary: #388e3c;
 $mdc-theme-background: #fff;
-$mdc-theme-remove: #e30808;
+$mdc-theme-remove: #a00606;
 @import "~@angular-mdc/theme/material";
 
 .container-flex {
@@ -150,12 +150,19 @@ img {
   top: 6px;
 }
 .buttonPayment {
-  position: absolute;
+  position: relative;
+  /*
   bottom: 10px;
   left: 50px;
-  width: 300px;
+  */
+  margin: 5px;
+  width: 100%;
 }
-
+.txtQ {
+  margin-left: 2px;
+  margin-right: 2px;
+  font-weight: bold;
+}
 .customerInfo {
   position: relative;
   vertical-align: middle;
@@ -220,7 +227,11 @@ img {
   display: flex;
   max-height: 100%;
   overflow: auto;
-  padding: 1px;
+  padding: 0px;
+}
+.item-list-div {
+  margin-top: 5px;
+
 }
 .payment-panel {
   max-height: 600px;
