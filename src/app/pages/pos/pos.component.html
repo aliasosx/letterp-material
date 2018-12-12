@@ -1,4 +1,4 @@
-<div class="container ">
+<div class="container">
   <div class="row ">
     <div class="col col-md-8">
       <div class="row">
@@ -74,72 +74,36 @@
                       <div class="col col-xs-4 text-right ">
                         {{ item.food.price * item.quantity | number }}
                       </div>
-                      <i class="material-icons" style="cursor: pointer; color: #ea1010;" (click)="removeCardItem(item.food.id)">delete</i>
-                      <i class="material-icons" style="cursor: pointer; color: #000051;" (click)="callAddNoteDialog(item.food.id)">note_add</i>
+                      <i class="material-icons" style="cursor: pointer; color: #242727;" (click)="removeCardItem(item.food.id)">delete</i>
+                      <i class="material-icons" style="cursor: pointer; color: #242727;" (click)="callAddNoteDialog(item.food.id)">note_add</i>
                     </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="row">
-                      <div class="col col-xs-8 text-right">ລວມ</div>
-                      <div class="col col-xs-4 text-right">{{ total | number }}</div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <button [disabled]="!paymentReady" class="btn btn-lg buttonPayment btn-5" (click)="callPaymentdialog()">
-                      ຈ່າຍ
-                    </button>
                   </li>
                 </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--
-        <div class="row">
-          <div class="card card-payment">
-            <div class="card-header">
-              <p class="h6">ຂັ້ນຕອນການຈ່າຍເງິນ</p>
-            </div>
-            <div class="card-body">
-
-              <div class="row customerInfo">
-                <div class="col text-left customerText">
-                  <p>ລູກຄ້າ :</p>
-                </div>
-                <div class="col text-left customerText">
-                  <p>
-                    <ng-template [ngIf]="customer.gender == 'M'">ທ່ານ. {{ customer.fullname }}</ng-template>
-                    <ng-template [ngIf]="customer.gender == 'F'">ທ່ານນາງ. {{ customer.fullname }}</ng-template>
-                  </p>
-                </div>
-                <div class="col customerText">
-                  <p>ເບີໂທ :</p>
-                </div>
-                <div class="col text-left customerText">
-                  <p>
-                    {{ customer.mobile }}
-                  </p>
-
+                <div [ngClass]="emptyClass">
+                  <img src="../../../assets/images/empty.gif">
                 </div>
               </div>
-              <div class="card">
-                <div class="card-body">
-                  <div class="row payment-box">
-                    <div class="col col-md-6">
-                      <button class="btn btn-primary payment-button" [disabled]="paymentReady" (click)="callPaymentdialog()"
-                        outlined="true">ຈ່າຍດ້ວຍເງິນສົດ</button>
-                    </div>
-                    <div class="col col-md-6">
-                      <button class="btn btn-primary payment-button" disabled=" true">ຈ່າຍດ້ວຍບັດ</button>
-                    </div>
-                  </div>
 
+              <div class="footer">
+                <div class="col col-md-12">
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <div class="row">
+                        <div class="col col-xs-8 text-right">ລວມ</div>
+                        <div class="col col-xs-4 text-right">{{ total | number }}</div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <button [disabled]="!paymentReady" class="btn btn-lg buttonPayment btn-5" (click)="callPaymentdialog()">
+                        ຈ່າຍ
+                      </button>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      -->
       </div>
     </div>
 

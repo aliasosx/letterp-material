@@ -25,7 +25,7 @@ export class PosComponent implements OnInit {
   paymentReady: boolean = true;
   url = environment.imageUrl;
   itemCheckClass = "hiddenDiv";
-
+  emptyClass = "empty-icon";
   /* Snackbar */
   snackBarMsg: string = "test snack bar";
   action = "OK";
@@ -34,7 +34,6 @@ export class PosComponent implements OnInit {
   align: string;
   focusAction = false;
   actionOnBottom = false;
-
 
   customer: any = {
     'id': '-1',
@@ -64,7 +63,7 @@ export class PosComponent implements OnInit {
   getFoodtype() {
     this.dataService.getFoodTypes().subscribe(food_type => {
       this.food_types = food_type;
-      console.log(this.food_types);
+      //console.log(this.food_types);
     });
   }
 
@@ -80,11 +79,10 @@ export class PosComponent implements OnInit {
     });
   }
   getFoods() {
-    //console.log(this.foodCateId);
     if (this.foodCateId == "ທັງໝົດ") {
       this.dataService.getFoods().subscribe(foods => {
         if (foods) {
-          //console.log(foods);
+
           this.foods = foods;
           this.displayElement = "hiddenDiv";
         } else {
@@ -94,8 +92,7 @@ export class PosComponent implements OnInit {
     } else {
       this.dataService.getFoodByCategory(this.foodCateId).subscribe(foods => {
         if (foods) {
-          //console.log(foods);
-          //console.log(this.foods);
+
           this.foods = foods;
           this.displayElement = "hiddenDiv";
         } else {
@@ -113,16 +110,12 @@ export class PosComponent implements OnInit {
     }
   }
   addItemToCard(food: Food, note) {
-    //console.log(food);
-
     if (food) {
-      //console.log(food);
       let items: Item = {
         food: food,
         quantity: 1,
         note: note,
       };
-      //console.log(items);
 
       if (localStorage.getItem('cart') == null) {
         let cart: any = [];
@@ -130,7 +123,6 @@ export class PosComponent implements OnInit {
         localStorage.setItem('cart', JSON.stringify(cart));
       } else {
         let cart: any = JSON.parse(localStorage.getItem('cart'));
-        //console.log(cart.length);
         let index: number = -1;
         for (var i = 0; i < cart.length; i++) {
           let item: Item = JSON.parse(cart[i]);
@@ -160,12 +152,17 @@ export class PosComponent implements OnInit {
     this.total = 0;
     this.grandTotal = 0;
     this.items = [];
-    this.itemCheckClass = "hiddenDiv";
+    this.emptyClass = "empty-icon";
+
     if (localStorage.getItem('cart') == null) {
+      this.emptyClass = "empty-icon";
+      return;
+    } else if (localStorage.getItem('cart').length == 2) {
+      this.emptyClass = "empty-icon";
       return;
     }
     if (localStorage.getItem('cart') != null) {
-      this.itemCheckClass = "col col-md-12 item-list-div";
+      this.emptyClass = "hideEmpty";
       let cart = JSON.parse(localStorage.getItem('cart'));
       for (var i = 0; i < cart.length; i++) {
         let item = JSON.parse(cart[i]);
@@ -186,6 +183,7 @@ export class PosComponent implements OnInit {
 
   checkPayment() {
     let items = JSON.parse(localStorage.getItem('cart'));
+
     if (items.length > 0) {
       this.paymentReady = true;
     } else {
@@ -207,6 +205,7 @@ export class PosComponent implements OnInit {
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     this.loadCart();
+    this.checkPayment();
   }
 
   callCustomerDialog() {

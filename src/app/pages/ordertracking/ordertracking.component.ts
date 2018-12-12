@@ -23,13 +23,13 @@ export class OrdertrackingComponent implements OnInit {
         'user_name': 'admin'
       }
     }).then((val) => {
-      console.log(val);
+      //console.log(val);
     });
 
     this.auth.isAuthenticated().subscribe(result => {
       if (result === true) {
         this.dataService.getMenuPermitt(this.router.url.replace("/", "")).subscribe(result => {
-          console.log(result);
+          //console.log(result);
         });
 
         this.loadOrderTrackings();
@@ -47,36 +47,6 @@ export class OrdertrackingComponent implements OnInit {
 
     let pipe = new DatePipe('en-US');
     const now = new Date();
-
-    //let token = localStorage.getItem('token');
-    /*
-    this.auth.tokenDecode({ 'token': token }).then((result) => {
-      let user = {
-        'user': {
-          'user_name': result['payload'].split("|")[0]
-        }
-      }
-      this.dataService.getUserInforByUsername(user).then(result => {
-        let userInfo = result;
-        const OrderTracking = {
-          'ordertrack': {
-            'order_id': order.order_id,
-            'done': 1,
-            'order_status': 'DELIVERED',
-            'position': 'FRONT COUNTER',
-            'finishtime': pipe.transform(now, 'yyyy-MM-dd HH:mm:ss'),
-            'qtag': order.qtag,
-            'emp_id': userInfo[0].emp_id
-          }
-        };
-
-        this.dataService.updateOrderTrack(OrderTracking).then((result) => {
-          this.loadOrderTrackings();
-          alert('Order Ended');
-        });
-      });
-    });
-    */
 
     this.dataService.getCurrentUserSession().then(result => {
       let userInfo = result;

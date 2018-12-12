@@ -147,7 +147,7 @@ export class DataService {
   getUserInforByUsername(user): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(this.url + 'users/usersbyusername', user, this.httpOptions).subscribe(result => {
-        console.log(result);
+        //console.log(result);
         resolve(result);
       });
     });
