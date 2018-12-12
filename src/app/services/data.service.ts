@@ -178,7 +178,7 @@ export class DataService {
 
   getOrdertrackingPending(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.url + 'ordertrackingpending', this.httpOptions).subscribe(result => {
+      this.http.get(this.url + 'ordertrackingpending').subscribe(result => {
         resolve(result);
       });
     });

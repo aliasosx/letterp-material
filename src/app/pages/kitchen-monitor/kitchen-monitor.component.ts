@@ -25,9 +25,7 @@ export class KitchenMonitorComponent implements OnInit {
   ngOnInit() {
     this.dataService.getOrdertrackingPending().then((result) => {
       this.orderTrackings = result;
-
-      console.log(result);
-
+      
       var source = from(result);
       var grouped = source.pipe(
         groupBy(result => result['qtag']),
