@@ -1,4 +1,4 @@
-$mdc-theme-primary: #1565c0;
+$mdc-theme-primary: #242727;
 $mdc-theme-secondary: #388e3c;
 $mdc-theme-background: #fff;
 
@@ -53,8 +53,8 @@ $mdc-theme-background: #fff;
 }
 
 .titleDialog {
-  background-color: #1565c0;
-  color: #ffff;
+  background-color: #242727;
+  color: #ffffff;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
 }
 
@@ -65,4 +65,8 @@ $mdc-theme-background: #fff;
 }
 .card {
   margin-top: 5px;
+}
+.footer-div {
+  background-color: #242727;
+  color: #ffffff;
 }

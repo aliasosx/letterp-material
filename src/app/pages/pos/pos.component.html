@@ -83,7 +83,6 @@
                   <img src="../../../assets/images/empty.gif">
                 </div>
               </div>
-
               <div class="footer">
                 <div class="col col-md-12">
                   <ul class="list-group">
@@ -94,8 +93,10 @@
                       </div>
                     </li>
                     <li class="list-group-item">
-                      <button [disabled]="!paymentReady" class="btn btn-lg buttonPayment btn-5" (click)="callPaymentdialog()">
-                        ຈ່າຍ
+                      <button [disabled]="!paymentReady" class="btn btn-lg buttonPayment " (click)="callPaymentdialog()">
+
+                        ຈ່າຍ {{ total | number }} ກີບ
+
                       </button>
                     </li>
                   </ul>

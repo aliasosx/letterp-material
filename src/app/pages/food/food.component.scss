@@ -1,4 +1,4 @@
-$mdc-theme-primary: #1565c0;
+$mdc-theme-primary: #242727;
 $mdc-theme-secondary: #faab1a;
 $mdc-theme-edit: #f18109;
 $mdc-theme-remove: #a90707;
@@ -8,7 +8,8 @@ $rally-container: #363640;
 
 .container {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
-  background-color: #E1DEDD;
+  background-image: url('../../../assets/images/background.png');
+  background-size: auto;
 }
 .card-main {
   margin-top: 50px;
@@ -204,11 +205,11 @@ a#menu-share:hover>i {
   @include mdc-button-container-fill-color($mdc-theme-remove);
 }
 .card-header {
-  background-color: rgb(17, 88, 170);
+  background-color: #242727;
   color: aliceblue;
 }
-thead {
-  background-color: rgb(17, 88, 170);
+thead , tfoot{
+  background-color: #242727;
   color: aliceblue;
 }
 
