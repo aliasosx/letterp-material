@@ -116,6 +116,9 @@ export class OrdertrackingComponent implements OnInit {
     });
   }
   getTimeOrderRemaing(orderTime) {
+    if (!orderTime) {
+      return;
+    }
     let startTime = new Date(orderTime);
     var timestamp = startTime.getTime();
     //console.log(timestamp);
