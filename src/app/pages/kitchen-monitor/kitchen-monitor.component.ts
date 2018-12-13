@@ -5,6 +5,8 @@ import { groupBy, mergeMap, toArray, map } from 'rxjs/operators';
 import { DataService } from 'src/app/services/data.service';
 import { Component, OnInit } from '@angular/core';
 
+declare var $;
+
 @Component({
   selector: 'app-kitchen-monitor',
   templateUrl: './kitchen-monitor.component.html',
@@ -25,7 +27,7 @@ export class KitchenMonitorComponent implements OnInit {
   ngOnInit() {
     this.dataService.getOrdertrackingPending().then((result) => {
       this.orderTrackings = result;
-      
+
       var source = from(result);
       var grouped = source.pipe(
         groupBy(result => result['qtag']),
@@ -53,11 +55,25 @@ export class KitchenMonitorComponent implements OnInit {
     });
   }
   getTimeOrderRemaing(orderTime) {
-    interval(1000).pipe(
-      map((x) => {
-        console.log(x - orderTime.getTime());
-        return x;
-      })
-    );
+    let startTime = new Date(orderTime);
+    var timestamp = startTime.getTime();
+    //console.log(timestamp);
+
+    let newDate = new Date();
+    let newTimestamp = newDate.getTime();
+
+    let timer;
+
+    let diff = Math.round((newTimestamp - timestamp) / 1000);
+    var d = Math.floor(diff / (24 * 60 * 60));
+    diff = diff - (d * 24 * 60 * 60);
+    var h = Math.floor(diff / (60 * 60));
+    diff = diff - (h * 60 * 60);
+    var m = Math.floor(diff / (60));
+    diff = diff - (m * 60);
+
+    var s = diff;
+
+    return h + ':' + m + ':' + s;
   }
 }

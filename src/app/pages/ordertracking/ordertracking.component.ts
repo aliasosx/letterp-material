@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/data.service';
 import { DatePipe } from '@angular/common';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+declare var $;
 
 @Component({
   selector: 'app-ordertracking',
@@ -113,5 +114,27 @@ export class OrdertrackingComponent implements OnInit {
         });
       });
     });
+  }
+  getTimeOrderRemaing(orderTime) {
+    let startTime = new Date(orderTime);
+    var timestamp = startTime.getTime();
+    //console.log(timestamp);
+
+    let newDate = new Date();
+    let newTimestamp = newDate.getTime();
+
+    let timer;
+
+    let diff = Math.round((newTimestamp - timestamp) / 1000);
+    var d = Math.floor(diff / (24 * 60 * 60));
+    diff = diff - (d * 24 * 60 * 60);
+    var h = Math.floor(diff / (60 * 60));
+    diff = diff - (h * 60 * 60);
+    var m = Math.floor(diff / (60));
+    diff = diff - (m * 60);
+
+    var s = diff;
+
+    return h + ':' + m + ':' + s;
   }
 }

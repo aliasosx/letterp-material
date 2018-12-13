@@ -30,6 +30,7 @@
 
               <div class="list-group" style="margin-top:5px; right: 5px;">
                 <div class="list-group-item h6">{{ order[0].starttime | date: 'HH:mm:ss' }}</div>
+                <div class="list-group-item h6">{{ getTimeOrderRemaing(order[0].starttime) }}</div>
               </div>
             </div>
           </div>
