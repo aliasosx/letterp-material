@@ -44,6 +44,7 @@ import { FirstloginComponent } from './dialogs/firstlogin/firstlogin.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { TimeRemainigPipe } from './pipes/time-remainig.pipe';
 import { AddnoteComponent } from './dialogs/addnote/addnote.component';
+import { FoodsFilterPipe } from './pipes/foods-filter.pipe';
 
 
 const routes: Routes = [
@@ -79,6 +80,7 @@ const routes: Routes = [
     AdddiscountComponent,
     CustomersComponent,
     CustomerFilter,
+    FoodsFilterPipe,
     CustomerTelePhoneFilterPipe,
     PaymentConfirmComponent,
     UpdatefoodtypeComponent,
@@ -96,6 +98,7 @@ const routes: Routes = [
     FooterComponent,
     TimeRemainigPipe,
     AddnoteComponent,
+    FoodsFilterPipe,
 
 
   ],

@@ -13,6 +13,17 @@
           </div>
           <div class="card-body">
             <div class="category-item">
+
+              <div class="input-group mb-3 searchtxt">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="material-icons">
+                      search
+                    </i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" placeholder="ຄົ້ນຫາອາຫານ" [(ngModel)]="searchtxt">
+              </div>
+
               <mdc-tab-bar #demoStackedTabBar (activated)="onClickCategory($event)">
                 <mdc-tab-scroller>
                   <mdc-tab class="tablabel" label="ທັງໝົດ"></mdc-tab>
@@ -20,7 +31,6 @@
                 </mdc-tab-scroller>
               </mdc-tab-bar>
             </div>
-
           </div>
         </div>
       </div>
@@ -29,7 +39,7 @@
           <div class="card-body">
             <!-- Start Food item -->
             <div class="row">
-              <div class="grid" *ngFor="let fd of foods; index as i " (click)="addItemToCard(fd)">
+              <div class="grid" *ngFor="let fd of foods |foodsFilter: searchField : searchtxt " (click)="addItemToCard(fd)">
                 <div class="item" [ngStyle]="{'background-image': 'url(' + url + fd.photo + ')'}">
                   <div class="item__details">
                     {{ fd.food_name }} <span class="badge badge-success">{{ fd.price |number }}</span>

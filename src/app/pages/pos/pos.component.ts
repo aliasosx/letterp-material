@@ -34,6 +34,8 @@ export class PosComponent implements OnInit {
   align: string;
   focusAction = false;
   actionOnBottom = false;
+  searchField: string = "food_name"
+  searchtxt: any;
 
   customer: any = {
     'id': '-1',
@@ -256,7 +258,6 @@ export class PosComponent implements OnInit {
 
     });
 
-
   }
   showSnackbar(msg) {
     if (msg) {
@@ -306,5 +307,8 @@ export class PosComponent implements OnInit {
     cart[index] = JSON.stringify(item);
     localStorage.setItem('cart', JSON.stringify(cart));
     this.loadCart();
+  }
+  getSearchByFoodname(txt) {
+    console.log(txt);
   }
 }
