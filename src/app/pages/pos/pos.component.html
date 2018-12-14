@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row ">
     <div class="col col-md-8">
-      <div class="row">
+      <div class="row category-row">
         <div class="card item-card-category">
 
           <div class="card-header">
@@ -13,23 +13,22 @@
           </div>
           <div class="card-body">
             <div class="category-item">
-
-              <div class="input-group mb-3 searchtxt">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1"><i class="material-icons">
-                      search
-                    </i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" placeholder="ຄົ້ນຫາອາຫານ" [(ngModel)]="searchtxt">
-              </div>
-
-              <mdc-tab-bar #demoStackedTabBar (activated)="onClickCategory($event)">
+              <mdc-tab-bar #demoStackedTabBar (activated)="onClickCategory($event)" class="tabbar-cl">
                 <mdc-tab-scroller>
                   <mdc-tab class="tablabel" label="ທັງໝົດ"></mdc-tab>
                   <mdc-tab class="tablabel" label="{{ ft.food_type_desc_la }}" *ngFor="let ft of food_types"></mdc-tab>
                 </mdc-tab-scroller>
               </mdc-tab-bar>
+
+            </div>
+            <div class="input-group mb-3 searchtxt">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="material-icons">
+                    search
+                  </i>
+                </span>
+              </div>
+              <input type="text" class="form-control" placeholder="ຄົ້ນຫາອາຫານ" [(ngModel)]="searchtxt">
             </div>
           </div>
         </div>
@@ -104,9 +103,7 @@
                     </li>
                     <li class="list-group-item">
                       <button [disabled]="!paymentReady" class="btn btn-lg buttonPayment " (click)="callPaymentdialog()">
-
                         ຈ່າຍ {{ total | number }} ກີບ
-
                       </button>
                     </li>
                   </ul>
