@@ -1,45 +1,54 @@
 <div class="container" #mainContent>
   <div class="col card-main">
+
     <div class="card">
       <div class="card-header">
         <h4>ລາຍການອາຫານທັງໝົດ</h4>
       </div>
       <div class="card-body">
-        <table id="foodTable" class="table table-striped table-hover" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
-          <thead>
+        <div class="input-group mb-3 searchtxt">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="material-icons">
+                search
+              </i>
+            </span>
+          </div>
+          <input type="text" class="form-control" placeholder="ຄົ້ນຫາອາຫານ" [(ngModel)]="searchtxt">
+        </div>
+
+        <table id="foodTable" class="table table-hover table-striped">
+          <thead class="table-dark">
             <tr>
               <th class="text-center ">
-                <mfDefaultSorter by="i">#</mfDefaultSorter>
+                #
               </th>
               <th class="text-center text-nowrap ">
-                <mfDefaultSorter by="food_name"> ລາຍການອາຫານ </mfDefaultSorter>
+                ລາຍການອາຫານ
               </th>
               <th class="text-center">
-                <mfDefaultSorter by="photo">ຮູບພາບ</mfDefaultSorter>
+                ຮູບພາບ
               </th>
               <th class="text-center text-nowrap">
-                <mfDefaultSorter by="food_type_id">ປະເພດ</mfDefaultSorter>
+                ປະເພດ
               </th>
               <th class="text-center">
-                <mfDefaultSorter by="cost">ລາຄາຕົ້ນທຶນ</mfDefaultSorter>
+                ຕົ້ນທຶນ
               </th>
               <th class="text-center">
-                <mfDefaultSorter by="price">ລາຄາຂາຍ</mfDefaultSorter>
+                ລາຄາຂາຍ
               </th>
               <th class="text-center text-nowrap">
-                <mfDefaultSorter by="currcode">ສະກຸນເງິນ</mfDefaultSorter>
+                ສະກຸນເງິນ
               </th>
               <th class="text-center text-nowrap">
-                <mfDefaultSorter by="kitchen_code">ຫ້ອງຄົວ</mfDefaultSorter>
+                ຫ້ອງຄົວ
               </th>
-              <th class="text-center">
-                <mfDefaultSorter by="enabled">ນຳໃຊ້</mfDefaultSorter>
-              </th>
+
               <th class="text-center">ຄຳສັ່ງ</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let food of mf.data; let i = index" [attr.data-index]="i">
+            <tr *ngFor="let food of data | foodsFilter: searchField : searchtxt ; let i = index ">
               <td class="align-middle">{{ i + 1 }}</td>
               <td class="align-middle text-nowrap">{{ food.food_name }}</td>
               <td class="align-middle">
@@ -60,13 +69,7 @@
               </td>
               <td class="align-middle text-center">{{ food.curr_name_la }}</td>
               <td class="align-middle text-center">{{ food.kitchen_code }}</td>
-              <td class="align-middle text-center">
-                <div class="form-check checkbox-slider--c">
-                  <label>
-                    <mdc-switch class="demo-switch--custom " [checked]="food.enabled"></mdc-switch>
-                  </label>
-                </div>
-              </td>
+
               <td class="align-middle text-center text-nowrap">
                 <button mdc-fab [mini]="true" class="buttonEdit" (click)="updateOnClick(food)">
                   <mdc-icon>edit</mdc-icon>
@@ -80,9 +83,32 @@
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="10" class="text-center">
-                <mfBootstrapPaginator class="pageDiv">5</mfBootstrapPaginator>
-              </td>
+              <th class="text-center ">
+                #
+              </th>
+              <th class="text-center text-nowrap ">
+                ລາຍການອາຫານ
+              </th>
+              <th class="text-center">
+                ຮູບພາບ
+              </th>
+              <th class="text-center text-nowrap">
+                ປະເພດ
+              </th>
+              <th class="text-center">
+                ຕົ້ນທຶນ
+              </th>
+              <th class="text-center">
+                ລາຄາຂາຍ
+              </th>
+              <th class="text-center text-nowrap">
+                ສະກຸນເງິນ
+              </th>
+              <th class="text-center text-nowrap">
+                ຫ້ອງຄົວ
+              </th>
+
+              <th class="text-center">ຄຳສັ່ງ</th>
             </tr>
           </tfoot>
         </table>

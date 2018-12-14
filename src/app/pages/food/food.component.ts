@@ -9,6 +9,7 @@ import { MdcSnackbar, MdcDialog, MdcDialogRef, MDC_DIALOG_DATA } from '@angular-
 import { ConfirmationComponent } from 'src/app/dialogs/confirmation/confirmation.component';
 import { AddfoodFormComponent } from 'src/app/dialogs/addfood-form/addfood-form.component';
 import { FoodinfoComponent } from 'src/app/dialogs/foodinfo/foodinfo.component';
+declare var $;
 
 @Component({
   selector: 'app-food',
@@ -16,7 +17,6 @@ import { FoodinfoComponent } from 'src/app/dialogs/foodinfo/foodinfo.component';
   styleUrls: ['./food.component.scss']
 })
 export class FoodComponent implements OnInit {
-
   constructor(private router: Router, private auth: AuthenticationService, private dataService: DataService,
     private formBuilder: FormBuilder, private snackbar: MdcSnackbar, public dialog: MdcDialog) { }
   token: string;
@@ -45,12 +45,16 @@ export class FoodComponent implements OnInit {
   focusAction = false;
   actionOnBottom = false;
   currentUserSession_code: any;
-
+  searchField: string = "food_name"
+  searchtxt: any;
   url = environment.imageUrl;
 
   ngOnInit() {
     this.title = 'Atlas';
     this.token = localStorage.getItem('token');
+
+
+
     /*Form instance initial */
     this.addFoodformGroup = new FormGroup({
       food_name: new FormControl(),
