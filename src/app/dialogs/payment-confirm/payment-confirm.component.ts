@@ -56,7 +56,7 @@ export class PaymentConfirmComponent implements OnInit {
   }
   paymentExecute(recvAmt, changeAmt) {
     //make Json Order
-    
+    this.paymentReadyOff = true;
     let changeAmtNumber: number = changeAmt.replace(',', '');
     if (changeAmtNumber < 0) {
       this.showSnackbar('Money not enought!!!');
