@@ -63,9 +63,8 @@ export class PosComponent implements OnInit {
     this.checkPayment();
   }
   getFoodtype() {
-    this.dataService.getFoodTypes().subscribe(food_type => {
+    this.dataService.getFoodTypeHasFood().subscribe(food_type => {
       this.food_types = food_type;
-      //console.log(this.food_types);
     });
   }
 

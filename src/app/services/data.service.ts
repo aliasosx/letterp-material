@@ -40,6 +40,9 @@ export class DataService {
   getFoodTypes() {
     return this.http.get(this.url + 'foodtypes', this.httpOptions);
   }
+  getFoodTypeHasFood(){
+    return this.http.get(this.url + 'foodtypehasfood', this.httpOptions);
+  }
   getCurrCodes() {
     return this.http.get(this.url + 'currcodes', this.httpOptions);
   }

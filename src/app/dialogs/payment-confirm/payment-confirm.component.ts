@@ -19,8 +19,8 @@ export class PaymentConfirmComponent implements OnInit {
   qTag: any;
   orderForm: FormGroup;
   qTagUsed: number;
-  paymentReadyOff: boolean = true;
-
+  paymentReadyOff = true;
+  tag_status = false;
 
   /* Snackbar */
   snackBarMsg: string = "test snack bar";
@@ -56,11 +56,11 @@ export class PaymentConfirmComponent implements OnInit {
   }
   paymentExecute(recvAmt, changeAmt) {
     //make Json Order
+    
     let changeAmtNumber: number = changeAmt.replace(',', '');
     if (changeAmtNumber < 0) {
       this.showSnackbar('Money not enought!!!');
     } else {
-
       this.dataService.getCurrentUserSession().then(currentUser => {
         this.currentUser = currentUser[0].emp_id;
         //make order json
@@ -81,10 +81,11 @@ export class PaymentConfirmComponent implements OnInit {
             'terminal_id': '1',
           }
         };
+        this.paymentReadyOff = true;
         //Make Order call service
         this.dataService.createOrder(order).subscribe(result => {
           try {
-            console.log(result);
+            //console.log(result);
             if (result['status'] == 'success') {
               localStorage.removeItem('cart');
               this.dialogRef.close('Success');
@@ -107,8 +108,12 @@ export class PaymentConfirmComponent implements OnInit {
     }
   }
   qSelected(e, tag) {
+    if(isNaN(tag)) {
+      this.paymentReadyOff = true;
+      this.tag_status = false;
+    }
     this.qTagUsed = parseInt(tag);
-    //console.log(this.qTagUsed);
+    this.tag_status = true;
   }
   onRecvChange($event, v) {
     console.log(v);
@@ -130,5 +135,11 @@ export class PaymentConfirmComponent implements OnInit {
       //console.log('The snack-bar was dismissed')
     });
   }
-
+  checkAmtEgnough(amt){
+    if(amt >= this.data.total && this.tag_status == true) {
+      this.paymentReadyOff = false;
+    } else {
+      this.paymentReadyOff = true;
+    }
+  }
 }
