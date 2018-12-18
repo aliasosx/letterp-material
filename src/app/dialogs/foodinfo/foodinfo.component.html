@@ -1,14 +1,13 @@
 <mdc-dialog>
   <mdc-dialog-container>
     <mdc-dialog-surface class="surface">
-      <mdc-dialog-title class="titleDialog"> ລາຍການອາຫານ <b>{{ food.food_name }}</b>
-      </mdc-dialog-title>
+
       <mdc-dialog-content class="dialogContent">
 
         <div class="row mainContent">
           <div class="col-md-4 text-center">
             <div mdcElevation=3 class="framImg">
-              <img #foodImg id="photo" [src]="env + photoPath" (click)="fileInput.click()">
+              <img #foodImg id="photo" [src]="photoPath" (click)="fileInput.click()">
             </div>
             <input style="display: none" type="file" required (change)="onFileChange($event)" #fileInput>
           </div>

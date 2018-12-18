@@ -54,14 +54,15 @@ $mdc-theme-background: #fff;
 
 .titleDialog {
   background-color: #242727;
-  color: #ffffff;
+  color: white;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
 }
 
 .surface {
   min-width: 600px;
   min-height: 400px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT'
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif,'Phetsarath OT';
+  opacity: 0.9;
 }
 .card {
   margin-top: 5px;

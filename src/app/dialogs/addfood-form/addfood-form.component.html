@@ -1,7 +1,7 @@
 <mdc-dialog class="dialog-form">
   <mdc-dialog-container>
     <mdc-dialog-surface class="surface">
-      <mdc-dialog-title class="titleDialog">ເພີມລາຍການອາຫານ</mdc-dialog-title>
+
       <mdc-dialog-content>
         <div class="card">
 
@@ -31,6 +31,12 @@
                         <option value="">---------- ເລືອກ ----------</option>
                         <option value="{{ f.id }}" *ngFor="let f of foot_type_list">{{
                           f.food_type_desc_la }}</option>
+                      </mdc-select>
+                      <mdc-select formControlName="food_subtype_id" id="food_subtype_id" required class="control-space" label="ປະເພດ"
+                        outlined>
+                        <option value="none">---------- ບໍ່ມີ ----------</option>
+                        <option value="{{ fst.id }}" *ngFor="let fst of food_subtype_list">{{
+                          fst.subtype_name }}</option>
                       </mdc-select>
                       <mdc-text-field formControlName="cost" id="cost" type="number" required class="control-space"
                         aria-placeholder="ລາຄາຕົ້ນທຶນ" outlined name="cost" label="ລາຄາຕົ້ນທຶນ">

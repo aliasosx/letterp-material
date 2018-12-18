@@ -250,6 +250,13 @@ export class DataService {
       });
     });
   }
+  getFoodBySubType(id): Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'foodBySubtype/' + id, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 
 
 }

@@ -38,10 +38,28 @@
           <div class="card-body">
             <!-- Start Food item -->
             <div class="row">
-              <div class="grid" *ngFor="let fd of foods |foodsFilter: searchField : searchtxt " (click)="addItemToCard(fd)">
-                <div class="item" [ngStyle]="{'background-image': 'url(' + url + fd.photo + ')'}">
+
+
+              <div class="grid" *ngFor="let fd of foods |foodsFilter: searchField : searchtxt "  >
+                <div class="item" [ngStyle]="{'background-image': 'url(' + url + fd.photo + ')'}" (click)="addItemToCard(fd)">
                   <div class="item__details">
-                    {{ fd.food_name }} <span class="badge badge-success">{{ fd.price |number }}</span>
+                    {{ fd.food_name }}
+                    <span class="badge badge-success" *ngIf="!fd.enabled_subtype; else showMore">{{ fd.price |number }}</span>
+                    <ng-template #showMore>
+                      <div mdcMenuSurfaceAnchor #moreMenuAnchor>
+                        <span class="badge badge-warning" (click)="demomenu.open = !demomenu.open">more</span>
+                      </div>
+                      <mdc-menu #demomenu (selected)="onMenuSelect($event)"
+                            [anchor]="moreMenuAnchor"
+                            [anchorCorner]="'topEnd'"
+                            [quickOpen]="false" [fixed]="false"
+                            [anchorMargin]="{top: marginTop.value, bottom: marginBottom.value, left: marginLeft.value, right: marginRight.value}">
+                        <mdc-list>
+                          <mdc-list-item >Seafood</mdc-list-item>
+                          <mdc-list-item >Chicken</mdc-list-item>
+                        </mdc-list>
+                      </mdc-menu>
+                  </ng-template>
                   </div>
                 </div>
               </div>

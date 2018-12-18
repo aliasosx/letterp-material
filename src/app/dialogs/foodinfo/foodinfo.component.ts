@@ -28,7 +28,7 @@ export class FoodinfoComponent implements OnInit {
     this.kt = this.food['kid'];
     this.ft = this.food['food_type_id'];
     console.log(this.kt);
-    this.photoPath = this.food['photo'];
+    this.photoPath = this.env + this.food['photo'];
   }
   getFoodType() {
     this.dataService.getFoodTypes().subscribe(foodtypes => this.foodtypes = foodtypes);

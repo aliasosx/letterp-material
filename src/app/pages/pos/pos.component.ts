@@ -4,7 +4,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Food } from '../../models/food';
 import { Item } from 'src/app/models/item';
-import { MdcDialog, MDC_DIALOG_DATA, MdcSnackbar } from '@angular-mdc/web';
+import { MdcDialog, MDC_DIALOG_DATA, MdcSnackbar, MdcMenu, MdcMenuSurfaceAnchor } from '@angular-mdc/web';
 import { CustomersComponent } from 'src/app/dialogs/customers/customers.component';
 import { PaymentConfirmComponent } from 'src/app/dialogs/payment-confirm/payment-confirm.component';
 import { environment } from 'src/environments/environment';
@@ -22,7 +22,7 @@ export class PosComponent implements OnInit {
   food_types: any;
   foods: any;
   foodCateId: string;
-  paymentReady: boolean = true;
+  paymentReady: boolean = false;
   url = environment.imageUrl;
   itemCheckClass = "hiddenDiv";
   emptyClass = "empty-icon";
@@ -44,6 +44,13 @@ export class PosComponent implements OnInit {
     'mobile': 'ບໍ່ມີຂໍ້ມູນ'
   };
 
+
+  menuItems = [
+    { label: "Flights" },
+    { label: "Hotel" },
+    { label: "Favorites" },
+    { label: "Review Activity" }
+  ];
 
   total: number = 0;
   items: Item[] = [];
@@ -111,7 +118,7 @@ export class PosComponent implements OnInit {
     }
   }
   addItemToCard(food: Food, note) {
-    if (food) {
+    if (food && !food.enabled_subtype) {
       let items: Item = {
         food: food,
         quantity: 1,
@@ -309,5 +316,8 @@ export class PosComponent implements OnInit {
   }
   getSearchByFoodname(txt) {
     console.log(txt);
+  }
+  onMenuSelect(ev){
+    console.log(ev);
   }
 }
