@@ -12,9 +12,15 @@ import { FirstloginComponent } from 'src/app/dialogs/firstlogin/firstlogin.compo
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private router: Router, private auth: AuthenticationService, private dataService: DataService, private dialog: MdcDialog) { }
+  constructor(private router: Router, private auth: AuthenticationService, private dataService: DataService, private dialog: MdcDialog) {
+    this.reportByCat = dataService.getReportByCat();
+    this.reportRevByKitchen = dataService.getReportRevByKitchen();
+  }
   title: string;
   token: string;
+  reportByCat: Promise<any>;
+  reportRevByKitchen: Promise<any>;
+
   currentUserSession: any;
   ngOnInit() {
     this.title = 'Data still loading';
@@ -43,11 +49,17 @@ export class DashboardComponent implements OnInit {
           }
 
         });
-
+        //this.loadReports();
       } else {
         this.router.navigateByUrl('login');
       }
     });
 
+  }
+  loadReports() {
+    this.dataService.getReportByCat().then(res => {
+      this.reportByCat = res;
+      console.log(res);
+    });
   }
 }

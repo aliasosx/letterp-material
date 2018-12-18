@@ -1,0 +1,19 @@
+<mdc-dialog>
+  <mdc-dialog-container>
+    <mdc-dialog-surface class="surface">
+      <mdc-dialog-title class="titleDialog">ປະເພດອາຫານເພິ່ມເຕີມ</mdc-dialog-title>
+      <mdc-dialog-content>
+        <form [formGroup]="subtypeFoodForm">
+          <div class="form-group row">
+
+            <input type="text" formControlName="subtype_name" class="form-control" id="foodtypeTxt" required
+              placeholder="ປະເພດອາຫານຍ່ອຍ">
+          </div>
+        </form>
+      </mdc-dialog-content>
+      <mdc-dialog-actions>
+        <button class="btn btn-primary btn-dialog btn-lg btn-submit" (click)="addFoodSubtype()" type="button" tabindex="11">ບັນທຶກ</button>
+      </mdc-dialog-actions>
+    </mdc-dialog-surface>
+  </mdc-dialog-container>
+</mdc-dialog>

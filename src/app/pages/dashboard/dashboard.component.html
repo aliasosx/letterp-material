@@ -12,14 +12,32 @@
 
       </div>
       <div class="card-body">
+        <ul class="list-group">
 
+          <li class="list-group-item text-left nowrap" *ngFor="let cat of reportByCat | async">
+            <div class="row">
+
+              <div class="col col-xm-3">
+                {{ cat.food_type_desc_la }}
+              </div>
+
+
+              <div class="col col-xm-3 text-right">
+                {{ cat.cnt }}
+              </div>
+
+            </div>
+          </li>
+
+
+        </ul>
       </div>
     </div>
 
 
     <div class="card">
       <div class="card-header">
-        <div class="h5">ລາຍຮັບຕາມຄົວ</div>
+        <div class="h5">ລາຍຮັບຕາມຄົວ ປະຈຳວັນ</div>
         <div class="menu">
           <a class="material-icons">
             menu
@@ -28,7 +46,23 @@
 
       </div>
       <div class="card-body">
+        <ul class="list-group">
 
+          <li class="list-group-item " *ngFor="let kit of reportRevByKitchen | async">
+            <div class="row">
+
+              <div class="col col-xm-3 text-left nowrap">
+                {{ kit.kitchen_name }} x {{ kit.cnt }}
+              </div>
+              <div class="col col-xm-3 text-right">
+                {{ kit.sm |number }}
+              </div>
+
+            </div>
+          </li>
+
+
+        </ul>
       </div>
     </div>
 

@@ -40,7 +40,7 @@ export class DataService {
   getFoodTypes() {
     return this.http.get(this.url + 'foodtypes', this.httpOptions);
   }
-  getFoodTypeHasFood(){
+  getFoodTypeHasFood() {
     return this.http.get(this.url + 'foodtypehasfood', this.httpOptions);
   }
   getCurrCodes() {
@@ -212,5 +212,44 @@ export class DataService {
       });
     });
   }
+  //Get report
+
+  getReportByCat(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'reports/reportByCats', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getReportRevByKitchen(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'reports/reportRevBykitchen', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+
+  //Get Subtype
+  getFoodSubType(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'foodsubtypes', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  addNewFoodSubType(foodSubtype): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'foodsubtype', foodSubtype, this.httpOptions).subscribe(res => {
+        console.log(res);
+        if (res['status'] == 'success') {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+
+      });
+    });
+  }
+
 
 }

@@ -1,3 +1,4 @@
+import { FoodsubtypeComponent } from './../../dialogs/foodsubtype/foodsubtype.component';
 import { Component, OnInit } from '@angular/core';
 import { MdcTabActivatedEvent, MdcDialog, MdcSnackbar } from '@angular-mdc/web';
 import { DataService } from 'src/app/services/data.service';
@@ -15,9 +16,9 @@ export class AdministratorComponent implements OnInit {
 
   constructor(private dataService: DataService, public dialog: MdcDialog, private snackbar: MdcSnackbar) { }
   foodTypeClass = "main-card";
-  DiscountClass = "main-card";
+  FoodTypeClass = "main-card";
   CurrencyClass = "main-card";
-
+  FoodSubType: any;
   foodtypes: any;
   discounts: any;
 
@@ -36,7 +37,7 @@ export class AdministratorComponent implements OnInit {
   }
   hideallCards() {
     this.CurrencyClass = "hiddenElement";
-    this.DiscountClass = "hiddenElement";
+    this.FoodTypeClass = "hiddenElement";
     this.foodTypeClass = "hiddenElement";
   }
 
@@ -49,9 +50,9 @@ export class AdministratorComponent implements OnInit {
         this.foodTypeClass = "main-card";
         break;
       }
-      case "discount": {
+      case "food sub type": {
         this.hideallCards();
-        this.DiscountClass = "main-card";
+        this.FoodTypeClass = "main-card";
         break;
       }
       case "currency": {
@@ -148,15 +149,15 @@ export class AdministratorComponent implements OnInit {
       this.getDiscounts();
     });
   }
-  addnewDiscount() {
-    const dialogRef = this.dialog.open(AdddiscountComponent, {
+  addnewFoodType() {
+    const dialogRef = this.dialog.open(FoodsubtypeComponent, {
       escapeToClose: true,
       clickOutsideToClose: false,
       scrollable: true
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result != 'close') {
-        this.showSnackbar('ສ່ວນຫຼຸດ ຖືກບັນທຶກແລ້ວ');
+        this.showSnackbar('ບັນທຶກແລ້ວ');
         this.getDiscounts();
       } else {
         this.showSnackbar('ຍົກເລີກ');
@@ -164,7 +165,11 @@ export class AdministratorComponent implements OnInit {
       }
     });
   }
-
+  loadFoodSubType() {
+    this.dataService.getFoodSubType().then(res => {
+      this.FoodSubType = res;
+    });
+  }
   updateOnClick(food) {
     const updateDialogRef = this.dialog.open(UpdatefoodtypeComponent, {
       escapeToClose: true,

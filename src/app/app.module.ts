@@ -46,6 +46,7 @@ import { TimeRemainigPipe } from './pipes/time-remainig.pipe';
 import { AddnoteComponent } from './dialogs/addnote/addnote.component';
 import { FoodsFilterPipe } from './pipes/foods-filter.pipe';
 import { FoodsComponent } from './pages/foods/foods.component';
+import { FoodsubtypeComponent } from './dialogs/foodsubtype/foodsubtype.component';
 
 
 const routes: Routes = [
@@ -102,6 +103,7 @@ const routes: Routes = [
     AddnoteComponent,
     FoodsFilterPipe,
     FoodsComponent,
+    FoodsubtypeComponent,
 
 
   ],
@@ -120,6 +122,7 @@ const routes: Routes = [
     UserEditComponent,
     FirstloginComponent,
     AddnoteComponent,
+    FoodsubtypeComponent,
   ],
 
   imports: [

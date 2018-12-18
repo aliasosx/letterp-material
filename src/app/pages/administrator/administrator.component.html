@@ -2,7 +2,7 @@
   <mdc-tab-bar #demoStackedTabBar stacked (activated)="logTab($event)">
     <mdc-tab-scroller>
       <mdc-tab label="foods Type" icon="fastfood"></mdc-tab>
-      <mdc-tab label="Discount" icon="attach_money"></mdc-tab>
+      <mdc-tab label="food sub type" icon="attach_money"></mdc-tab>
       <mdc-tab label="Currency" disabled="true" icon="equalizer"></mdc-tab>
     </mdc-tab-scroller>
   </mdc-tab-bar>
@@ -56,58 +56,16 @@
 
   </mdc-card>
 
-  <mdc-card [ngClass]="DiscountClass">
+  <mdc-card [ngClass]="FoodTypeClass">
     <mdc-card-primary-action>
       <div class="demo-card__primary">
         <h2 class="demo-card__title" mdcHeadline6>
-          <mdc-icon>attach_money</mdc-icon> Discount
+          <mdc-icon>attach_money</mdc-icon> ປະເພດອາຫານເພິ່ມເຕີມ
         </h2>
       </div>
     </mdc-card-primary-action>
     <mdc-ripple class="demo-card-article">
-      <!--
-      <table class="table table-striped table-hover">
-        <thead>
-          <th>#</th>
-          <th>ລາຍການອາຫານ</th>
-          <th>ສ່ວນຫຼຸດ</th>
-          <th>ເລີ່ມຕົ້ນ</th>
-          <th>ສີ້ນສຸດ</th>
-          <th>ສະຖານະ</th>
-          <th class="text-center">ການຈັດການ</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let dc of discounts">
-            <td>{{ dc.id }}</td>
-            <td>{{ dc.food_name }}</td>
-            <td class="text-center">{{ dc.discount_percentage }} %</td>
-            <td>{{ dc.created_at | date : 'dd-MMM-yyyy' }} </td>
-            <td>{{ dc.valid_until | date : 'dd-MMM-yyyy' }} </td>
-            <td>{{ dc.status | uppercase }} </td>
-            <td class="text-center">
-              <button mdc-fab [mini]="true" class="buttonAdd" (click)="addnewDiscount();">
-                <mdc-icon>add</mdc-icon>
-              </button>
-              <button mdc-fab [mini]="true" class="buttonEdit" (click)="updateOnClick();">
-                <mdc-icon>edit</mdc-icon>
-              </button>
-              <button mdc-fab [mini]="true" class="buttonRemove" (click)="showConfirmationDeleteDiscount(dc.id)">
-                <mdc-icon>remove</mdc-icon>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <th>#</th>
-          <th>ລາຍການອາຫານ</th>
-          <th>ສ່ວນຫຼຸດ</th>
-          <th>ເລີ່ມ</th>
-          <th>ສີ້ນສຸດ</th>
-          <th>ສະຖານະ</th>
-          <th class="text-center">ການຈັດການ</th>
-        </tfoot>
-      </table>
-      -->
+
 
       <table class="table ">
         <thead class="thead-dark">
@@ -128,7 +86,7 @@
             <td>{{ dc.valid_until | date : 'dd-MMM-yyyy' }} </td>
             <td>{{ dc.status | uppercase }} </td>
             <td class="text-center">
-              <button mdc-fab [mini]="true" class="buttonAdd" (click)="addnewDiscount();">
+              <button mdc-fab [mini]="true" class="buttonAdd">
                 <mdc-icon>add</mdc-icon>
               </button>
               <button mdc-fab [mini]="true" class="buttonEdit" (click)="updateOnClick();">
@@ -144,7 +102,7 @@
     </mdc-ripple>
     <mdc-card-actions>
       <mdc-card-action-buttons>
-        <button mdc-button mdcCardAction="button" (click)="addnewDiscount()">Add new</button>
+        <button mdc-button mdcCardAction="button" (click)="addnewFoodType()">Add new</button>
       </mdc-card-action-buttons>
     </mdc-card-actions>
   </mdc-card>
