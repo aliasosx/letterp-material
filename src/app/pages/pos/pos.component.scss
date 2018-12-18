@@ -19,14 +19,17 @@ $mdc-theme-remove: #a00606;
   //background-color: #07334f;
 
 }
-.container {
+.container-fluid {
   margin-top: 50px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,'Phetsarath OT';
   min-width: 800px;
 }
 
 .col-payment {
-  width: 800px;
+  /*
+  min-width: 500px;
+  max-width: 500px;
+  */
 }
 
 .col-order {
@@ -41,7 +44,7 @@ $mdc-theme-remove: #a00606;
 .order-card {
   width: 100%;
   margin-left: 2px;
-  //margin-top: 5px;
+
   min-height: 700px;
   max-height: 700px;
   min-width: 400px;
@@ -52,14 +55,10 @@ $mdc-theme-remove: #a00606;
   width: 100%;
   margin-top: 2px;
   margin-left: 20px;
-  height: 518;
+  height: 518px;
   max-height: 518px;
   overflow: auto;
   background-color: #ffffff;
-  /*
-  background-image: url("../../../assets/images/background.png");
-  background-size: auto;
-  */
 
 }
 
@@ -296,6 +295,10 @@ img {
   cursor: pointer;
   counter-increment: item-counter;
 
+  max-width: 150px;
+  max-height: 150px;
+  text-overflow: ellipsis;
+
   &:hover {
     transform: scale(1.05);
 
@@ -340,7 +343,7 @@ img {
   display: grid;
   position: absolute;
   align-content: center;
-  width: 400px;
+  width: 100%;
   bottom: 5px;
 }
 
