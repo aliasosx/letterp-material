@@ -15,7 +15,7 @@ declare var $;
 })
 export class KitchenMonitorComponent implements OnInit {
 
-  constructor(private dataService: DataService , private router: Router) {
+  constructor(private dataService: DataService, private router: Router) {
     setInterval(() => {
       this.getLatestOrder();
     }, 1000);
@@ -29,7 +29,7 @@ export class KitchenMonitorComponent implements OnInit {
   ngOnInit() {
     this.dataService.getOrdertrackingPending().then((result) => {
       this.orderTrackings = result;
-      if (this.first_load_count == -1 ) {
+      if (this.first_load_count == -1) {
         this.first_load_count = result.length;
         this.dataPresentation(result);
       }
@@ -39,7 +39,7 @@ export class KitchenMonitorComponent implements OnInit {
     //const time1: any = new Date('2018-12-08 01:00:00').getTime();
   }
 
-  dataPresentation(data: any){
+  dataPresentation(data: any) {
     this.orders = [];
     const source = from(data);
     const grouped = source.pipe(
@@ -48,18 +48,19 @@ export class KitchenMonitorComponent implements OnInit {
     );
 
     grouped.subscribe(data => {
-        this.orders.push(data);
-      }
+      this.orders.push(data);
+    }
     );
     this.order_tracks = {
       'order': this.orders
     };
+
   }
 
-  getLatestOrder(){
-    if(this.first_load_count != -1) {
+  getLatestOrder() {
+    if (this.first_load_count != -1) {
       this.dataService.getOrdertrackingPending().then(result => {
-        if(this.first_load_count < result.length) {
+        if (this.first_load_count < result.length) {
           this.first_load_count = result.length;
           this.dataPresentation(result);
         }

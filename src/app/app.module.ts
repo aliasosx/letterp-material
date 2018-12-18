@@ -45,12 +45,13 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { TimeRemainigPipe } from './pipes/time-remainig.pipe';
 import { AddnoteComponent } from './dialogs/addnote/addnote.component';
 import { FoodsFilterPipe } from './pipes/foods-filter.pipe';
+import { FoodsComponent } from './pages/foods/foods.component';
 
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'food', component: FoodComponent },
+  { path: 'foods', component: FoodComponent },
   { path: 'terminal', component: TerminalComponent },
   { path: 'administrator', component: AdministratorComponent },
   { path: 'pos', component: PosComponent },
@@ -58,6 +59,7 @@ const routes: Routes = [
   { path: 'print', component: PrintreceiptComponent },
   { path: 'users', component: UsersComponent },
   { path: 'kitchenmon', component: KitchenMonitorComponent },
+  { path: 'food', component: FoodsComponent },
   { path: '**', component: Page404Component },
 
 
@@ -99,6 +101,7 @@ const routes: Routes = [
     TimeRemainigPipe,
     AddnoteComponent,
     FoodsFilterPipe,
+    FoodsComponent,
 
 
   ],
