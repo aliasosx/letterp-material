@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/data.service';
 import { DatePipe } from '@angular/common';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { interval } from 'rxjs';
 declare var $;
 
 @Component({
@@ -15,7 +16,11 @@ export class OrdertrackingComponent implements OnInit {
   nowdate: Date;
   interval: any;
 
-  constructor(public dataService: DataService, private auth: AuthenticationService, private router: Router) { }
+  constructor(public dataService: DataService, private auth: AuthenticationService, private router: Router) {
+    setInterval(() => {
+      this.loadOrderTrackings();
+    }, 1000);
+  }
   //current_user: string;
   ngOnInit() {
 
@@ -66,7 +71,7 @@ export class OrdertrackingComponent implements OnInit {
       this.dataService.updateOrderTrack(OrderTracking).then((result) => {
         this.loadOrderTrackings();
         this.auditUserAdd(userInfo[0].emp_id, 'Update Order completed and send to customer order id : ' + order.order_id);
-        alert('Order Ended');
+        //alert('Order Ended');
       });
     });
 
@@ -110,7 +115,7 @@ export class OrdertrackingComponent implements OnInit {
         this.dataService.updateOrderTrack(OrderTracking).then((result) => {
           this.loadOrderTrackings();
           this.auditUserAdd(userInfo[0].emp_id, 'Update Order Cancelled order id : ' + order.order_id);
-          alert('Order Cancelled');
+          //alert('Order Cancelled');
         });
       });
     });
