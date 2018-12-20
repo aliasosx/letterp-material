@@ -8,6 +8,7 @@ import { MdcDialog, MDC_DIALOG_DATA, MdcSnackbar, MdcMenu, MdcMenuSurfaceAnchor 
 import { CustomersComponent } from 'src/app/dialogs/customers/customers.component';
 import { PaymentConfirmComponent } from 'src/app/dialogs/payment-confirm/payment-confirm.component';
 import { environment } from 'src/environments/environment';
+import { SubtypeFoodSelectComponent } from 'src/app/dialogs/subtype-food-select/subtype-food-select.component';
 
 
 
@@ -118,6 +119,7 @@ export class PosComponent implements OnInit {
     }
   }
   addItemToCard(food: Food, note) {
+
     if (food && !food.enabled_subtype) {
       let items: Item = {
         food: food,
@@ -151,9 +153,17 @@ export class PosComponent implements OnInit {
       }
       this.loadCart();
     } else {
+      // call subFoodDialog
+      let subFoodDialogRef = this.dialog.open(SubtypeFoodSelectComponent, {
+        escapeToClose: true,
+        clickOutsideToClose: true,
+        data: food
+      });
+      subFoodDialogRef.afterClosed().subscribe(res => {
+        console.log(res);
+      });
       this.loadCart();
     }
-
   }
 
   loadCart() {
@@ -317,7 +327,7 @@ export class PosComponent implements OnInit {
   getSearchByFoodname(txt) {
     console.log(txt);
   }
-  onMenuSelect(ev){
-    console.log(ev);
+  onMenuSelect() {
+    console.log();
   }
 }

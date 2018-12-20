@@ -47,6 +47,7 @@ import { AddnoteComponent } from './dialogs/addnote/addnote.component';
 import { FoodsFilterPipe } from './pipes/foods-filter.pipe';
 import { FoodsComponent } from './pages/foods/foods.component';
 import { FoodsubtypeComponent } from './dialogs/foodsubtype/foodsubtype.component';
+import { SubtypeFoodSelectComponent } from './dialogs/subtype-food-select/subtype-food-select.component';
 
 
 const routes: Routes = [
@@ -104,6 +105,7 @@ const routes: Routes = [
     FoodsFilterPipe,
     FoodsComponent,
     FoodsubtypeComponent,
+    SubtypeFoodSelectComponent,
 
 
   ],
@@ -123,6 +125,7 @@ const routes: Routes = [
     FirstloginComponent,
     AddnoteComponent,
     FoodsubtypeComponent,
+    SubtypeFoodSelectComponent,
   ],
 
   imports: [
