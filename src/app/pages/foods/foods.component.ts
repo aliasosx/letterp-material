@@ -125,20 +125,11 @@ export class FoodsComponent implements OnInit {
   addFood(food) {
 
     if (food) {
+
       this.file = food.file;
       console.log(this.file);
-      /*
-      this.dataService.addFood(food).subscribe(data => {
-        console.log(data);
-        this.addFoodformGroup.reset();
-        this.photoPath = '../../../assets/images/No_image_available.svg';
-        // this.getFoods();
+      console.log(food);
 
-        if (data['status'].toLowerCase() === 'operation success') {
-          this.showSnackbar('ເພິ່ມລາຍການອາຫານສຳເລັດ');
-        }
-      });
-      */
       this.dataService.addFood(food).then(result => {
         this.addFoodformGroup.reset();
         this.photoPath = '../../../assets/images/No_image_available.svg';

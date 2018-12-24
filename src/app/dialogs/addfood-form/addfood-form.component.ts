@@ -89,28 +89,64 @@ export class AddfoodFormComponent implements OnInit {
 
   addFood() {
     if (this.addFoodformGroup) {
-      const food = {
-        'food': {
-          'food_name': this.addFoodformGroup.get('food_name').value,
-          'food_type_id': this.addFoodformGroup.get('food_type_id').value,
-          'cost': this.addFoodformGroup.get('cost').value,
-          'price': this.addFoodformGroup.get('price').value,
-          'currcode': this.addFoodformGroup.get('currcode').value,
-          'created_by': this.currentUserSession_code,
-          'photo': this.file.name,
-          'kid': this.addFoodformGroup.get('kitchen_code').value,
+      //if master Food not defined
+      if (!this.addFoodformGroup.get('master_food_id')) {
+        const food = {
+          'food': {
+            'food_name': this.addFoodformGroup.get('food_name').value,
+            'food_type_id': this.addFoodformGroup.get('food_type_id').value,
+            'cost': this.addFoodformGroup.get('cost').value,
+            'price': this.addFoodformGroup.get('price').value,
+            'currcode': '418',
+            'created_by': this.currentUserSession_code,
+            'photo': this.file.name,
+            'kid': this.addFoodformGroup.get('kitchen_code').value,
+            'master_food_id': 0,
+            'enabled_subtype': 0,
+          }
+        };
+
+        if (this.file) {
+          const uploadData = new FormData();
+          uploadData.append('image', this.file, this.file.name);
+          this.dataService.uploadFoodPhoto(uploadData).subscribe(data => {
+            console.log(data);
+          });
+          this.dialogRef.close(food);
+        } else {
+          alert('Please select file to upload ');
         }
-      };
-      if (this.file) {
-        const uploadData = new FormData();
-        uploadData.append('image', this.file, this.file.name);
-        this.dataService.uploadFoodPhoto(uploadData).subscribe(data => {
-          console.log(data);
-        });
-        this.dialogRef.close(food);
+
       } else {
-        alert('Please select file to upload ');
+        //if master Food is defined
+        const food = {
+          'food': {
+            'food_name': this.addFoodformGroup.get('food_name').value,
+            'food_type_id': this.addFoodformGroup.get('food_type_id').value,
+            'cost': this.addFoodformGroup.get('cost').value,
+            'price': this.addFoodformGroup.get('price').value,
+            'currcode': '418',
+            'created_by': this.currentUserSession_code,
+            'photo': this.file.name,
+            'kid': this.addFoodformGroup.get('kitchen_code').value,
+            'master_food_id': this.addFoodformGroup.get('master_food_id').value,
+            'enabled_subtype': 2,
+          }
+        };
+
+        if (this.file) {
+          const uploadData = new FormData();
+          uploadData.append('image', this.file, this.file.name);
+          this.dataService.uploadFoodPhoto(uploadData).subscribe(data => {
+            console.log(data);
+          });
+          this.dialogRef.close(food);
+        } else {
+          alert('Please select file to upload ');
+        }
       }
+
+
     }
   }
 }
