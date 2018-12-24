@@ -29,7 +29,7 @@
                     <div class="form-group">
                       <label for="foodMasterSelect">ອາຫານຫຼັກ</label>
                       <select class="form-control" id="foodMasterSelect" formControlName="master_food_id">
-                        <option value="">---------- ບໍ່ມີ ----------</option>
+                        <option disabled value="">---------- ບໍ່ມີ ----------</option>
                         <option value="{{ m.id }}" *ngFor="let m of masterFoodSelect">{{
                           m.food_name }}
                         </option>

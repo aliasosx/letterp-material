@@ -52,9 +52,19 @@ export class AddfoodFormComponent implements OnInit {
   }
 
   loadMasterFood() {
+    /*
     this.dataService.getFoods().subscribe(res => {
       this.masterFoodSelect = res;
+      this.masterFoodSelect.filter(result => result.enabled_subtype == 1).subscribe(masterFood => {
+        this.masterFoodSelect = masterFood;
+      })
     });
+    */
+
+    this.dataService.getAllMasterFoods().then(res => {
+      this.masterFoodSelect = res;
+    });
+
     //console.log(this.masterFoodSelect);
   }
 
@@ -90,7 +100,7 @@ export class AddfoodFormComponent implements OnInit {
   addFood() {
     if (this.addFoodformGroup) {
       //if master Food not defined
-      if (!this.addFoodformGroup.get('master_food_id')) {
+      if (this.addFoodformGroup.get('master_food_id').value == null && this.addFoodformGroup.get('price').value > 0) {
         const food = {
           'food': {
             'food_name': this.addFoodformGroup.get('food_name').value,
@@ -117,7 +127,37 @@ export class AddfoodFormComponent implements OnInit {
           alert('Please select file to upload ');
         }
 
-      } else {
+      } else if (this.addFoodformGroup.get('master_food_id').value == null && this.addFoodformGroup.get('price').value == 0) {
+        //Enabled type master have subtype
+
+        const food = {
+          'food': {
+            'food_name': this.addFoodformGroup.get('food_name').value,
+            'food_type_id': this.addFoodformGroup.get('food_type_id').value,
+            'cost': this.addFoodformGroup.get('cost').value,
+            'price': this.addFoodformGroup.get('price').value,
+            'currcode': '418',
+            'created_by': this.currentUserSession_code,
+            'photo': this.file.name,
+            'kid': this.addFoodformGroup.get('kitchen_code').value,
+            'master_food_id': 0,
+            'enabled_subtype': 1,
+          }
+        };
+        if (this.file) {
+          const uploadData = new FormData();
+          uploadData.append('image', this.file, this.file.name);
+          this.dataService.uploadFoodPhoto(uploadData).subscribe(data => {
+            console.log(data);
+          });
+          this.dialogRef.close(food);
+        } else {
+          alert('Please select file to upload ');
+        }
+
+
+
+      } else if (this.addFoodformGroup.get('master_food_id').value) {
         //if master Food is defined
         const food = {
           'food': {

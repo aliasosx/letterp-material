@@ -51,6 +51,15 @@ export class DataService {
   getCurrCodes() {
     return this.http.get(this.url + 'currcodes', this.httpOptions);
   }
+
+  getAllMasterFoods(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'getAllMasterFoods', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+
   addFood(food): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(this.url + 'food/addFood', JSON.stringify(food), this.httpOptions).subscribe(result => {
