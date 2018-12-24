@@ -34,6 +34,11 @@ export class DataService {
   getFoods() {
     return this.http.get(this.url + 'foods', this.httpOptions);
   }
+
+  getFoodsList() {
+    return this.http.get(this.url + 'foodlists', this.httpOptions);
+  }
+
   getFoodById(id) {
     return this.http.get(this.url + 'food/' + id, this.httpOptions);
   }

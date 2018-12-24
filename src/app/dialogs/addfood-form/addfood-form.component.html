@@ -23,6 +23,46 @@
                     <input style="display: none" type="file" required (change)="onFileChange($event)" #fileInput>
                   </div>
                   <div class="col">
+                    <div class="form-group">
+                      <label for="food_primary_name">ຊື່ລາຍການອາຫານ</label>
+                      <input type="text" class="form-control" formControlName="food_name" id="food_primary_name"
+                        placeholder="ຊື່ລາຍການອາຫານ">
+                    </div>
+                    <div class="form-group">
+                      <label for="foodMasterSelect">ອາຫານຫຼັກ</label>
+                      <select class="form-control" id="foodMasterSelect" formControlName="master_food_id">
+                        <option value="">---------- ບໍ່ມີ ----------</option>
+                        <option value="{{ m.id }}" *ngFor="let m of masterFoodSelect">{{
+                          m.food_name }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="foodtypeSelect">ປະເພດ</label>
+                      <select class="form-control" id="foodtypeSelect" formControlName="food_type_id">
+                        <option value="" disabled>---------- ເລືອກ ----------</option>
+                        <option value="{{ f.id }}" *ngFor="let f of foot_type_list">{{
+                          f.food_type_desc_la }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="txtCost">ຕົ້ນທືນ</label>
+                      <input type="number" class="form-control" id="txtCost" formControlName="cost" placeholder="ຕົ້ນທືນ">
+                    </div>
+                    <div class="form-group">
+                      <label for="txtPrice">ລາຄາຕົ້ນຂາຍ</label>
+                      <input type="number" class="form-control" id="txtPrice" formControlName="price" placeholder="ລາຄາຕົ້ນຂາຍ">
+                    </div>
+                    <div class="form-group">
+                      <label for="KitchenSelect">ຄົວ</label>
+                      <select class="form-control" id="KitchenSelect" formControlName="kitchen_code">
+                        <option value="" disabled>---------- ເລືອກ ----------</option>
+                        <option value="{{ k.id }}" *ngFor="let k of kitchens">{{ k.kitchen_code }}</option>
+                      </select>
+                    </div>
+
+                    <!--
                     <div class="row">
                       <mdc-text-field formControlName="food_name" required id="food_name" class="control-space" name="food_name"
                         label="ຊື່ອາຫານ" outlined aria-placeholder="Food name" dense="true"></mdc-text-field>
@@ -58,6 +98,7 @@
                         <option value="{{ k.id }}" *ngFor="let k of kitchens">{{ k.kitchen_code }}</option>
                       </mdc-select>
                     </div>
+                    -->
                   </div>
                 </div>
               </div>
@@ -67,7 +108,7 @@
 
       </mdc-dialog-content>
       <mdc-dialog-actions class="footer-div">
-        <button class="btn btn-lg" type="submit" (click)="addFood()">ບັນທຶກ</button>
+        <button class="btn btn-primary" type="button" (click)="addFood()">ບັນທຶກ</button>
       </mdc-dialog-actions>
     </mdc-dialog-surface>
   </mdc-dialog-container>

@@ -1,10 +1,12 @@
+import { filter, map } from 'rxjs/operators';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdcDialogRef, MDC_DIALOG_DATA } from '@angular-mdc/web';
 import { DataService } from 'src/app/services/data.service';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { environment } from 'src/environments/environment';
-import { Food } from 'src/app/models/food';
+import { of } from 'rxjs';
+
 @Component({
   selector: 'app-addfood-form',
   templateUrl: './addfood-form.component.html',
@@ -22,7 +24,10 @@ export class AddfoodFormComponent implements OnInit {
   constructor(public dialogRef: MdcDialogRef<AddfoodFormComponent>, private dataService: DataService, @Inject(MDC_DIALOG_DATA) public data: AddfoodFormComponent) { }
   selectedFoodType = 'FOOD';
   currentUserSession_code: any;
-  food_subtype_list : any;
+  food_subtype_list: any;
+
+  masterFoodSelect: any;
+
   ngOnInit() {
     this.addFoodformGroup = new FormGroup({
       food_name: new FormControl(),
@@ -30,7 +35,10 @@ export class AddfoodFormComponent implements OnInit {
       price: new FormControl(),
       food_type_id: new FormControl(),
       currcode: new FormControl(),
-      kitchen_code: new FormControl,
+      kitchen_code: new FormControl(),
+      master_food_id: new FormControl(),
+      enabled_subtype: new FormControl(),
+
     });
     this.dataService.getCurrentUserSession().then(userInfo => {
       this.currentUserSession_code = userInfo[0].emp_id;
@@ -38,9 +46,18 @@ export class AddfoodFormComponent implements OnInit {
       this.getCurrCode();
       this.getKitchens();
       this.getFoodSubTypes();
+      this.loadMasterFood();
     });
 
   }
+
+  loadMasterFood() {
+    this.dataService.getFoods().subscribe(res => {
+      this.masterFoodSelect = res;
+    });
+    //console.log(this.masterFoodSelect);
+  }
+
   onFileChange(event) {
     this.file = event.target.files[0];
     var reader = new FileReader();
@@ -50,7 +67,7 @@ export class AddfoodFormComponent implements OnInit {
     }
     console.log(this.file);
   }
-  getFoodSubTypes(){
+  getFoodSubTypes() {
     this.dataService.getFoodSubType().then(res => {
       this.food_subtype_list = res;
     });

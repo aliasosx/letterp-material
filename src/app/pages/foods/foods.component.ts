@@ -87,7 +87,7 @@ export class FoodsComponent implements OnInit {
     this.getCurrCode();
   }
   getFoods() {
-    this.dataService.getFoods().subscribe(foods => {
+    this.dataService.getFoodsList().subscribe(foods => {
       this.data = foods;
       //console.log(this.data);
     });
