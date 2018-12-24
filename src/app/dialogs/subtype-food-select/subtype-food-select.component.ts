@@ -3,7 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from './../../services/data.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdcDialogRef, MDC_DIALOG_DATA } from '@angular-mdc/web';
-
+import { pipe, of } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
 @Component({
   selector: 'app-subtype-food-select',
   templateUrl: './subtype-food-select.component.html',
@@ -20,8 +21,6 @@ export class SubtypeFoodSelectComponent implements OnInit {
   }
   subtype_select: FormGroup;
   ngOnInit() {
-    console.log(this.food);
-
     this.subtype_select = new FormGroup({
       'subtype_id': new FormControl(),
       'food_id': new FormControl(),
@@ -30,31 +29,16 @@ export class SubtypeFoodSelectComponent implements OnInit {
       'price': new FormControl()
 
     });
-    console.log(this.food['id']);
   }
   loadSubfoodByFoodId(food) {
     this.dataService.getFoodSubTypeById(food['id']).then(res => {
       console.log(res);
       this.subtype_select = res;
+      this.subFoods = res;
     });
   }
   chooseFood(event) {
-    // reformat json
-    console.log(event);
-
-    let food = {
-      'cost': this.food['cost'],
-      'curr_name_la': this.food['curr_name_la'],
-      'enabled': this.food['enabled'],
-      'food_name': this.food['food_name'],
-      'food_type_desc_la': this.food['food_type_desc_la'],
-      'id': this.food['id'],
-      'kitchen_code': this.food['kitchen_code'],
-      'kitchen_name': this.food['kitchen_name'],
-      'photo': this.food['photo'],
-      //'price':
-    }
+    let foodSubType = this.subFoods.filter(sfoods => sfoods.id == event)
+    this.dialogRef.close(foodSubType);
   }
-
-
 }

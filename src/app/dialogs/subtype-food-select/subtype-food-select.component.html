@@ -1,19 +1,15 @@
 <mdc-dialog>
   <mdc-dialog-container>
     <mdc-dialog-surface class="surface">
-      <mdc-dialog-title class="titleDialog">ເລືອກປະເພດອາຫານເພິ່ມເຕີມ</mdc-dialog-title>
       <mdc-dialog-content>
         <div class="form-group">
-          <select class="form-control" (change)="chooseFood($event)">
+          <select class="form-control" (change)="chooseFood($event.target.value)">
             <option value="">--------</option>
-            <option *ngFor="let s of subtype_select" value="{{ s.id }}">{{ s.subtype_name }}
+            <option *ngFor="let s of subtype_select" value="{{ s.id }}">{{ s.food_name }}
               ລາຄາ {{ s.price | number }}</option>
           </select>
         </div>
       </mdc-dialog-content>
-      <mdc-dialog-actions>
-        <button class="btn btn-primary btn-dialog btn-submit" type="button" tabindex="11">ບັນທຶກ</button>
-      </mdc-dialog-actions>
     </mdc-dialog-surface>
   </mdc-dialog-container>
 </mdc-dialog>

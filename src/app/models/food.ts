@@ -8,5 +8,5 @@ export class Food {
   enabled_subtype: boolean;
   currcode: string;
   created_by: string;
-
+  subFood_id: number;
 }

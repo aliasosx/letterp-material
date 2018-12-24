@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { AddnoteComponent } from './../../dialogs/addnote/addnote.component';
 
 import { Component, OnInit, Inject } from '@angular/core';
@@ -126,7 +127,7 @@ export class PosComponent implements OnInit {
         quantity: 1,
         note: note,
       };
-
+      console.log(items);
       if (localStorage.getItem('cart') == null) {
         let cart: any = [];
         cart.push(JSON.stringify(items));
@@ -160,7 +161,39 @@ export class PosComponent implements OnInit {
         data: food
       });
       subFoodDialogRef.afterClosed().subscribe(res => {
-        console.log(res);
+        if (res == 'close') return;
+        let items: Item = {
+          food: res[0],
+          quantity: 1,
+          note: note,
+        };
+        console.log(items.food.id);
+
+        if (localStorage.getItem('cart') == null) {
+          let cart: any = [];
+          cart.push(JSON.stringify(items));
+          localStorage.setItem('cart', JSON.stringify(cart));
+        } else {
+          let cart: any = JSON.parse(localStorage.getItem('cart'));
+          let index: number = -1;
+          for (var i = 0; i < cart.length; i++) {
+            let item: Item = JSON.parse(cart[i]);
+            if (item.food.id == items.food.id) {
+              index = i;
+              break;
+            }
+          }
+          if (index == -1) {
+            cart.push(JSON.stringify(items));
+            localStorage.setItem('cart', JSON.stringify(cart));
+          } else {
+            let item: Item = JSON.parse(cart[index]);
+            item.quantity += 1;
+            cart[index] = JSON.stringify(item);
+            localStorage.setItem('cart', JSON.stringify(cart));
+          }
+        }
+        this.loadCart();
       });
       this.loadCart();
     }
